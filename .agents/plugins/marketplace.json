@@ -1,0 +1,14 @@
+{
+  "name": "o-matic-studio",
+  "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Pixel (photography coach). Ships no MCP server.",
+  "plugins": [
+    {
+      "name": "studio",
+      "source": {
+        "type": "local",
+        "path": "./studio"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

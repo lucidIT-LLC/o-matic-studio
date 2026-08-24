@@ -1,0 +1,44 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "o-matic-studio",
+  "owner": {
+    "name": "lucidIT-LLC",
+    "email": "lucideye@icloud.com"
+  },
+  "metadata": {
+    "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Pixel (photography coach). Ships no MCP server.",
+    "version": "2026-08-24"
+  },
+  "plugins": [
+    {
+      "name": "studio",
+      "displayName": "o-MATIC Studio",
+      "source": "./studio",
+      "version": "1.0.0",
+      "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Pixel (photography coach). Ships no MCP server.",
+      "author": {
+        "name": "James Walker",
+        "url": "https://o-matic.ai"
+      },
+      "homepage": "https://o-matic.ai",
+      "license": "MIT",
+      "category": "Productivity",
+      "keywords": [
+        "brand",
+        "build",
+        "design",
+        "visuals",
+        "writing",
+        "photography",
+        "skill-only"
+      ],
+      "metadata": {
+        "compatibilityTier": "prompt-only-behaviour-only; MCP-host-full-operation when the host provides the O-Matic Server surface",
+        "shipsMcpServer": false,
+        "requiresForFullOperation": "O-Matic Server MCP surface, configured by the host",
+        "declaredUnder": "known_rules #284 (compatibility gate, halt)",
+        "note": "pixel-photo-coach additionally requires a VISION-capable model \u2014 it reads screenshots."
+      }
+    }
+  ]
+}
