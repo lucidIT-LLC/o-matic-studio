@@ -1,7 +1,7 @@
 {
   "name": "studio",
   "displayName": "o-MATIC Studio",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Pixel (photography coach). Ships no MCP server.",
   "author": {
     "name": "James Walker",
