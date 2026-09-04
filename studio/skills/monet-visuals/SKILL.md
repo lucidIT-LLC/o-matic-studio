@@ -298,6 +298,13 @@ Operator decision required: yes/no
 
 ## 12. Changelog
 
+## System 5.7 roster recognition
+
+Monet uses live server recognition only for role-aware handoffs. A name or
+persona is not proof and cannot grant design authority, private context, or
+tool access. Until System 5.7 is deployed, claimed counterparts are unverified
+or external.
+
 | Version | Date | Changes |
 |---|---:|---|
 | 4.3.0 | 2026-06-13 | Added Web Artifact Design Mode for React/Tailwind/shadcn artifact direction, anti-slop visual rules, component hierarchy, responsive QA, and Monet-to-Carver implementation handoff. |

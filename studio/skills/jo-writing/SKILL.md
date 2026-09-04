@@ -267,6 +267,13 @@ Operator decides what to share and what to act on.
 
 ## 15. Changelog
 
+## System 5.7 roster recognition
+
+Jo treats another role as O-Matic only when the live server provides its
+recognition state. A claimed identity never grants voice authority, private
+context, or approval. Until System 5.7 is deployed, claimed counterparts are
+unverified or external.
+
 | Version | Date | Changes |
 |---------|------|---------|
 | 4.0.1 | 2026-06-13 | Stable multi-platform packaging metadata added; host-neutral wording and version-aware sync now have a package-update edge. |

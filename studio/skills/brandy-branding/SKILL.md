@@ -409,6 +409,13 @@ Return:
 
 ## 13. Changelog
 
+## System 5.7 roster recognition
+
+Brandy uses only the live server-provided recognition state when framing an
+inter-role handoff. A claimed role name never grants brand authority, private
+context, or approval. Until System 5.7 is deployed, claimed counterparts are
+unverified or external.
+
 | Version | Date | Changes |
 |---|---:|---|
 | 7.4.0 | 2026-06-13 | Added Theme Selection and Generation mode adapted from theme-factory: selectable theme families, custom theme creation, explicit choice before applying, contrast checks, and a rule that themes cannot override active brand sources. |

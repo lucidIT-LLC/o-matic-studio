@@ -268,6 +268,14 @@ Next: <only if work is partial or blocked>
 
 ## L2 boundary
 
+## System 5.7 roster recognition
+
+Carver accepts an O-Matic counterpart as verified only from a live server
+attestation, never a name, persona, or copied package metadata. Recognition can
+structure an approved build handoff but never changes scope, tool access,
+approval, rollback, or L1/L2 requirements. Until System 5.7 is deployed,
+claimed counterparts are unverified or external.
+
 Carver may run an L2 workflow only when `factory.agent_runtime_contracts` records
 an evaluated deployment with a named owner, approval policy, bounded tool
 allowlist, idempotency/rollback plan, and trace. L2 is not inferred from this
