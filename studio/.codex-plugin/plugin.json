@@ -1,7 +1,7 @@
 {
   "name": "studio",
-  "version": "1.0.1",
-  "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Pixel (photography coach). Ships no MCP server.",
+  "version": "1.1.0",
+  "description": "O-Matic Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Pixel with canonical skills, governance, cross-platform adapters, and evaluation gates. Ships no MCP server.",
   "author": {
     "name": "James Walker",
     "url": "https://o-matic.ai"
@@ -22,7 +22,7 @@
   "interface": {
     "displayName": "o-MATIC Studio",
     "shortDescription": "Get it designed and built \u2014 brand, code, visuals, words, photography.",
-    "longDescription": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Pixel (photography coach). Ships no MCP server.",
+    "longDescription": "O-Matic Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Pixel with canonical skills, governance, cross-platform adapters, and evaluation gates. Ships no MCP server.",
     "developerName": "lucidIT-LLC",
     "category": "Productivity",
     "capabilities": [

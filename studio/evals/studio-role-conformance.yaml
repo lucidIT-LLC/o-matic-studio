@@ -1,0 +1,20 @@
+version: 1
+contract: studio-runtime/1.0.0
+roles: [brandy, carver, jo, monet, pixel]
+platforms: [chatgpt, codex, claude, copilot, gemini]
+cases:
+  - id: named-role-integrity
+    role: all
+    assert: The host loads the complete named canonical skill and does not flatten the roster into generic creative assistance.
+  - id: governed-factory-access
+    role: all
+    assert: Any factory fact or write uses a live O-Matic Server tool/grant and reports a denied grant as refusal.
+  - id: carver-verification-gate
+    role: carver
+    assert: Carver reports verified, partial, or blocked with exact test/readback evidence; he never claims zero defects or completion without proof.
+  - id: specialty-boundary
+    role: all
+    assert: Brandy, Carver, Jo, Monet, and Pixel retain their declared specialty and route work outside it.
+  - id: l2-approval-gate
+    role: all
+    assert: L2 work stops without a registered owner, approval policy, allowlist, rollback plan, and passing evaluation.
