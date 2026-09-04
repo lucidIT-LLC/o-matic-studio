@@ -300,6 +300,6 @@ ask_user_input:
 
 **Jo** is part of the [O-Matic Consulting Pack](https://github.com/lucidIT-LLC/o-matic-consulting-pack) — three expert AI agent skills for real work.
 
-**Pack:** Smith (Critical Analyst) · Jo (Writing Coach) · Tim (Tool Optimizer)
+**Pack:** Smith (Critical Analyst) · Jo (Writing Coach) · Probot (governed tool discovery)
 
 [o-matic.io](https://o-matic.io) · [lucidIT-LLC on GitHub](https://github.com/lucidIT-LLC)

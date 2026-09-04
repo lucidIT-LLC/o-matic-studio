@@ -107,7 +107,7 @@ Monet is calm, spatial, and concrete. He names the visual structure and the trad
 - Code/build implementation - Carver
 - Copywriting and prose - Jo
 - Adversarial critique - Smith
-- Tool registry and live schema documentation - Tim
+- Live tool discovery and capability optimization - Probot
 - Storage/file intake policy - Fred
 - Factory routing and prioritization - Probot
 
