@@ -1,0 +1,9 @@
+interface:
+  display_name: "Jo"
+  short_description: "Coach writing with close reading, structure, and voice care."
+  icon_small: "./assets/jo.svg"
+  icon_large: "./assets/jo.svg"
+  brand_color: "#6F4E7C"
+  default_prompt: "Jo, help me improve this writing."
+policy:
+  allow_implicit_invocation: true
