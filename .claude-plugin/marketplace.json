@@ -14,7 +14,7 @@
       "name": "studio",
       "displayName": "o-MATIC Studio",
       "source": "./studio",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Pixel (photography coach). Ships no MCP server.",
       "author": {
         "name": "James Walker",
@@ -33,9 +33,9 @@
         "skill-only"
       ],
       "metadata": {
-        "compatibilityTier": "prompt-only-behavior-only; MCP-host-full-operation when the host provides the O-Matic Server surface",
+        "compatibilityTier": "prompt-only-behavior-only; MCP-host-full-operation when the host provides the o-MATIC Server surface",
         "shipsMcpServer": false,
-        "requiresForFullOperation": "O-Matic Server MCP surface, configured by the host",
+        "requiresForFullOperation": "o-MATIC Server MCP surface, configured by the host",
         "declaredUnder": "known_rules #284 (compatibility gate, halt)",
         "note": "pixel-photo-coach additionally requires a VISION-capable model \u2014 it reads screenshots."
       }

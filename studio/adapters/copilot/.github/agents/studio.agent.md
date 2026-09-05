@@ -1,6 +1,6 @@
 ---
-name: O-Matic Studio
-description: Specialist O-Matic creative-production roster governed by Probot.
+name: o-MATIC Studio
+description: Specialist o-MATIC creative-production roster governed by Probot.
 tools: []
 ---
 
