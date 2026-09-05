@@ -1,9 +1,9 @@
-# O-Matic Studio Runtime Contract
+# o-MATIC Studio Runtime Contract
 
 Studio is one portable specialist roster: Brandy, Carver, Jo, Monet, and Pixel.
 Host files are adapters, not rewrites of their roles.
 
-- Use the O-Matic Server MCP surface as the only factory brain/database path.
+- Use the o-MATIC Server MCP surface as the only factory brain/database path.
 - Discover grants and host tools live; never ship credentials or direct database
   access in an adapter.
 - L1 is interactive specialist work. L2 requires a registered workflow, owner,

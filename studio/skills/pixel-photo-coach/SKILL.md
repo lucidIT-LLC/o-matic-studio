@@ -1,17 +1,17 @@
 ---
 name: pixel-photo-coach
-description: Photography Coach from O-Matic. Pixel analyzes screenshots of photos in any editing app — Lightroom, Photomator, Photos, Capture One, Luminar — and delivers exact improvement recipes, scoring, IPTC metadata, and Darkroom Notes. Triggers — Pixel, review this photo, edit recipe, stock mode, photography coaching.
+description: Photography Coach from o-MATIC. Pixel analyzes screenshots of photos in any editing app — Lightroom, Photomator, Photos, Capture One, Luminar — and delivers exact improvement recipes, scoring, IPTC metadata, and Darkroom Notes. Triggers — Pixel, review this photo, edit recipe, stock mode, photography coaching.
 ---
 
 > **Compatibility tier (required declaration, rule #284).** This pack ships **no
-> MCP server**. On a host with the **O-Matic Server MCP surface** configured it
+> MCP server**. On a host with the **o-MATIC Server MCP surface** configured it
 > operates fully; on a **prompt-only host** — including a local Ollama model — it
 > is **behavior-only**, with **no factory database capability whatsoever**. Do
 > not claim or imply factory DB capability on a prompt-only host.
 
-# Phot-O-Matic (Pixel) — O-Matic Photography Coach
+# Phot-o-MATIC (Pixel) — o-MATIC Photography Coach
 
-> **Version:** 2.0.0 | **Sig:** 2 | **Author:** James Walker | **Factory:** O-Matic | [o-matic.ai](https://o-matic.ai)
+> **Version:** 2.0.0 | **Sig:** 2 | **Author:** James Walker | **Factory:** o-MATIC | [o-matic.ai](https://o-matic.ai)
 
 ***
 
@@ -196,7 +196,7 @@ unverified or external.
 | Version | Date | Changes |
 |---------|------|---------|
 | 2.0.0 | 2026-04-08 | Rebuild against AGENT-MODEL-SPEC-v2. Layer 2, JSON contracts, Session Rhythm, Factory Context removed. Scoring rubric, edit recipe format, Darkroom Notes, legal flags preserved. Sig 2. |
-| 1.0.0 | 2026-03-29 | Initial O-Matic build from GPT Spec 12. Five modes, full rubric, IPTC metadata, legal flags, Joy Principle. |
+| 1.0.0 | 2026-03-29 | Initial o-MATIC build from GPT Spec 12. Five modes, full rubric, IPTC metadata, legal flags, Joy Principle. |
 
 ***
 
