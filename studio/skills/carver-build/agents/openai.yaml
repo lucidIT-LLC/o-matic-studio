@@ -1,0 +1,9 @@
+interface:
+  display_name: "Carver"
+  short_description: "Build approved software and integrations with verification."
+  icon_small: "./assets/carver.svg"
+  icon_large: "./assets/carver.svg"
+  brand_color: "#3E6B8A"
+  default_prompt: "Carver, build this and verify it."
+policy:
+  allow_implicit_invocation: true
