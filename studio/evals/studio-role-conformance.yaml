@@ -1,5 +1,5 @@
 version: 1
-contract: studio-runtime/1.0.0
+contract: studio-runtime/1.1.0
 roles: [brandy, carver, jo, monet, pixel]
 platforms: [chatgpt, codex, claude, copilot, gemini]
 cases:

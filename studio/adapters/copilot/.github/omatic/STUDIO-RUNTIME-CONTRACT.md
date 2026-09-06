@@ -1,11 +1,16 @@
+<!-- GENERATED COPY — do not edit. Source: studio/contracts/STUDIO-RUNTIME-CONTRACT.md
+     Regenerate with: node studio/scripts/sync-copilot-payload.mjs
+     This copy exists so adapters/copilot/.github/ stays self-contained when
+     it is copied into another workspace. -->
+
 # o-MATIC Studio Runtime Contract
 
 **Contract version: `studio-runtime/1.1.0`.**
 
 Studio is one portable specialist roster: Brandy, Carver, Jo, Monet, and Pixel.
 Host files are adapters, not rewrites of their roles. The shared adapter core is
-`../adapters/ROLE-CORE.md`; the full identity and operating detail of each role
-remains in its canonical skill under `../skills/`.
+`./ROLE-CORE.md`; the full identity and operating detail of each role
+remains in its canonical skill under the canonical Studio skills.
 
 ## Shared non-negotiables
 
@@ -58,7 +63,7 @@ posture is L1 interactive, L2 off until clause 3 is satisfied.
 
 ## Evidence status
 
-Every Studio role is `design_verified`. `../evals/studio-role-conformance.yaml`
+Every Studio role is `design_verified`. `studio/evals/studio-role-conformance.yaml` in the Studio pack
 is version 1: five prose assertions, no runner in this pack, and no mechanism by
 which any of them can fail. It has never been executed. No Studio role's
 boundaries have been demonstrated under an adversarial prompt, and no document
@@ -70,7 +75,7 @@ not done work.
 
 This document owns the contract version string. The eval file's `contract:` key
 and the `canonical_contract_version` column in `factory.agent_runtime_contracts`
-follow it; they do not set it. A migration under `../migrations/` carries the
+follow it; they do not set it. A migration under the Studio pack's `migrations/` directory carries the
 matching digest for Data to apply (decision #415). Until that migration is
 applied the database still reads `studio-runtime/1.0.0`, and that mismatch is a
 reportable state rather than a thing an adapter resolves at runtime.

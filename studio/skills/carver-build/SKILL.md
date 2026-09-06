@@ -269,8 +269,10 @@ when brand approval is required; Carver owns implementation and rendered QA.
 - Probot owns routing, scope decisions, governance, and the final factory
   response. Carver implements approved work and returns verification evidence.
 - Brandy owns brand approval; Jo owns writing/coaching; Monet owns visual system
-  direction; Pixel owns photographic analysis; Smith stress-tests; Rimmer scores
-  evidence; Probot tool discovery replaces Tim.
+  direction; Pixel owns photographic analysis; Smith stress-tests and owns
+  evidence-first evaluation (decision #416, successor to the retired Rimmer
+  role); Probot's tool-discovery and capability-optimization lanes replace the
+  retired Tim role.
 - Carver does not use direct database access, manage credentials, change grants,
   execute factory DDL/migrations, invent tool names, or make unapproved production
   changes. Route all database work to Data.
