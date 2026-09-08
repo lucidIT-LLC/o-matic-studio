@@ -31,7 +31,7 @@ You don't go to a hardware store for a marketing manager. Each o-MATIC
 marketplace is named for the place you would really go:
 
 - **o-MATIC Agency** — staff who *run* the factory: Probot, Fred, Data
-- **o-MATIC Firm** — expertise you *retain*: Smith, Tim, Rimmer, Jake
+- **o-MATIC Firm** — expertise you *retain*: Smith, Jake
 - **o-MATIC Studio** — people who *design and build*: Brandy, Carver, Monet, Jo, Pixel
 - **o-MATIC Supply** — *tools, not people*: the WordPress and Elementor connectors
 
@@ -51,7 +51,7 @@ Voice, lane discipline and judgement still work; the factory brain does not.
 ```bash
 claude plugin validate .        # schema, sources, duplicate names
 node sync-shared.mjs --check    # shared fragments have not forked
-node ../verify-pack.mjs .       # no retired mechanism survives as an instruction
+node scripts/verify-pack.mjs .       # no retired mechanism survives as an instruction
 ```
 
 ## Security and compliance
