@@ -1,5 +1,101 @@
 # o-MATIC Studio — Changelog
 
+## 1.4.0 — 2026-09-11
+
+**Pixel gets an instrument, and a lane that lets her use it.**
+
+Decision #486 (operator ruling, session #227) widened Pixel's lane from
+coaching-only to **execute and verify** on Affinity Photo: she measures the live
+document, applies the adjustment, renders, and re-measures as proof. Her skill
+file taught none of that — it said she coaches and the operator applies, which
+was the recorded contract she had already worked past. Decision #489 carries the
+measured instrument material from the build session, and this release is that
+material written down where she reads it.
+
+### What the skill now teaches, all measured
+
+`skills/pixel-photo-coach/SKILL.md` gains §7, "The Affinity Instrument —
+measured, not assumed":
+
+- **The bulk read is the design.** `RasterObject.createCompatibleBuffer(true).buffer`
+  returns a real `ArrayBuffer` — 36,578,304 pixels of an 8064×4536 16-bit
+  document in **188 ms**, byte-identical to `readPixel`. A single `readPixel` is
+  **~4.7 µs**, so a 400-point grid is ~2 ms. Grid sampling (default 160²) is the
+  **fallback**. The prior briefing said the opposite and budgeted ~10 ms per
+  read; #489 records the correction, and decision #487 is wrong on its Affinity
+  half for the same reason.
+- **Four silent-failure rules**, each of which returns plausible wrong data
+  rather than an error: render `doc.currentSpread`; pass `doc.format` and
+  nothing else (a mismatch silently returns a correctly sized all-zero alpha-0
+  bitmap); use `createCompatibleBuffer`; never read an adjustment child node's
+  `rasterInterface` — it is an M16 **mask** at the right dimensions.
+- **Scales as they actually return**, including that `Colour.laba16` neutral is
+  **128, not 0**, that `PixelReaderLABA16` a/b are signed with empty reads at
+  -32768, and that `PixelReaderRGBA8` is **untested against real content** and is
+  labeled as such.
+- **Vendor parameter ranges** from `struct_ranges.min.json` — `Exposure` is
+  **[-20, 20]**, not [-1, 1] — with a note that the advertised `adjustment_ranges`
+  and `filter_ranges` doc topics both return "File not found."
+- **Cast interpretation on the near-neutral line**, never the global mean, with
+  thresholds, and the note that Colour Balance runs ~4–5× stronger per unit than
+  it feels.
+- **The sign-disagreement rule, given its own section**, because it is the
+  mechanical explanation of the 2026-09-10 overcorrection: measured shadows a\*
+  **+5.095** against midtones **-3.995** and highlights **-4.308**, with green
+  concentrated in the top of the frame and the bottom already neutral-to-magenta.
+  No global move can fix both — it must neutralize one and overshoot the other.
+  She now checks for sign disagreement **before** proposing a global correction
+  and reaches for masking when it appears.
+- **Clipping is always exact, never sampled** — clipped regions cluster, and
+  sampling undercounted crushed-black by 25%.
+- **The SDK hint pool is data, not authority.** It asserted format 9 linear
+  float, 0.7 µs/px and 15–20 s for 5 MP; measured reality is format 1 RGBA16,
+  gamma 2.202, 4.7 µs/px, 36.6 MP in 188 ms. It reads like a confident answer
+  and is other sessions' generated text.
+- **Start at the script library.** The two verified read-only instruments —
+  "Photo Measure — Tonal Distribution + Lab Cast Report" and "Photo Compare —
+  Region Cast Map + A/B Across Open Documents" — are named so she loads them
+  instead of rebuilding the instrument every session. Durability was the whole
+  point of saving them.
+
+### What it now refuses to claim
+
+**Pixel cannot drive Pixelmator Pro.** Zero connectors exist; it would need an
+MCP nobody has built. Decision #487 measured that it *qualifies* technically and
+that is not the same as being reachable. **Apple Photos is excluded outright** as
+an editing backend — its scripting vocabulary does not contain the concept of an
+edit. Decision #488's Core Image destination is named as architectural direction
+inside an unopened product, explicitly **not** as a capability she has. Writing
+aspirational capability into a skill file is how a pack reports compliance it
+never had.
+
+### Adapters, because a pack must not contradict itself
+
+`adapters/claude/agents/pixel.md` and `adapters/copilot/.github/agents/pixel.agent.md`
+both still carried the retired lane — "modify or edit an actual image file" under
+*does not*, "coaching only, the operator applies." Shipped alongside the new
+skill that is a contract contradiction inside one pack, so both now state the
+execute-and-verify lane, the re-measurement obligation, and what she cannot
+drive. `agent-pack.json`'s Pixel block is corrected to US English.
+
+### Spelling
+
+British spellings in Pixel's file are corrected, with one deliberate exemption
+written into the locale rule: `Colour`, `doc.colourProfile`, `ColourBalanceValues`,
+`magentaGreen` and friends are **SDK identifiers**. "Correcting" one produces a
+`ReferenceError` or a silent `undefined`. Write *color* in prose; write `Colour`
+in the script.
+
+### Verified
+
+`node scripts/verify-pack.mjs .` PASS (9 units, 0 fail, 0 warn) ·
+`node studio/scripts/check-paths.mjs` 42 pack + 15 copilot references resolve,
+0 broken · `node studio/scripts/sync-copilot-payload.mjs --check` in sync.
+
+**Minor, not patch:** this adds a capability surface — a new execution lane and a
+new connector dependency — without removing or breaking anything a host already
+relies on.
+
 ## 1.3.0 — 2026-09-06
 
 **The Claude adapter gap, and the checks that find it next time.**

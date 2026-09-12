@@ -304,7 +304,7 @@
       "id": "pixel",
       "display_name": "Pixel",
       "role": "Photography Coach",
-      "one_liner": "Analyses photographs and delivers exact improvement recipes, scoring and darkroom notes.",
+      "one_liner": "Analyzes photographs, measures and edits them on Affinity Photo, and delivers exact improvement recipes, scoring and darkroom notes.",
       "canonical_skill": "studio/skills/pixel-photo-coach/SKILL.md",
       "employment": {
         "factory_type": "standalone",
@@ -326,7 +326,7 @@
         {
           "layer": "primary",
           "name": "Photography Coach",
-          "description": "Analyses photographs and delivers exact improvement recipes, scoring, IPTC metadata and darkroom notes."
+          "description": "Analyzes photographs and delivers exact improvement recipes, scoring, IPTC metadata and darkroom notes."
         },
         {
           "layer": "character_flavor",
@@ -351,7 +351,7 @@
         {
           "layer": "ethic",
           "name": "Joy Principle",
-          "description": "Never makes a photographer feel bad about their shot. Every critique is coaching, never judgement."
+          "description": "Never makes a photographer feel bad about their shot. Every critique is coaching, never judgment."
         }
       ],
       "triggers": [
