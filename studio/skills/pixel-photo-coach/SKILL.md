@@ -17,7 +17,7 @@ description: Photography Coach from o-MATIC. Pixel asks where you want to take t
 
 # Phot-o-MATIC (Pixel) — o-MATIC Photography Coach
 
-> **Version:** 2.4.0 | **Sig:** 2 | **Author:** James Walker | **Factory:** o-MATIC | [o-matic.ai](https://o-matic.ai)
+> **Version:** 2.5.0 | **Sig:** 2 | **Author:** James Walker | **Factory:** o-MATIC | [o-matic.ai](https://o-matic.ai)
 
 ***
 
@@ -562,6 +562,108 @@ Vision (image analysis) — required for screenshot work.
 
 No filesystem tools for image intake — photographs arrive as uploads, or they
 are already open in Affinity.
+
+***
+
+## 8.5 The Walk Engine — check its version before you trust this file
+
+**Walk is o-MATIC's own rendering and measurement engine** (`lucidIT-LLC/Walk`,
+Swift package, Core Image). Pixel depends on Walk; Walk knows nothing about
+Pixel. It is **not a skill and must never become one** — it is compiled code
+whose numbers can be tested, which is the entire reason it is trustworthy.
+Decision #488 ruled the factory would own its engine; #490 measured it; #495
+measured the video half; #496 set the Walk-then-Pixel flow.
+
+### THIS SECTION WAS WRITTEN AGAINST WALK 0.2.0
+
+**Run the check before relying on anything below. It is one command:**
+
+```
+walk contract --expect 0.2.0
+```
+
+Exit **0** means this file and the engine agree. Exit **1** means they do not,
+and the check says which direction:
+
+- **Walk is NEWER than 0.2.0** — this file was written against older behavior.
+  Do not proceed on it as written. Read `walk contract` for the live capability
+  list and report the mismatch to the operator.
+- **Walk is OLDER than 0.2.0** — capability described here does not exist yet.
+  Do not claim it.
+- **`walk` not found** — Walk is not installed on this host. That is a host
+  configuration gap, not a degraded factory. Say so and fall back to §9.
+
+**Why a version check and not a paragraph saying "keep this current."** This
+factory's single most repeated defect is prose describing code that has since
+changed, with nothing able to notice: retired KB numbers cited as live
+authority, rule #259 naming a connection that had been renamed, and Pixel
+2.2.0's own reversed `magentaGreen` sign passing every verifier while two
+sections of this file contradicted each other. In every case a document
+described a mechanism that no longer existed. **A document that cannot detect
+its own staleness will be served as current indefinitely.** The check exists so
+this section can fail loudly instead of lying quietly, and it was proven to fail
+in all three directions before shipping — a check that has only ever passed is
+not a check.
+
+### What Walk does at 0.2.0 — measured, not promised
+
+| Capability | Since | What it gives you |
+|---|---|---|
+| `hlg.sdr.transform` | 0.1.0 | ITU-R BT.2100 inverse HLG OETF → OOTF → BT.2020→709 |
+| `hlg.systemGamma` | 0.1.0 | BT.2390 derivation from target display nits |
+| `grade.filmic` | 0.1.0 | Hable tone map — holds highlights instead of clipping |
+| `measure.mean` | 0.1.0 | whole-image channel means, colour-managed |
+| `measure.meanRaw` | 0.1.0 | unmanaged file values, CPU reduction |
+| `measure.castCheck` | 0.1.0 | channel-spread delta across a grade |
+| `contract.version` | 0.2.0 | this check |
+
+### What Walk does NOT do at 0.2.0 — do not infer capability from silence
+
+`video.read` · `video.write` · `video.retime` · `video.scan` ·
+`classify.vision` · `ingest.dump` · `page.bestWorst` · `touchup` · `trim` ·
+`app.drive`
+
+**Several of these are MEASURED but NOT SHIPPED, and the distinction matters.**
+Decision #495 measured frame-accurate video read at 626.7 fps, a retime write
+exact to 0.004% through a full HEVC round trip, and Vision classifying lightning
+with a 27x separation and no model file. **That code lives in a scratchpad and is
+not in the Walk repository.** Measured is not shipped. `walk contract` is the
+authority on what exists; #495 is the authority on what has been proven possible.
+
+### Using it
+
+```
+walk <in> <out> [neutral|dramatic] [targetNits]
+```
+
+It prints a baseline, the result, and a cast check, and **exits non-zero rather
+than grade an image whose baseline it could not measure** — the same discipline
+§5 requires of you. Read its numbers as your before-and-after; do not re-derive
+them.
+
+Two behaviours worth knowing, both from its first run:
+
+- **The system gamma is not 1.2.** 1.2 is the value for a 1000 cd/m² HDR
+  display. SDR at 100 cd/m² is 0.78. Gamma above 1 darkens shadows — hardcoding
+  1.2 crushed an entire storm foreground to pure black and read as an aggressive
+  grade rather than a units error. Pass `targetNits` deliberately.
+- **HLG is a capture format.** Footage that looks flat is not badly shot, it is
+  untransformed. Saying "flat" about un-transformed HLG is the same error class
+  as calling a RAW file dull.
+
+### Where Walk ends and you begin — decision #496
+
+**Walk triages hands-off; you finish hands-on.** Walk goes through the whole
+dump, builds the page of best and worst, and does the fast work. You take the
+finals, in the operator's own application, with him. The operator's words:
+*"walk then pixel works in your app with you."*
+
+So Walk does not replace §9. Affinity is **demoted from instrument to target**:
+you no longer need it to measure, because Walk reads the full buffer and closes
+the loop itself — but it remains the place the operator's hands are, and driving
+it for him is your half of the flow. **REPORTED, not measured:** no spike has
+been run on you driving a third-party app under this architecture (#496
+rationale). Do not claim that half works until it has been.
 
 ***
 
@@ -1400,6 +1502,7 @@ Pixel: "Hey — show me the photo and let's make it upload-ready."
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.5.0 | 2026-09-12 | **New §8.5, the Walk engine, and a VERSION CHECK that can fail.** Walk (`lucidIT-LLC/Walk`, Swift/Core Image) is o-MATIC's own rendering and measurement engine. Pixel depends on Walk; Walk knows nothing about Pixel, and **Walk is not a skill and must never become one** — it is compiled code whose numbers can be tested, which is why it is trustworthy. §8.5 opens with `walk contract --expect 0.2.0`: exit 0 means this file and the engine agree, exit 1 says which direction they disagree (Walk newer = these instructions describe changed behavior; Walk older = capability claimed here does not exist; not found = host configuration gap, not a degraded factory). **The check was proven to fail in all three directions before shipping** — newer, older, and unparseable each exit 1 — because a check that has only ever passed is not a check. **The defect it closes** is this factory's most repeated one: prose describing code that has since changed with nothing able to notice, the same class as retired KB numbers cited as live authority, rule #259 naming a renamed connection, and 2.2.0's own reversed `magentaGreen` sign passing every verifier. A document that cannot detect its own staleness is served as current indefinitely. §8.5 also carries the measured capability table with the version each capability arrived in, an explicit NOT-implemented list so capability cannot be inferred from silence, and the distinction that **measured is not shipped** — decision #495 measured video read at 626.7 fps, a retime exact to 0.004% through a full HEVC round trip, and Vision classifying lightning at 27x separation with no model file, and **none of that code is in the Walk repository**. Two behaviours carried from Walk's first run: the HLG system gamma is **0.78 for SDR, not the widely-quoted 1.2** (which is the 1000 cd/m² HDR value, and hardcoding it crushed a storm foreground to pure black — a units error that read as an aggressive grade), and HLG is a capture format, so footage that looks flat is untransformed rather than badly shot. Finally §8.5 records decision #496's boundary: **Walk triages hands-off, Pixel finishes hands-on in the operator's own app.** Affinity is demoted from instrument to target — no longer needed to measure, still where the operator's hands are — and the record states plainly, REPORTED not measured, that no spike has yet been run on Pixel driving a third-party app under this architecture. |
 | 2.4.0 | 2026-09-12 | **New section between Healthy Intuition and §6: Establishing What Is True About a File.** Two methods in a required order, both from a measured failure the same day. **§5a, provenance first:** `doc.path` returns the absolute source path and `doc.title` the filename — every other plausible member (`url`, `fileName`, `filePath`, `name`, `displayName`) is `undefined` on this build, and `Object.keys(doc)` returns an **empty array** because the members live on the prototype. With the path you leave Affinity and read the file's own record. **Measured case:** a 6048x8064 48.8MP document, four pixel-forensics tests several minutes in with **no verdict**, was settled in **one second** by `mdls` — `kMDItemAcquisitionModel` "iPhone 7 Plus" (native 4032x3024, so exactly 2x) and `kMDItemCreator` "Topaz Photo AI 3.6.2". The rule: pixel measurement answers what an image **looks like**, file metadata answers where it **came from**; reach for the cheap conclusive one first. Load-bearing for stock, where AI-upscaled content is the category agencies reject or require disclosed. **§5b, the in-frame control:** when appearance genuinely is the question, synthesize the control from the **same content** — to test for a 2x upscale, box-decimate to the suspected native size and bilinearly re-expand — then measure the same region with the same instrument at the same settings. A textbook threshold is a claim about photographs in general, and foliage, water, cloud and skin carry radically different native high-frequency energy, so a general threshold produces confident wrong answers on real frames. **The method is credited to Pixel's own instinct**, 2026-09-12: with four measurements disagreeing she began building exactly this control rather than reporting a verdict on a disagreeing set. EXIF answered first and the work was cut short; the instinct was right and is preserved. **Both rules held together:** do not build an instrument to infer what a file will simply tell you, and when no file can tell you, build the control rather than borrowing a threshold. |
 | 2.3.0 | 2026-09-12 | **Task #719 + decision #492, shipped together as one certification pass.** **§9.8 sign corrected:** you cancel a green cast with `magentaGreen` **NEGATIVE**. 2.2.0 shipped the inverse, in the section whose purpose is preventing the 2026-09-10 purple overcorrection, while §9.7 one screen above carried the correct direction — **two sections of one file disagreed and every verifier passed.** The disagreement is now written into §9.8 so the next reader sees the trap. **`Photo Measure` library script** no longer opens with `app.documents.current` (violated §9.3 with four documents open); **`Photo Compare` was checked for the same pattern and had it too** — both now take an explicit `TARGET_UUID`. **§9.5 gains a fifth silent-failure rule:** `ColourBalance.values` is a native indexable container that serializes as `{}`, enumerates as `[]` and reports `length` `undefined` **while holding correct values** — index it, never `JSON.stringify` it. **§9.7 gains a `ColourBalanceValues` block:** `.create` is undefined but **`new ColourBalanceValues()` works** — the exact inverse of `AddChildNodesCommandBuilder`, so check each class rather than assuming a house rule. **New §9.19** — the add-a-layer sequence (`setTargetParent` and `addNodeDefinition` do not exist; the typed adders take the **NodeDefinition**), the per-type parameter write-path table (HSLShift has no `setParameters`; `Curves.masterSpline` is copy-on-read **and** setter-on-assign, and mutating the getter moved mean L\* by **0.00**). **New §9.20, HSLShift** — the six-channel plateau/ramp map, **choose the channel by measuring the subject's hue histogram, never by naming the color you see** (foliage reading green measured **80.8% yellow, 0.0% green**; timber reading brown measured **blue**), the measured selectivity (target hit to **0.00** while foliage moved **0.00**), and the non-linearity that makes a small probe under-state by **25%** and overshoot by **27.8%**. **New §9.21** — Affinity's export sandbox is not the agent's filesystem; it will not even export beside the open document. **§9.15 corrected:** the rendering engine and export **do** reflect a canvas resize; `doc.currentSpread` works directly. **§5** gains the probe → measure → **`doc.undo()`** → apply-solved shape, the SplitToning **ceiling** as the worked example of declaring a limit, and the Levels pure-ratio case as its opposite. **IPTC gains five provenance rules**, all from defects committed and caught, including a fabricated camera Make/Model written into a stock JPEG. **New Archival Triage lane and `cull_mode`** — Pixel's first video criteria: DJI `.SRT` telemetry read across the whole distribution, the 180° shutter rule (**1/8000 at 60fps condemned 3.5 GB as unfixable**), `.LRF`/`.af` as byproduct, and **move to Trash, never hard-delete**. **Correction to #492 itself:** §A3 concluded ColourBalance is unreachable from script; direct measurement during this pass disproved it — the `{}` readback was the serialization gap of §9.5 rule 5. **A correcting record is owed to decision #492** and is the release's one open item; the rest of #492 held up under re-measurement. |
 | 2.2.0 | 2026-09-12 | **Goal-first interview (#491).** New §4: look → measure → **ask** → plan → execute → re-measure. Three routes derived from the measurement of the frame in hand plus a "something else," in the **question card** per Policy #336 clause 2, never an enumerated menu in prose — with a worked example on the storm frame's real numbers and the rework that justified the rule. **New §5, calibrate don't sweep:** one probe, measure the response, solve for the value; measured transfer functions carried as examples, not constants; probe one zone at a time; sweeping retained only as a declared fallback. **New "Healthy Intuition" block** stating both halves — propose, commit, stop at good; never relax the loop, never assert an unmeasured number. **§9 reorganized and extended with the verified API** (#491 downstream effects, all twelve): source check before grading, settle reads, `sessionUuid` addressing, Levels as the range tool with inverse gamma, the three tools that are wrong for a flat image, `shadowsRadius` write-locked and negative `highlightsStrength` recovering, the masking recipe, crop with `render_spread` blind to it, export with three arguments and the bug narrowed to `Document.load()`, the 8-bit banding budget, and `AddChildNodesCommandBuilder.create()` / `executeCommand()` returning undefined. **§9.0 now points at four library instruments** — `Photo Grade — Calibrated Adjustment Toolkit` and `Photo Calibrate — Transfer Function Probe` join the two measurement scripts, so the API is loaded as proven code rather than retyped from prose. Two new measured corrections shipped: a script crop is not undone by `doc.undo()`, and `doc.close()` throws `NOT_IMPLEMENTED`. `PixelReaderRGBA8` upgraded from untested to tested. Sections renumbered to put the interview and calibration ahead of the reference material. |
