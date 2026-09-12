@@ -1,5 +1,133 @@
 # o-MATIC Studio — Changelog
 
+## 1.5.0 — 2026-09-12
+
+**Pixel asks where the photograph is going before she grades it, and she
+calibrates instead of guessing.**
+
+Decision #491 (operator ruling, session #228) came out of a long live grading
+run across four photographs. The work was good; the method was expensive.
+Verbatim: *"she is jumping tools and trying things... the playing around thing
+things costs tokens... i think there needs to be more of a plan, and i think
+that starts with Pixel asking for clarification of where you want to go with the
+photo, give the operator 3 options and a something else."*
+
+### 1. The goal-first interview — the headline, and it is near the front
+
+`skills/pixel-photo-coach/SKILL.md` gains **§4**, ahead of the reference
+material. The sequence is now **look → measure → ASK → plan → execute →
+re-measure**. Pixel opens the photograph, runs the instrument, and then puts
+**three routes drawn from what she measured in that frame** in front of the
+operator, plus a fourth "something else" — followed by intended use, how hard to
+push, what must be preserved, and crop appetite.
+
+**The routes must cite the measurement.** A fixed menu is theatre: offering
+"repair" on a frame with no damage tells the operator you did not look. Two or
+more questions go in the **question card** per Policy #336 clause 2 (Commons
+KB-0462) — never an enumerated menu written into chat, which is the question form
+implemented badly in the place it was meant to replace.
+
+The section carries a **worked example on the storm frame's real numbers** so the
+pattern is unmistakable, and it carries the justification: that frame was graded
+for editorial and the operator afterwards asked why the houses were not simply
+cropped out for a commercial license. Every minute of that grade optimized for a
+destination nobody had chosen. Legal and IP flags moved into the interview for
+the same reason — a licensing fork is a question before the first adjustment
+layer, not a discovery after it.
+
+### 2. Calibrate, don't sweep
+
+New **§5**. Parameter sweeping is retired as the default method. The replacement
+was already proven in the session that produced the ruling: apply **one probe at
+a known magnitude**, measure the delta, compute the per-unit response, then
+**solve** for the value. Two probes of about four seconds each replace a dozen
+guesses, and unlike a swept value a solved one can explain itself.
+
+Measured transfer functions ship as **examples of the method's output, explicitly
+not as constants**: `magentaGreen` **109.26** a\* per unit globally on the storm
+frame against **72.83** inside a sky mask; White Balance **70.36** b\* per unit;
+and per-zone on the waterfall, shadows **-225.5** against midtones **-81.6** —
+the same control, the same frame, **2.8× apart**. Probing zones together produced
+contaminated derivatives that predicted +2.8 where the real move was +0.64, so
+zones are probed one at a time.
+
+Sweeping survives only as an explicit fallback — a write-locked control, a
+non-monotonic response, a parameter with no measurable output — and it has to
+announce itself when used.
+
+### 3. Intuition, bounded — both halves stated
+
+The operator asked for *"a tiny bit more healthy intuition."* A new block states
+what that is and what it is not, because shipping only the first half is a
+license to guess. It **is**: propose the likely route from the measurement rather
+than asking open-ended; commit to a magnitude from the transfer function rather
+than hedging; stop at good rather than hunting perfect. It is **not**: any
+relaxation of measure → apply → re-measure, and never permission to assert a
+number that was not measured.
+
+### 4. The verified API, carried — and now also shipped as working code
+
+All twelve items from #491's downstream effects are in the reorganized **§9**,
+unsoftened: check the source before grading anything; settle reads; address by
+`sessionUuid`; `Levels` as the range tool with **gamma inverse — above 1 darkens**
+and `outputBlackLevel` the control that stops a stretch from crushing;
+`Exposure` / `Contrast` / `ToneStretch` all wrong for a flat image with exactly
+how each failed; `shadowsRadius` write-locked and **negative** `highlightsStrength`
+recovering; the raster-selection mask recipe; crop with `render_spread` blind to
+it; export with **three** arguments and the dark/purple bug narrowed to
+`Document.load()`-ed documents only; the 8-bit banding budget;
+`AddChildNodesCommandBuilder.create()` not `new`; and `executeCommand()`
+returning undefined so the result is read off `target.children`.
+
+**And §9.0 now points at four library instruments rather than asking her to
+retype any of it.** Two new scripts join `Photo Measure` and `Photo Compare` in
+the Affinity script library:
+
+- **`Photo Grade — Calibrated Adjustment Toolkit`** — the whole verified write
+  surface as helpers: `byUuid()`, `settle()`, the read-modify-reassign pattern
+  including the two-level nested `values` and `masterParameters` cases,
+  `addStack()`, `levels()`, the mask recipe, `crop()`, `exportFile()`,
+  `frameBuffer()` with a scale guard, and a Lab calibration gate that blocks
+  rather than degrades. `SELFTEST()` returned **12 pass, 0 fail** with no
+  document and **15 pass, 0 fail** including the live half.
+- **`Photo Calibrate — Transfer Function Probe`** — §5 as runnable code, with a
+  zone guard that refuses multi-zone probes, a noise-floor check that refuses to
+  solve from a probe too small to mean anything, range clamping that reports
+  rather than truncating silently, and a `sweepFallback()` that will not run
+  without a written reason. **13 pass, 0 fail** in Node, **11 pass, 0 fail**
+  re-run inside the Affinity JS engine.
+
+That is the carried/retrieved split done properly: the judgment stays in the
+file where she needs it before deciding anything, the call signatures live as
+proven code she loads.
+
+### Two corrections measured while building it
+
+- **A script crop is effectively one-way.** `setSpreadSizeWithAnchor` does
+  register an undo entry ("Page Properties Changed") and `doc.undo()` does
+  consume it — without restoring the size. Confirmed with a settle read and again
+  from a fresh script context. An older SDK hint claims the opposite; both the
+  skill and the hint pool now carry the correction, including the correction of
+  an intermediate wrong version of this same finding.
+- **`doc.close()` throws `NOT_IMPLEMENTED`.** A script cannot close a document it
+  created, so a scratch document has to be closed by the operator.
+
+`PixelReaderRGBA8` is upgraded from **untested** to **tested against real
+content**; `Colour.createRGBA8(...).laba16` uses the same encoding as the 16-bit
+path, neutral at 128.
+
+### Version
+
+**Minor, not patch.** This adds behavior — a new interview gate that changes how
+every session opens, a new method that replaces the default one, and a new
+reference surface — without removing or breaking anything a host already relies
+on. No frontmatter contract, skill name, connector requirement, or compatibility
+tier changed. Pack 1.4.0 → 1.5.0 across `plugin.json`, `.codex-plugin` and
+`marketplace.json`; skill 2.1.0 → 2.2.0. Sections in the skill were renumbered to
+put the interview and calibration ahead of the reference material, and §7's
+measured content was extended and reorganized rather than discarded.
+
+
 ## 1.4.0 — 2026-09-11
 
 **Pixel gets an instrument, and a lane that lets her use it.**

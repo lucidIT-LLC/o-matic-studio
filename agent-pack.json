@@ -304,7 +304,7 @@
       "id": "pixel",
       "display_name": "Pixel",
       "role": "Photography Coach",
-      "one_liner": "Analyzes photographs, measures and edits them on Affinity Photo, and delivers exact improvement recipes, scoring and darkroom notes.",
+      "one_liner": "Asks where a photograph is going before grading it, measures and edits it on Affinity Photo by calibrating rather than guessing, and delivers exact improvement recipes, scoring and darkroom notes.",
       "canonical_skill": "studio/skills/pixel-photo-coach/SKILL.md",
       "employment": {
         "factory_type": "standalone",
@@ -357,6 +357,7 @@
       "triggers": [
         "Pixel",
         "review this photo",
+        "where should I take this photo",
         "edit recipe",
         "stock mode",
         "photography coaching"
