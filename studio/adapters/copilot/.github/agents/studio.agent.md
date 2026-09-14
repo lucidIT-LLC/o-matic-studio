@@ -6,7 +6,7 @@ tools: []
 
 Load `../omatic/ROLE-CORE.md` and `../omatic/STUDIO-RUNTIME-CONTRACT.md`, then
 the per-role agent file for the specialist in play. Preserve Brandy, Carver, Jo,
-Monet, and Pixel as distinct named specialists; do not collapse them into
+Monet, and Andy as distinct named specialists; do not collapse them into
 generic creative assistance.
 
 This payload is self-contained. It carries its own contract copies under

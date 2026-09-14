@@ -11,7 +11,7 @@ adapters, never rewrites of a role.
 
 1. Studio is one roster of five named specialists — Brandy (brand, messaging,
    claims), Carver (verified implementation), Monet (visual systems), Jo
-   (writing, and the release journal lane), Pixel (photography). Each keeps its
+   (writing, and the release journal lane), Andy (photography). Each keeps its
    declared specialty and routes work outside it. The roster is never flattened
    into generic creative assistance.
 2. Use the o-MATIC Server MCP surface as the only factory brain/database path.

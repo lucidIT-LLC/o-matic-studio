@@ -1,5 +1,66 @@
 # o-MATIC Studio — Changelog
 
+## 1.10.0 — 2026-09-13
+
+**Pixel is gone. The coach is Andy.**
+
+Decision #538, operator ruling, verbatim: *"fix Andy / Pixel. Pixel is gone.
+Fix andy."* #511 had renamed the roster record only and expressly held every
+user-facing surface — the skill file, the plugin path, the published skill
+name, the marketplace entry and the trigger phrases — for one bundled release;
+#502 held the rename generally. Both holds are released.
+
+The database had already finished moving. `factory.fn_rename_verdict('pixel')`
+returns PASS with 0 blocking rows and 5 history columns preserved, and
+`persona.callsign`, `persona_voice_contract.opening_convention`,
+`agent_identity`, `agent_state`, `agent_runtime_contracts` and
+`factory_agreements` all read andy. Every remaining Pixel was file-side. This
+release is that half.
+
+Renamed: `skills/pixel-photo-coach/` → `skills/andy-photo-coach/` and its
+published skill name; `adapters/claude/agents/pixel.md` → `andy.md`;
+`adapters/copilot/.github/agents/pixel.agent.md` → `andy.agent.md`; both plugin
+manifests, both marketplace manifests, `agent-pack.json`, the runtime contract,
+ROLE-CORE, the ChatGPT instructions and the role-conformance eval. The skill's
+opening convention is now **"Andy:"**, matching `persona_voice_contract`, and
+he/him throughout per #502.
+
+**The logic did not move.** The 60-point six-dimension rubric and its 50–60 /
+40–49 / 30–39 / below-30 bands, the Edit Recipe Format, Darkroom Notes,
+Over-Edit Alert, Legal/IP Flags, IPTC Stock Mode, §4 ask-the-goal and §5
+calibrate-don't-sweep diff to three lines against 2.5.0, all three of them the
+name or a pronoun. Not one threshold was touched. History was not rewritten:
+the changelog rows below, the §14 rows inside the skill, and the two applied
+migrations keep the name they shipped under (#421 — retirement is a state, not
+a delete).
+
+**Two stale claims corrected in the same pass, both of which were actively
+misinstructing sessions.**
+
+§8.5 was pinned to `walk contract --expect 0.2.0` against a Walk that is now
+**0.5.7** — so by the section's own rule the check was exiting 1 and telling
+every session *"Walk is NEWER… do not proceed on it as written"* about its own
+contents. That is the check working, and task #729 is it being heard. Re-pinned
+to 0.5.7 with the capability table re-measured live from `walk_contract`: Walk
+now ships as its own plugin with six `walk_*` MCP tools (#534), the video half
+#495 measured is shipped, and `coach.stills` is named explicitly because **Walk
+cannot judge a photograph** — four of the coach's seven selectors are undefined
+for a still, and a hand-built still was banded NOT WORTH THE TROUBLE by a rule
+reading a fabricated zero. Judging the photograph is the skill's own rubric.
+
+§10 said *"Pixelmator Pro: NO… There is zero connector"* and *"Affinity is
+Pixel's working surface today."* Decision #525 reverses the first half:
+Pixelmator Pro Creator Studio is the **designated** photo backend, chosen for a
+**reversible** probe loop the operator measured himself (undo restored the
+neutral point 42148,42919,42148 byte-identically; Affinity's canvas undo is
+one-way). MEASURED: `factory.mcp_registry` holds 26 rows and **zero Pixelmator
+row**, so the honest statement is a designated backend with **no execution path
+built** — a gap with an owner, not a refusal. Affinity is **narrowed to line
+art**, keeps its connector, and remains the only surface that can actually be
+driven today. #486's execute-and-verify grant is Affinity-specific and is not
+extended to Pixelmator by inference (#413).
+
+
 ## 1.5.0 — 2026-09-12
 
 **Pixel asks where the photograph is going before she grades it, and she

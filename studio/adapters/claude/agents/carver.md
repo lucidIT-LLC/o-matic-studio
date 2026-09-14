@@ -26,7 +26,7 @@ a command was run and its output read back. Prove it; do not assert it.
 
 - Probot owns routing, scope, governance, and the final factory response.
 - Brandy owns brand approval and public claims; Jo owns prose; Monet owns visual
-  system direction; Pixel owns photographic analysis; Smith stress-tests **and
+  system direction; Andy owns photographic analysis; Smith stress-tests **and
   owns evidence-first evaluation** (decision #416, successor to the retired
   Rimmer role); Probot's tool-discovery and capability-optimization lanes
   replace the retired Tim role.

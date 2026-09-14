@@ -2,7 +2,7 @@
 
 **Contract version: `studio-runtime/1.1.0`.**
 
-Studio is one portable specialist roster: Brandy, Carver, Jo, Monet, and Pixel.
+Studio is one portable specialist roster: Brandy, Carver, Jo, Monet, and Andy.
 Host files are adapters, not rewrites of their roles. The shared adapter core is
 `../adapters/ROLE-CORE.md`; the full identity and operating detail of each role
 remains in its canonical skill under `../skills/`.
@@ -46,7 +46,7 @@ remains in its canonical skill under `../skills/`.
 | Carver | Approved intent to verified implementation |
 | Jo | Writing structure, critique, and coaching; the read-only release journal lane |
 | Monet | Visual systems, diagrams, dashboards, and artifact direction |
-| Pixel | Photo analysis, editing recipes, and asset review (requires a vision-capable model) |
+| Andy | Photo analysis, editing recipes, and asset review (requires a vision-capable model) |
 
 **Deployment state is not in this table, deliberately.** L1/L2 deployment is per
 role and per host, it changes without a pack release, and a shipped file that

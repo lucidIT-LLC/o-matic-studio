@@ -19,9 +19,9 @@ pictures. This is the maker's door.
 | `studio:carver-build` | Carver | Working software — polyglot builds, plugins, integrations, connectors, WordPress and Elementor. |
 | `studio:monet-visuals` | Monet | Diagrams, charts, dashboards, maps, design systems, static visual artifacts. |
 | `studio:jo-writing` | Jo | Writing coaching — critique, structure, style, voice development. |
-| `studio:pixel-photo-coach` | Pixel | Photography coaching — exact edit recipes, scoring, darkroom notes. **Requires a vision-capable model.** |
+| `studio:andy-photo-coach` | Andy | Photography coaching — exact edit recipes, scoring, darkroom notes. **Requires a vision-capable model.** |
 
-**Pixel was recovered on 2026-08-24** from a disk reorg that trashed him on
+**Andy was recovered on 2026-08-24** from a disk reorg that trashed him on
 2026-06-07. He is named in KB-0045 as roster and had been missing from the factory
 for two and a half months.
 
@@ -32,7 +32,7 @@ marketplace is named for the place you would really go:
 
 - **o-MATIC Agency** — staff who *run* the factory: Probot, Fred, Data
 - **o-MATIC Firm** — expertise you *retain*: Smith, Jake
-- **o-MATIC Studio** — people who *design and build*: Brandy, Carver, Monet, Jo, Pixel
+- **o-MATIC Studio** — people who *design and build*: Brandy, Carver, Monet, Jo, Andy
 - **o-MATIC Supply** — *tools, not people*: the WordPress and Elementor connectors
 
 ## This pack ships no MCP server, on purpose
