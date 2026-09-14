@@ -1,5 +1,13 @@
 # o-MATIC Studio — Changelog
 
+## 1.10.1 — 2026-09-13
+
+Packaging only. The Spec 12 origin reference landed upstream mid-rename and was
+relocated from `skills/pixel-photo-coach/reference/` to
+`skills/andy-photo-coach/reference/`. Version bumped because the installed cache
+is semver-gated: 1.10.0 had already materialized at the earlier commit and a
+same-version update silently no-ops.
+
 ## 1.10.0 — 2026-09-13
 
 **Pixel is gone. The coach is Andy.**
