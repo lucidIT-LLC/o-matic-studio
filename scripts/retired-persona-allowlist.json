@@ -1,0 +1,19 @@
+{
+  "_comment": [
+    "Every retired persona name is fine to WRITE about (to forbid it, explain the",
+    "retirement, or point at its replacement) but must never appear as a skill's",
+    "own identity or as a live instruction/path/reference. Task #777: the Pixel",
+    "-> Andy rename (decision #538) was caught by the operator, not by a gate.",
+    "This is the gate. A retired name found outside forbidding language FAILS;",
+    "list it here with its replacement and reason so verify-pack.mjs knows what",
+    "to look for."
+  ],
+  "retired": [
+    {
+      "name": "pixel",
+      "replaced_by": "andy",
+      "decision": "decision #538",
+      "reason": "Operator ruling, session #216: 'Pixel is gone. The coach is Andy.' skills/pixel-photo-coach/ was renamed to skills/andy-photo-coach/, adapters/claude/agents/pixel.md to andy.md, adapters/copilot/.github/agents/pixel.agent.md to andy.agent.md."
+    }
+  ]
+}
