@@ -188,10 +188,14 @@ CASES += [
   'Suggested headline for the launch post, test it: "o-MATIC is the only platform that does this."'),
  (True,"#1013 Brandy probe: 'case in point' is an idiom, not a citation",
   'Case in point: "We are the only company doing this."'),
+ (True,"#1013 Brandy note 1: 'website' is publication even beside 'test fixture'",
+  'Put this in the test fixture and then on the website: "o-MATIC is the only platform that does this."'),
  (False,"#1013 first-person singular in the frame still cites",
   'I added "We are the only company doing this." as a case.'),
  (False,"#1013 KNOWN GAP (Brandy): #100-shape attributed quote has no superlative the detector knows",
   'A user said "oooooh! why doesn\'t my chat do that".'),
+ (False,"#1013 KNOWN GAP (Brandy, accepted): an endorsement with no subject and no listed word",
+  'Test case: "We are the only company doing this." Honestly, yes.'),
 ]
 fails=0
 for expect, label, text in CASES:

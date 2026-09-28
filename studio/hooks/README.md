@@ -38,7 +38,7 @@ comprehension.
 python3 studio/hooks/brand_claim_watch_fixtures.py          # from the repo root
 ```
 
-65 cases, both directions: engineering superlatives that must be ALLOWED and the
+67 cases, both directions: engineering superlatives that must be ALLOWED and the
 held claims that must be REFUSED. The suite drives the detector next to it.
 CI runs it on every push. To prove the suite can fail, point it at a sabotaged
 copy:

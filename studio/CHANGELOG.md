@@ -1,5 +1,37 @@
 # o-MATIC Studio — Changelog
 
+## 1.10.4 — 2026-09-28
+
+Three pack-side residuals of task #1013.
+
+- **Andy 2.7.0: §8.5 is re-pinned from Walk 0.5.7 to 0.10.0.** The 0.5.7 pin fired as
+  designed once Walk moved on. The capability table was re-measured from
+  `walk_contract` on the installed 0.10.0 binary, not on the session's running MCP
+  process, which had started before the update and answered 0.9.0. A script then
+  compared the table with the contract: all 34 capabilities with their versions,
+  and all 9 absences, match. `video.write.passthrough` moves to present (0.9.0).
+  The three 0.10.0 changes to what the tools return are now stated: scans carry
+  criteria identity, failed stages carry `failures[]`, and an unreadable folder is
+  reported as `unreadable`. So is 0.8.0's removal of `sigma`. Corrected: 2.6.0
+  said the criteria set ships inside the plugin. None ships.
+- **Brand claim watch: a claim the reply only cites as test material is not a
+  claim the reply makes.** Brandy owns the rule and this is her ruling. A quoted
+  span is set aside only when all five hold:
+  - it is a complete claim on its own;
+  - its line cites it as test material;
+  - its line neither attributes it to anyone nor agrees with it;
+  - no we/our/product subject stands outside the quotes;
+  - its line is not drafting public copy.
+
+  Her ruling rejected the approving-quote false negative the first draft proposed.
+  Both her ruling lines are in the hook's docstring. The word sets are closed.
+  Fixtures: 43 before, 67 now. The 1.10.3 detector fails the 5 new cited-quote
+  cases. Each clause was proven able to fail by breaking it on purpose. Known gap,
+  pinned as a fixture: an attributed quote carrying no superlative the detector
+  knows (the brand_messaging #100 shape) passes. So does an endorsement with no
+  subject and no listed word ("Honestly, yes."). Brandy accepted that residual
+  rather than growing the lists without end.
+
 ## 1.10.3 — 2026-09-28
 
 **One root cause, fixed once (tasks #963, #983):** host artifacts were deployed

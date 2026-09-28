@@ -128,7 +128,7 @@ inline `code` -- is removed before the two-stage test ONLY when ALL hold:
      enumerate. First-person singular is excluded on purpose, so "I added ...
      as a case" still cites.
   5. NOT PUBLICATION. If the line marks the span as copy we might ship
-     (headline, tagline, copy, post, launch, draft, suggested, ...), it is judged
+     (headline, tagline, copy, post, launch, draft, suggested, website, ...), it is judged
      as prose even with a citation word present. Drafting public copy is the one
      path O4 exists to gate; "test it" must not launder a headline.
 "case in point" is an idiom that asserts the claim, and is not a citation.
@@ -158,6 +158,9 @@ pass because any words counted as a frame. Brandy rejected both:
 KNOWN GAP, not covered: an attributed quote with no superlative this detector
 knows (the brand_messaging #100 shape, a user "said" something flattering)
 passes. The hook does not cover it and nothing here implies it does.
+KNOWN GAP, accepted by Brandy 2026-09-28: an endorsement with no subject and no
+listed word ('Test case: "..." Honestly, yes.') passes. Closed lists always have
+one more gap; she accepted this residual rather than growing them without end.
 """
 import json, os, re, sys
 
@@ -240,7 +243,7 @@ FRAME_SUBJECT = re.compile(
 PUBLICATION = re.compile(
     r"\b(?:headlines?|taglines?|slogans?|copy|hero|posts?|launch(?:es|ed)?"
     r"|announcements?|pitch(?:es)?|ads?|publish(?:es|ed|ing)?|drafts?|drafted"
-    r"|suggested)\b", re.I)
+    r"|suggested|websites?|webpages?|landing pages?)\b", re.I)
 
 
 def strip_quoted_claims(text):
