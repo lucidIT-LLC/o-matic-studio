@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Ships no MCP server.",
-    "version": "2026-09-13"
+    "version": "2026-09-28"
   },
   "plugins": [
     {
       "name": "studio",
       "displayName": "o-MATIC Studio",
       "source": "./studio",
-      "version": "1.10.2",
+      "version": "1.10.3",
       "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Ships no MCP server.",
       "author": {
         "name": "James Walker",

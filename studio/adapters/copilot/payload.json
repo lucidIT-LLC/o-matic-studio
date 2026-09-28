@@ -1,0 +1,41 @@
+{
+ "_comment": "Input to scripts/sync-copilot-payload.mjs: which pack files are vendored into adapters/copilot/.github/omatic/ and the rewrites applied to each copy.",
+ "files": [
+  {
+   "source": "adapters/ROLE-CORE.md",
+   "name": "ROLE-CORE.md",
+   "rewrites": [
+    [
+     "`../contracts/STUDIO-RUNTIME-CONTRACT.md`",
+     "`./STUDIO-RUNTIME-CONTRACT.md`"
+    ],
+    [
+     "`../evals/studio-role-conformance.yaml`",
+     "`studio/evals/studio-role-conformance.yaml` in the Studio pack"
+    ]
+   ]
+  },
+  {
+   "source": "contracts/STUDIO-RUNTIME-CONTRACT.md",
+   "name": "STUDIO-RUNTIME-CONTRACT.md",
+   "rewrites": [
+    [
+     "`../skills/`",
+     "the canonical Studio skills"
+    ],
+    [
+     "`../adapters/ROLE-CORE.md`",
+     "`./ROLE-CORE.md`"
+    ],
+    [
+     "`../evals/studio-role-conformance.yaml`",
+     "`studio/evals/studio-role-conformance.yaml` in the Studio pack"
+    ],
+    [
+     "`../migrations/`",
+     "the Studio pack's `migrations/` directory"
+    ]
+   ]
+  }
+ ]
+}
