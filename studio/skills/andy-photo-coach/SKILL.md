@@ -18,7 +18,7 @@ description: Photography Coach from o-MATIC. Andy asks where you want to take th
 
 # Phot-o-MATIC (Andy) — o-MATIC Photography Coach
 
-> **Version:** 2.6.0 | **Sig:** 2 | **Author:** James Walker | **Factory:** o-MATIC | [o-matic.ai](https://o-matic.ai)
+> **Version:** 2.7.0 | **Sig:** 2 | **Author:** James Walker | **Factory:** o-MATIC | [o-matic.ai](https://o-matic.ai)
 
 ***
 
@@ -579,28 +579,40 @@ measured the video half; #496 set the Walk-then-coach flow.
 #508 app-bundle mechanism) and exposes an **MCP stdio surface** — `walk_scan`,
 `walk_scan_folder`, `walk_proof_sheet`, `walk_segments`, `walk_grade`,
 `walk_contract`. On a host with that plugin installed you call the tools; the
-`walk` CLI is the same engine reached the other way. The criteria set that
-renders a coaching verdict ships **inside** the plugin under #534.
+`walk` CLI is the same engine reached the other way. **No criteria set ships
+inside the plugin** — Walk's own contract says so (`coach.verdict` is in
+`notImplemented` for exactly that reason). The set that renders a coaching
+verdict is installed on the host, at
+`~/Library/Application Support/Walk/criteria.json` or wherever `WALK_CRITERIA`
+names. (2.6.0 said it shipped inside the plugin; the contract has never said
+that.)
 
-### THIS SECTION IS WRITTEN AGAINST WALK 0.5.7
+### THIS SECTION IS WRITTEN AGAINST WALK 0.10.0
 
 **Run the check before relying on anything below.** Call `walk_contract` with
-`expect: "0.5.7"`, or on a CLI host:
+`expect: "0.10.0"`, or on a CLI host:
 
 ```
-walk contract --expect 0.5.7
+walk contract --expect 0.10.0
 ```
 
 Equal passes. Exit **1** means this file and the engine disagree, and the check
 says which direction:
 
-- **Walk is NEWER than 0.5.7** — this file was written against older behavior.
+- **Walk is NEWER than 0.10.0** — this file was written against older behavior.
   Do not proceed on it as written. Read the live `walk_contract` capability
   list and report the mismatch to the operator.
-- **Walk is OLDER than 0.5.7** — capability described here does not exist yet.
+- **Walk is OLDER than 0.10.0** — capability described here does not exist yet.
   Do not claim it.
 - **Walk not installed** — the Walk plugin is not on this host. That is a host
   configuration gap, not a degraded factory. Say so and fall back to §9.
+
+**A running host can serve an older Walk than the one installed.** The MCP
+server is a process started with the session; a plugin update does not replace
+it. Measured 2026-09-28: with 0.10.0 installed, a session started before the
+update answered `walk_contract` as **0.9.0**, and the check refused it, as it
+should. The fix is a host restart, not a re-pin. Re-pin only against the
+installed binary.
 
 **Why a version check and not a paragraph saying "keep this current."** This
 factory's single most repeated defect is prose describing code that has since
@@ -614,13 +626,15 @@ this section can fail loudly instead of lying quietly, and it was proven to fail
 in all three directions before shipping — a check that has only ever passed is
 not a check.
 
-**AND IT DID FAIL, EXACTLY AS DESIGNED — that is why this section reads 0.5.7.**
+**AND IT HAS FIRED TWICE, EXACTLY AS DESIGNED — that is why this section reads 0.10.0.**
 Shipped at 2.5.0 pinned to `--expect 0.2.0`, this section spent the interval
 instructing every session *"Walk is NEWER… do not proceed on it as written"*
-about its own contents. Task #729. The pin is not decoration; when it fires,
-re-measure and re-pin, which is what happened here.
+about its own contents. Task #729 re-pinned it to 0.5.7 at 2.6.0. Walk then
+shipped 0.7.0 through 0.10.0 and the 0.5.7 pin fired again. Task #1013 re-pinned
+it to 0.10.0 at 2.7.0. The pin is not decoration; when it fires, re-measure and
+re-pin.
 
-### What Walk does at 0.5.7 — MEASURED from `walk_contract` on this host, 2026-09-13
+### What Walk does at 0.10.0 — MEASURED from `walk_contract` on this host, 2026-09-28
 
 | Capability | Since | What it gives you |
 |---|---|---|
@@ -640,12 +654,34 @@ re-measure and re-pin, which is what happened here.
 | `ingest.stills` · `sheet.manifest` · `sheet.progressive` · `sheet.timeSampled` · `telemetry.djiSRT` | 0.5.5 | stills in the walk, sheet variants, DJI SRT telemetry |
 | `coach.bands` · `coach.criteria` · `coach.evidence` | 0.5.0 | the three verdict bands, the versioned criteria loader, the evidence trail |
 | `coreml.custom` | 0.5.7 | your own CoreML model |
+| `video.write.passthrough` | 0.9.0 | segments copied from the stored bitstream, no re-encode, each read back before it is reported |
 
-### What Walk does NOT do at 0.5.7 — do not infer capability from silence
+0.10.0 adds no capability. It changes what the tools return, and three of those
+changes matter to you:
+
+- **A scan carries the criteria's identity, not its reference.** `walk_scan` and
+  `walk_scan_folder` return `coach.available` and the criteria identity
+  (`version`, `walk`, `owner`, `established`, `source`, `rules`), plus one line
+  pointing at `walk_contract`. The band shapes, the lessons and the forward
+  question are served by `walk_contract` alone. Show a verdict's `label`, never
+  its `band` key.
+- **A failed stage carries a reason.** Each candidate carries
+  `failures: [{stage, reason}]` for any decode, classify or thumbnail stage that
+  failed. `vision: null` no longer stands in for a classifier that crashed.
+- **An unreadable folder is not an empty one.** Folder scans and proof sheets
+  report `unreadable` with a reason per folder. Read it before you tell the
+  operator a folder had nothing in it.
+
+And one from 0.8.0: **per-candidate `sigma` is gone from the wire.** It was the
+rise column rescaled by one per-clip constant, so it ranked identically to
+`relativeRise` and read as a second, agreeing instrument. `detector.robustSigma`
+is still reported per clip.
+
+### What Walk does NOT do at 0.10.0 — do not infer capability from silence
 
 `coach.verdict` · `coach.stills` · `app.drive` · `ingest.dump` ·
 `ingest.triage` · `page.bestWorst` · `touchup` · `fcpxml.export` ·
-`video.audio` · `video.write.passthrough`
+`video.audio`
 
 **Two of those absences are yours and you must not paper over them.**
 
@@ -666,6 +702,9 @@ re-measure and re-pin, which is what happened here.
 `coaching.available` is a **host** fact, not a build fact: with a criteria set
 installed Walk returns banded verdicts, and `walk_contract` reports which set,
 which version and where it was found. Read those fields; do not assume either way.
+On this host on 2026-09-28 it read `available: true`, criteria **1.4.0**, 9 rules,
+written against Walk 0.10.0. That is a reading of one host on one day, not a
+promise about yours.
 
 ### Using it
 
@@ -1592,6 +1631,7 @@ Andy: "Hey — show me the photo and let's make it upload-ready."
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.7.0 | 2026-09-28 | **§8.5 re-pinned 0.5.7 → 0.10.0** (task #1013). The 0.5.7 pin fired as designed once Walk shipped 0.7.0 through 0.10.0. Capability table re-measured from `walk_contract` on the **installed 0.10.0 binary** (`~/.claude/plugins/cache/phot-o-matic/phot-o-matic/0.10.0/bin/walk-mcp`, sha256 `2025862f6a1b1b8d3785803e2c7a393f08298a918cd65600b00a6b2253460dda`), not from the session's running MCP process, which had been started before the update and answered **0.9.0**. That is now written into §8.5 as a host fact: restart, don't re-pin. The table was then compared field by field to the contract (34 of 34 capabilities with their versions, 9 of 9 absences, no difference). The check refuses in all three directions on that binary: `--expect 0.5.7` → NEWER, `0.11.0` → OLDER, `garbage` → unparseable. **Moved:** `video.write.passthrough` from absent to present (0.9.0). **0.10.0 adds no capability. It changes three return shapes**, now stated: a scan carries criteria identity plus a pointer to `walk_contract`; a failed stage carries `failures[]` with a reason; a folder that cannot be read is reported as `unreadable`, not as empty. From 0.8.0: per-candidate `sigma` is gone. **Corrected, a claim the contract never made:** 2.6.0 said the criteria set ships inside the plugin. No criteria ship. The set is installed on the host, and this host read criteria 1.4.0, 9 rules. Nothing outside §8.5 moved. |
 | 2.6.0 | 2026-09-13 | **PIXEL IS GONE — the skill is ANDY (decision #538).** #511 renamed the roster record only and expressly held every user-facing surface; #502 held the rename generally. The operator released both: *"fix Andy / Pixel. Pixel is gone. Fix andy."* The database was already fully andy — `fn_rename_verdict('pixel')` PASS, 0 blocking rows, 5 history columns preserved — so every remaining Pixel was file-side. Renamed here: the skill `pixel-photo-coach` → `andy-photo-coach`, its directory, its published name, both plugin manifests, both marketplace entries, the claude and copilot adapters, and the body of this file including the opening convention, now **"Andy:"** to match `persona_voice_contract`. **He/him throughout** (#502). **The logic did not move:** the 60-point six-dimension rubric and its 50–60 / 40–49 / 30–39 / below-30 bands, the Edit Recipe Format, Darkroom Notes, Over-Edit Alert, Legal/IP Flags, IPTC Stock Mode, §4 ask-the-goal and §5 calibrate-don't-sweep are byte-identical apart from the name. **Also corrected, two stale claims that were actively misinstructing sessions.** **§8.5 re-pinned 0.2.0 → 0.5.7** (task #729): the version check had been *firing* — telling every session "Walk is NEWER… do not proceed on it as written" about its own contents — which is the check working, not failing. Capability table re-measured live from `walk_contract`; Walk now ships as its own plugin with six `walk_*` MCP tools (#534), and `coach.stills` is named explicitly because **Walk cannot judge a photograph** — four of its seven selectors are undefined for a still. **§10 reframed under #525:** Pixelmator Pro Creator Studio is the **designated** photo backend, chosen for a **reversible** probe loop the operator measured himself (undo restored 42148,42919,42148 byte-identically; Affinity's canvas undo is one-way), and there is **zero Pixelmator row in `factory.mcp_registry`'s 26** — so it is a gap with an owner, not a refusal. Affinity is **narrowed to line art** (#421: a state, not a delete) while remaining the only surface with a working connector. #486's execute-and-verify grant is Affinity-specific and is **not** extended by inference. |
 | 2.5.0 | 2026-09-12 | **New §8.5, the Walk engine, and a VERSION CHECK that can fail.** Walk (`lucidIT-LLC/Walk`, Swift/Core Image) is o-MATIC's own rendering and measurement engine. Pixel depends on Walk; Walk knows nothing about Pixel, and **Walk is not a skill and must never become one** — it is compiled code whose numbers can be tested, which is why it is trustworthy. §8.5 opens with `walk contract --expect 0.2.0`: exit 0 means this file and the engine agree, exit 1 says which direction they disagree (Walk newer = these instructions describe changed behavior; Walk older = capability claimed here does not exist; not found = host configuration gap, not a degraded factory). **The check was proven to fail in all three directions before shipping** — newer, older, and unparseable each exit 1 — because a check that has only ever passed is not a check. **The defect it closes** is this factory's most repeated one: prose describing code that has since changed with nothing able to notice, the same class as retired KB numbers cited as live authority, rule #259 naming a renamed connection, and 2.2.0's own reversed `magentaGreen` sign passing every verifier. A document that cannot detect its own staleness is served as current indefinitely. §8.5 also carries the measured capability table with the version each capability arrived in, an explicit NOT-implemented list so capability cannot be inferred from silence, and the distinction that **measured is not shipped** — decision #495 measured video read at 626.7 fps, a retime exact to 0.004% through a full HEVC round trip, and Vision classifying lightning at 27x separation with no model file, and **none of that code is in the Walk repository**. Two behaviours carried from Walk's first run: the HLG system gamma is **0.78 for SDR, not the widely-quoted 1.2** (which is the 1000 cd/m² HDR value, and hardcoding it crushed a storm foreground to pure black — a units error that read as an aggressive grade), and HLG is a capture format, so footage that looks flat is untransformed rather than badly shot. Finally §8.5 records decision #496's boundary: **Walk triages hands-off, Pixel finishes hands-on in the operator's own app.** Affinity is demoted from instrument to target — no longer needed to measure, still where the operator's hands are — and the record states plainly, REPORTED not measured, that no spike has yet been run on Pixel driving a third-party app under this architecture. |
 | 2.4.0 | 2026-09-12 | **New section between Healthy Intuition and §6: Establishing What Is True About a File.** Two methods in a required order, both from a measured failure the same day. **§5a, provenance first:** `doc.path` returns the absolute source path and `doc.title` the filename — every other plausible member (`url`, `fileName`, `filePath`, `name`, `displayName`) is `undefined` on this build, and `Object.keys(doc)` returns an **empty array** because the members live on the prototype. With the path you leave Affinity and read the file's own record. **Measured case:** a 6048x8064 48.8MP document, four pixel-forensics tests several minutes in with **no verdict**, was settled in **one second** by `mdls` — `kMDItemAcquisitionModel` "iPhone 7 Plus" (native 4032x3024, so exactly 2x) and `kMDItemCreator` "Topaz Photo AI 3.6.2". The rule: pixel measurement answers what an image **looks like**, file metadata answers where it **came from**; reach for the cheap conclusive one first. Load-bearing for stock, where AI-upscaled content is the category agencies reject or require disclosed. **§5b, the in-frame control:** when appearance genuinely is the question, synthesize the control from the **same content** — to test for a 2x upscale, box-decimate to the suspected native size and bilinearly re-expand — then measure the same region with the same instrument at the same settings. A textbook threshold is a claim about photographs in general, and foliage, water, cloud and skin carry radically different native high-frequency energy, so a general threshold produces confident wrong answers on real frames. **The method is credited to Pixel's own instinct**, 2026-09-12: with four measurements disagreeing she began building exactly this control rather than reporting a verdict on a disagreeing set. EXIF answered first and the work was cut short; the instinct was right and is preserved. **Both rules held together:** do not build an instrument to infer what a file will simply tell you, and when no file can tell you, build the control rather than borrowing a threshold. |

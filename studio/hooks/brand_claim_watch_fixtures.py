@@ -136,6 +136,63 @@ CASES += [
  (True,"#718 world's first with product subject",
   "Slate is the world's first governed canvas."),
 ]
+
+# === Task #1013, 2026-09-28 (Carver; Brandy owns the rule). ===
+# A reply that CITES a claim as a quoted string is not making it. The ALLOW cases
+# below were REFUSED by the detector before this change (measured against the
+# committed 1.10.3 detector). The REFUSE cases are the ways the exemption could
+# be abused: scare quotes, a bare quoted claim, a real claim beside a quoted one,
+# and an unbalanced quote. Each must keep refusing.
+CASES += [
+ (False,"#1013 quoted test string, straight quotes",
+  'The fixture "We are the only company doing this." must still refuse.'),
+ (False,"#1013 quoted test string, curly quotes",
+  "Case 12 feeds the hook “o-MATIC is the only vendor delivering governed artificial organizations.” and expects exit 2."),
+ (False,"#1013 quoted test string, inline code",
+  "The test string `Nobody else is doing this - we built it.` is a REFUSE case."),
+ (False,"#1013 quoted string holding two sentences",
+  'I added "We tested it. We are the only platform that reproduces the same result on three separate days." as a case.'),
+ (True,"#1013 real unhedged claim in plain prose",
+  "We are the only company doing this, and the fixtures prove it."),
+ (True,"#1013 scare quotes around the superlative only",
+  'We are "the only company" doing this.'),
+ (True,"#1013 scare quotes, product subject outside",
+  'o-MATIC is "the only platform that does this".'),
+ (True,"#1013 bare quoted claim, nothing framing it",
+  '"o-MATIC is the first company aligning artificial organizations with OKRs."'),
+ (True,"#1013 real claim beside a quoted one",
+  'The fixture "Nobody else is doing this - we built it." passes, and o-MATIC is the only platform that does this.'),
+ (True,"#1013 unbalanced quote is not a quote",
+  'We are the only company doing this" and nobody has checked.'),
+]
+# Brandy's ruling on the first draft (2026-09-28): any-words framing let
+# attributed and endorsed quotes through. These must refuse.
+CASES += [
+ (True,"#1013 Brandy: attributed to customers",
+  'Customers tell us "o-MATIC is the only platform that does this."'),
+ (True,"#1013 Brandy: our homepage, endorsed",
+  'Our homepage says "o-MATIC is the only platform that does this", and it is right.'),
+ (True,"#1013 Brandy: attributed to a reviewer",
+  'One reviewer wrote "We are the only company doing this."'),
+ (True,"#1013 Brandy: citation word AND attribution word, attribution wins",
+  'The test case: customers tell us "o-MATIC is the only platform that does this."'),
+ (True,"#1013 Brandy: citation word AND attribution only (no us/we, no endorsement); attribution wins",
+  'A reviewer wrote the test string "o-MATIC is the only platform that does this."'),
+ (True,"#1013 Brandy: citation word AND endorsement, no attribution; endorsement wins",
+  'That test string "o-MATIC is the only platform that does this." is true, and I agree.'),
+ (True,"#1013 framed by words that are not a citation",
+  'Worth a look "We are the only company doing this." today.'),
+ (True,"#1013 Brandy probe: citation word, then 'We are.' on the same line",
+  'Per the fixture, "We are the only company doing this." We are.'),
+ (True,"#1013 Brandy probe: a headline laundered by 'test it'",
+  'Suggested headline for the launch post, test it: "o-MATIC is the only platform that does this."'),
+ (True,"#1013 Brandy probe: 'case in point' is an idiom, not a citation",
+  'Case in point: "We are the only company doing this."'),
+ (False,"#1013 first-person singular in the frame still cites",
+  'I added "We are the only company doing this." as a case.'),
+ (False,"#1013 KNOWN GAP (Brandy): #100-shape attributed quote has no superlative the detector knows",
+  'A user said "oooooh! why doesn\'t my chat do that".'),
+]
 fails=0
 for expect, label, text in CASES:
     td = tempfile.mkdtemp()

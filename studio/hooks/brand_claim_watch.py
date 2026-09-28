@@ -99,6 +99,65 @@ that refused before stops refusing; the fixture suite proves both directions.
 ACCEPTED FALSE NEGATIVE, extending the one above: "This is the world's first X"
 with no first-person or product noun in the sentence now passes. Same trade, same
 reason.
+
+=== QUOTED CLAIMS EXEMPTED — 2026-09-28, task #1013 (Carver; Brandy's ruling). ===
+
+THE DEFECT. The gate refused a reply that only CITED a claim as a string: a
+fixture sentence in quotation marks, named as a test case, is the reply talking
+ABOUT a claim, not making one. Same class as #620 and #718 -- the detector graded
+the words on the page, not the speaker's conduct -- and it fired hardest on the
+work that maintains this gate, since every fixture here is a held claim.
+
+THE FIX, NARROW ON PURPOSE. A quoted span -- straight "...", curly “...”, or
+inline `code` -- is removed before the two-stage test ONLY when ALL hold:
+  1. SELF-CONTAINED. The span, read alone, is a complete in-scope claim: its own
+     subject AND its own superlative are inside the quotes. Scare quotes around
+     the superlative alone ('We are "the only company" doing this') leave the
+     subject outside, so the span is not self-contained and the reply is still
+     the one making the claim. It refuses.
+  2. CITED. The line holding the span carries a CITATION word marking it as test
+     or detector material. A reply that is nothing but a quoted claim, or one
+     framed by any other words, is delivering the claim, not citing it.
+  3. NOT ATTRIBUTED, NOT ENDORSED. If the line carries an attribution or an
+     endorsement marker, the span is judged as prose even when a citation word
+     is also present. Attribution overrides citation.
+  4. NO SUBJECT IN THE FRAME (structural, not a word list). If the text outside
+     the quotes on that line has a first-person-plural or product subject (we,
+     us, our, ours, o-MATIC, the detector's product nouns), the span is judged as
+     prose: 'Per the fixture, "..." We are.' is an endorsement no list would
+     enumerate. First-person singular is excluded on purpose, so "I added ...
+     as a case" still cites.
+  5. NOT PUBLICATION. If the line marks the span as copy we might ship
+     (headline, tagline, copy, post, launch, draft, suggested, ...), it is judged
+     as prose even with a citation word present. Drafting public copy is the one
+     path O4 exists to gate; "test it" must not launder a headline.
+"case in point" is an idiom that asserts the claim, and is not a citation.
+Single quotes are not quote marks here: the apostrophe in "we're" and "world's"
+would pair with anything.
+
+THE WORD SETS AND BOTH STRUCTURAL RULES ARE CLOSED and change only with Brandy's
+ruling (CITATION, ATTRIBUTION, ENDORSEMENT, FRAME_SUBJECT, PUBLICATION below). A plural or inflected form of a listed word
+counts as that word; nothing else is added.
+
+REJECTED, NOT ACCEPTED -- the approving quote. The first draft of this change
+let 'our homepage says "o-MATIC is the only platform that does this", and it is
+right' pass as an accepted false negative, and let 'Customers tell us "..."'
+pass because any words counted as a frame. Brandy rejected both:
+
+  "A quotation mark changes the punctuation, not the speaker: a held claim we
+   cite as a test case is us talking about the claim, but a held claim we
+   attribute to someone or agree with is us making it -- and when it is
+   attributed, it is us inventing a witness. The gate may stop refusing
+   fixtures; it may never start carrying endorsements, because credibility lost
+   to a laundered quote takes twice as long to win back."
+                                  -- Brandy, 2026-09-28, O4 / halt-rule #254
+
+  "A citation word is a label, not a license: if we are the subject of the line
+   or the line is drafting copy, the quote is ours."   -- Brandy, 2026-09-28
+
+KNOWN GAP, not covered: an attributed quote with no superlative this detector
+knows (the brand_messaging #100 shape, a user "said" something flattering)
+passes. The hook does not cover it and nothing here implies it does.
 """
 import json, os, re, sys
 
@@ -159,6 +218,57 @@ def is_routing(sentence, hit):
 SPLIT = re.compile(r"(?<=[.!?;:])\s+|\n+|(?:(?<=\n)|\A)[-*\u2022]\s+")
 
 
+# QUOTED CLAIMS, task #1013 (2026-09-28). See the docstring: a span is exempt only
+# when it is a self-contained claim, CITED as test material, and neither
+# attributed nor endorsed.
+QUOTED = re.compile(r'"[^"\n]+"|\u201c[^\u201d\n]+\u201d|`[^`\n]+`')
+# Closed sets, Brandy's ruling 2026-09-28. Change only with her ruling.
+CITATION = re.compile(
+    r"\b(?:fixtures?|cases?(?!\s+in\s+point)|tests?|strings?|examples?|inputs?|patterns?|detectors?"
+    r"|hooks?|refuse[sd]?|expects?|exit)\b", re.I)
+ATTRIBUTION = re.compile(
+    r"\b(?:says|said|told|tell|tells|wrote|according to|customers?|users?|reviewers?"
+    r"|homepage|site|press|analysts?)\b", re.I)
+ENDORSEMENT = re.compile(
+    r"\b(?:right|true|correct|accurate|agree[sd]?|stands)\b", re.I)
+# Structural: SUBJECT without first-person singular ("I", "my"), plus "us".
+FRAME_SUBJECT = re.compile(
+    r"(o-?matic\b|\bwe\b|\bwe'?(?:re|ve|ll)\b|\bus\b|\bour\b|\bours\b"
+    r"|the factory\b|this factory\b|the company\b|this company\b"
+    r"|artificial organi[sz]ation\b|\bAo\b"
+    r"|\bslate\b|\bconductor\b|factory pro\b)", re.I)
+PUBLICATION = re.compile(
+    r"\b(?:headlines?|taglines?|slogans?|copy|hero|posts?|launch(?:es|ed)?"
+    r"|announcements?|pitch(?:es)?|ads?|publish(?:es|ed|ing)?|drafts?|drafted"
+    r"|suggested)\b", re.I)
+
+
+def strip_quoted_claims(text):
+    """Replace each quoted span that merely CITES a claim with a neutral marker.
+    A span stays in the text -- and is judged like any prose -- when it is not a
+    complete claim by itself (scare quotes), when its line does not cite it as
+    test material, or when its line attributes, endorses, speaks as us, or
+    drafts copy."""
+    def cite(m):
+        inner = m.group(0)[1:-1]
+        if not scoped_hits(inner):
+            return m.group(0)          # not self-contained: judge it as prose
+        start = text.rfind("\n", 0, m.start()) + 1
+        end = text.find("\n", m.end())
+        line = text[start:(len(text) if end < 0 else end)]
+        frame = QUOTED.sub(" ", line[:m.start() - start] + line[m.end() - start:])
+        if ATTRIBUTION.search(frame) or ENDORSEMENT.search(frame):
+            return m.group(0)          # attributed or endorsed: the reply is making it
+        if FRAME_SUBJECT.search(frame):
+            return m.group(0)          # we are the subject of the line: ours
+        if PUBLICATION.search(frame):
+            return m.group(0)          # drafting copy: ours
+        if not CITATION.search(frame):
+            return m.group(0)          # not cited as test material: delivered
+        return "[quoted]"
+    return QUOTED.sub(cite, text)
+
+
 def scoped_hits(text):
     """Return superlatives that are IN SCOPE — same sentence as a first-person or
     product subject. Scope is tested first; an out-of-scope superlative is not a
@@ -214,7 +324,7 @@ def main():
         sys.exit(0)
 
     text = re.sub(r"```.*?```", " ", final, flags=re.S)
-    hits = scoped_hits(text)
+    hits = scoped_hits(strip_quoted_claims(text))
     if not hits:
         sys.exit(0)
 
