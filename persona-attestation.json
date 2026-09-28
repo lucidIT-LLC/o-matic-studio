@@ -1,74 +1,74 @@
 {
-    "pack": "o-matic-studio",
-    "source": "persona-attest-export.sql against factory.persona_version (o-matic, tenant omatic)",
-    "tenant": "omatic",
-    "generated_at": "2026-09-15 09:46:45.434009-04",
-    "personas": [
-        {
-            "skill": "brandy-branding",
-            "agent_name": "brandy",
-            "version": 1,
-            "review_status": "draft",
-            "identity_signature": true,
-            "source_skill_version": "brandy-branding 7.5.0 (studio 1.9.0)",
-            "character_bible": 1,
-            "dimensions": 8,
-            "builds": 0
-        },
-        {
-            "skill": "carver-build",
-            "agent_name": "carver",
-            "version": 1,
-            "review_status": "draft",
-            "identity_signature": true,
-            "source_skill_version": "carver-build - studio 1.9.0, skill carries no version marker",
-            "character_bible": 1,
-            "dimensions": 8,
-            "builds": 0
-        },
-        {
-            "skill": "jo-release-journal",
-            "agent_name": "jo",
-            "version": 1,
-            "review_status": "draft",
-            "identity_signature": true,
-            "source_skill_version": "jo-writing 4.1.0 (studio 1.9.0)",
-            "character_bible": 1,
-            "dimensions": 7,
-            "builds": 0
-        },
-        {
-            "skill": "jo-writing",
-            "agent_name": "jo",
-            "version": 1,
-            "review_status": "draft",
-            "identity_signature": true,
-            "source_skill_version": "jo-writing 4.1.0 (studio 1.9.0)",
-            "character_bible": 1,
-            "dimensions": 7,
-            "builds": 0
-        },
-        {
-            "skill": "monet-visuals",
-            "agent_name": "monet",
-            "version": 1,
-            "review_status": "draft",
-            "identity_signature": true,
-            "source_skill_version": "monet-visuals 4.4.0 (studio 1.9.0)",
-            "character_bible": 1,
-            "dimensions": 7,
-            "builds": 0
-        },
-        {
-            "skill": "pixel-photo-coach",
-            "agent_name": "andy",
-            "version": 1,
-            "review_status": "draft",
-            "identity_signature": true,
-            "source_skill_version": "pixel-photo-coach 2.5.0 (studio 1.9.0)",
-            "character_bible": 1,
-            "dimensions": 8,
-            "builds": 0
-        }
-    ]
+ "pack": "o-matic-studio",
+ "tenant": "omatic",
+ "source": "public.v_persona_version_gate + factory.persona_build on o-matic (tenant omatic), exported 2026-09-28 after the operator approved publication (task #725)",
+ "generated_at": "2026-09-28 08:26:08.72504-04",
+ "personas": [
+  {
+   "skill": "andy-photo-coach",
+   "agent_name": "andy",
+   "version": 1,
+   "review_status": "published",
+   "identity_signature": true,
+   "source_skill_version": "pixel-photo-coach 2.5.0 (studio 1.9.0)",
+   "character_bible": 1,
+   "dimensions": 8,
+   "builds": 1
+  },
+  {
+   "skill": "brandy-branding",
+   "agent_name": "brandy",
+   "version": 1,
+   "review_status": "published",
+   "identity_signature": true,
+   "source_skill_version": "brandy-branding 7.5.0 (studio 1.9.0)",
+   "character_bible": 1,
+   "dimensions": 8,
+   "builds": 1
+  },
+  {
+   "skill": "carver-build",
+   "agent_name": "carver",
+   "version": 1,
+   "review_status": "published",
+   "identity_signature": true,
+   "source_skill_version": "carver-build - studio 1.9.0, skill carries no version marker",
+   "character_bible": 1,
+   "dimensions": 8,
+   "builds": 1
+  },
+  {
+   "skill": "jo-release-journal",
+   "agent_name": "jo",
+   "version": 1,
+   "review_status": "published",
+   "identity_signature": true,
+   "source_skill_version": "jo-writing 4.1.0 (studio 1.9.0)",
+   "character_bible": 1,
+   "dimensions": 7,
+   "builds": 2
+  },
+  {
+   "skill": "jo-writing",
+   "agent_name": "jo",
+   "version": 1,
+   "review_status": "published",
+   "identity_signature": true,
+   "source_skill_version": "jo-writing 4.1.0 (studio 1.9.0)",
+   "character_bible": 1,
+   "dimensions": 7,
+   "builds": 2
+  },
+  {
+   "skill": "monet-visuals",
+   "agent_name": "monet",
+   "version": 1,
+   "review_status": "published",
+   "identity_signature": true,
+   "source_skill_version": "monet-visuals 4.4.0 (studio 1.9.0)",
+   "character_bible": 1,
+   "dimensions": 7,
+   "builds": 1
+  }
+ ]
 }

@@ -2,6 +2,7 @@
 name: jo-release-journal
 description: Read-only o-MATIC release chronicler. Use to prepare concise change journals, release notes, burn-in summaries, and evidence-backed “what changed” records from the factory ledger.
 ---
+<!-- identity sourced from o-MATIC persona gold record (tenant omatic). identity_signature: fe7deafd7f3deeb676e1414f5f56235f -->
 
 # Jo — Factory Change Journal
 

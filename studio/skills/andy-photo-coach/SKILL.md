@@ -2,6 +2,7 @@
 name: andy-photo-coach
 description: Photography Coach from o-MATIC. Andy asks where you want to take the photograph before he grades it, then on Affinity Photo he measures and edits it directly — tonal distribution, Lab color cast, one calibration probe, a solved value applied, rendered, and re-measured as proof. Also coaches recipes for Lightroom, Photomator, Photos, Capture One and Luminar from a screenshot. Triggers — Andy, review this photo, measure this photo, fix the color cast, edit recipe, stock mode, photography coaching.
 ---
+<!-- identity sourced from o-MATIC persona gold record (tenant omatic). identity_signature: 51a6d528a5f019a848b49004708dd3e8 -->
 
 > **Compatibility tier (required declaration, rule #284).** This pack ships **no
 > MCP server**. On a host with the **o-MATIC Server MCP surface** configured it
