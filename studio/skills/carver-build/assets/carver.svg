@@ -28,9 +28,22 @@
   </defs>
 
   <rect width="1024" height="1024" fill="none"/>
+  <ellipse fill="#e8ddc7" cx="518" cy="930" rx="276" ry="28" opacity=".42"/>
 
   <g id="carver-roster" transform="translate(0 8)">
-    
+    <g id="background-build-cues">
+      <path fill="none" stroke="#d9dde0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".78" d="M261 719l-110 88 159 22z"/>
+      <path fill="#f5f2e8" stroke="#050606" stroke-width="7" stroke-linejoin="round" d="M150 806l164-106 26 123z"/>
+      <path fill="none" stroke="#9da9ad" stroke-width="5" stroke-linecap="round" d="M181 805l116-72M213 817l93-43M246 824l69-18"/>
+      <g id="small-gears" opacity=".95">
+        <circle fill="none" stroke="#cfd8d8" stroke-width="10" cx="249" cy="210" r="28"/>
+        <path fill="none" stroke="#cfd8d8" stroke-width="8" stroke-linecap="round" d="M249 164v18M249 238v18M203 210h18M277 210h18M217 178l13 13M268 229l13 13M281 178l-13 13M230 229l-13 13"/>
+        <circle fill="none" stroke="#cfd8d8" stroke-width="10" cx="760" cy="230" r="31"/>
+        <path fill="none" stroke="#cfd8d8" stroke-width="8" stroke-linecap="round" d="M760 181v19M760 260v19M711 230h19M790 230h19M725 195l14 14M781 251l14 14M795 195l-14 14M739 251l-14 14"/>
+      </g>
+      <path fill="#ffc928" d="M727 122l9 19 19 9-19 9-9 19-9-19-19-9 19-9z"/>
+      <path fill="#ffc928" d="M813 735l8 17 17 8-17 8-8 17-8-17-17-8 17-8z"/>
+    </g>
 
     <g id="antenna">
       <path fill="#064f55" stroke="#050606" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" d="M514 171l-9-83h24l11 83z"/>

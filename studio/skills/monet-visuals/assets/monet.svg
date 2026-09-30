@@ -24,9 +24,31 @@
   </defs>
 
   <rect width="1024" height="1024" fill="none"/>
+  <ellipse fill="#e8ddc7" cx="518" cy="930" rx="276" ry="28" opacity=".42"/>
 
   <g id="monet-roster" transform="translate(0 8)">
-    
+    <g id="visualization-backdrop">
+      <circle fill="url(#purple)" cx="512" cy="431" r="342" opacity=".18"/>
+      <path fill="none" stroke="#8b35bd" stroke-width="9" stroke-linecap="round" opacity=".36" d="M234 250c135-116 414-120 552 0"/>
+      <g id="pie-chart" transform="translate(764 210)">
+        <circle fill="#f5f2e8" stroke="#050606" stroke-width="7" cx="0" cy="0" r="42"/>
+        <path fill="#ffc928" d="M0 0V-42a42 42 0 0 1 36 20z"/>
+        <path fill="#34b0a6" d="M0 0l36-22a42 42 0 0 1-7 54z"/>
+        <path fill="#df67df" d="M0 0l29 32a42 42 0 0 1-65-12z"/>
+        <path fill="#8b35bd" d="M0 0l-36 20a42 42 0 0 1 36-62z"/>
+      </g>
+      <g id="small-status-card" transform="translate(193 258) rotate(-5)">
+        <rect fill="#f5f2e8" stroke="#050606" stroke-width="7" x="0" y="0" width="120" height="95" rx="12"/>
+        <rect fill="#ffc928" x="15" y="16" width="29" height="14" rx="3"/>
+        <rect fill="#34b0a6" x="54" y="16" width="17" height="14" rx="3"/>
+        <rect fill="#8b35bd" x="82" y="16" width="17" height="14" rx="3"/>
+        <path fill="none" stroke="#34b0a6" stroke-width="6" stroke-linecap="round" d="M17 48h23M54 48h46M17 68h37M68 68h30"/>
+      </g>
+      <g id="sparkles">
+        <path fill="#ffc928" d="M675 129l9 19 19 9-19 9-9 19-9-19-19-9 19-9z"/>
+        <path fill="#df67df" d="M292 744l8 17 17 8-17 8-8 17-8-17-17-8 17-8z"/>
+      </g>
+    </g>
 
     <g id="antenna">
       <path fill="#064f55" stroke="#050606" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" d="M486 174l-36-78 21-10 39 78z"/>
