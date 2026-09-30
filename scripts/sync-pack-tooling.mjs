@@ -31,6 +31,7 @@ const FILES = [
   ["scripts/verify-identity-attestation.mjs", "scripts/verify-identity-attestation.mjs"],
   ["scripts/spirit-gate-check.mjs", "scripts/spirit-gate-check.mjs"],
   ["scripts/build-host-adapters.mjs", "scripts/build-host-adapters.mjs"],
+  ["scripts/test-build-host-adapters.mjs", "scripts/test-build-host-adapters.mjs"],
   ["scripts/check-no-private-servers.mjs", "scripts/check-no-private-servers.mjs"],
   ["scripts/persona-attest-export.sql", "scripts/persona-attest-export.sql"],
   ["scripts/retired-kb.json", "scripts/retired-kb.json"],

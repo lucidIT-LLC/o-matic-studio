@@ -1,5 +1,15 @@
 # o-MATIC Studio — Changelog
 
+## 1.10.8 — 2026-09-30
+
+Skills meet Anthropic's own skill-authoring rules, as a build gate (task #1024).
+
+- Anthropic's guidance ("Skill authoring best practices", platform.claude.com) keeps a SKILL.md body under 500 lines and moves detail into reference files linked one level deep. `scripts/build-host-adapters.mjs` now enforces it: a body over 500 lines, an unlinked or missing reference, a nested reference, or a reference over 100 lines without a "## Contents" fails the build.
+- The Gemini CLI copy now carries every file of a skill, reference files included, and each ChatGPT setup lists every reference file as knowledge (up to OpenAI's 20-file limit). Before this, a split skill would have lost its reference files on both hosts.
+- `scripts/test-build-host-adapters.mjs` is the builder's own test: 10 checks, 7 of which fail on 1.10.7's builder.
+- CI was red on the previous release: it still called a test retired in that same release. It now runs the builder test and `build-host-adapters.mjs --check` instead.
+- Andy's role guide went from 1,790 lines to 468. Identity, voice, the distress override, the session plan and lane discipline stay in SKILL.md; the Walk engine, the Affinity instrument, calibration, file provenance, what Andy can drive, archival triage, the output formats and the changelog moved, word for word, into `reference/` files that SKILL.md names and says when to read. His origin note (GPT Spec 12) is now linked.
+
 ## 1.10.7 — 2026-09-30
 
 Every role on every host, built to each vendor's own documentation (task #1024).
