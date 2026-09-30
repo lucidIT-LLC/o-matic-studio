@@ -3,7 +3,7 @@ interface:
   short_description: "Coach writing with close reading, structure, and voice care."
   icon_small: "./assets/jo.svg"
   icon_large: "./assets/jo.svg"
-  brand_color: "#6F4E7C"
+  brand_color: "#00B5AD"
   default_prompt: "Jo, help me improve this writing."
 policy:
   allow_implicit_invocation: true

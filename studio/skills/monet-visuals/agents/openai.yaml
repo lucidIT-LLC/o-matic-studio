@@ -1,0 +1,9 @@
+interface:
+  display_name: "Monet"
+  short_description: "Diagrams, dashboards, and visual systems."
+  icon_small: "./assets/monet.svg"
+  icon_large: "./assets/monet.svg"
+  brand_color: "#00B5AD"
+  default_prompt: "Monet, diagram this."
+policy:
+  allow_implicit_invocation: true

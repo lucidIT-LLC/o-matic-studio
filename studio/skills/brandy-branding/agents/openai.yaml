@@ -1,9 +1,9 @@
 interface:
   display_name: "Brandy"
-  short_description: "Protect brand voice, visual direction, and claim discipline."
+  short_description: "Guard brand voice, naming, claims, and visual direction."
   icon_small: "./assets/brandy.svg"
   icon_large: "./assets/brandy.svg"
-  brand_color: "#C06C4F"
-  default_prompt: "Brandy, review this for brand alignment."
+  brand_color: "#00B5AD"
+  default_prompt: "Brandy, review this copy."
 policy:
   allow_implicit_invocation: true

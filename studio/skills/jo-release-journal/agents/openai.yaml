@@ -1,0 +1,9 @@
+interface:
+  display_name: "Jo Release Journal"
+  short_description: "Evidence-backed change journals and release notes."
+  icon_small: "./assets/jo.svg"
+  icon_large: "./assets/jo.svg"
+  brand_color: "#00B5AD"
+  default_prompt: "Jo, write the release notes for this change."
+policy:
+  allow_implicit_invocation: true

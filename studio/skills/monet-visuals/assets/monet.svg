@@ -1,25 +1,21 @@
-<svg viewBox="4 33 932 932" version="1.1" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Carver O-Matic Robot Vector</title>
-  <desc id="desc">Affinity-safe roster vector of Carver, O-Matic technical builder, using the new robot model with wrench, build sheet, and builder-orange accents. Task #751 (2026-09-28, Monet): chest O-ring restored from the registered master brand/omatic-robot-vector-no-bg.svg (sha256 837fbc0156a023ec) at its own geometry, gold r66 + teal r35 at 510,658; palette rebound to the master's gradients per decision #522; the role instrument moved off the chest per brand_messaging #120; no red on the robot (color.alert).</desc>
+<svg viewBox="28 58 907 907" version="1.1" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Monet O-Matic Robot Vector</title>
+  <desc id="desc">Affinity-safe roster vector of Monet, O-Matic project visualizer, using the new robot model with chart, dashboard, pie, and layout cues. Task #751 (2026-09-28, Monet): chest O-ring restored from the registered master brand/omatic-robot-vector-no-bg.svg (sha256 837fbc0156a023ec) at its own geometry, gold r66 + teal r35 at 510,658; palette rebound to the master's gradients per decision #522; the role instrument moved off the chest per brand_messaging #120; no red on the robot (color.alert).</desc>
   <defs>
     <radialGradient id="teal" cx="28%" cy="18%" r="88%">
       <stop offset="0" stop-color="#0aa1aa"/>
       <stop offset="0.55" stop-color="#087f88"/>
       <stop offset="1" stop-color="#045c64"/>
     </radialGradient>
-    <radialGradient id="darkTeal" cx="30%" cy="20%" r="86%">
-      <stop offset="0" stop-color="#064f55"/>
-      <stop offset="1" stop-color="#064f55"/>
-    </radialGradient>
     <radialGradient id="gold" cx="30%" cy="20%" r="82%">
       <stop offset="0" stop-color="#ffe477"/>
       <stop offset="0.52" stop-color="#ffc928"/>
       <stop offset="1" stop-color="#e4a900"/>
     </radialGradient>
-    <radialGradient id="orange" cx="32%" cy="22%" r="82%">
-      <stop offset="0" stop-color="#ffb14a"/>
-      <stop offset=".56" stop-color="#f27618"/>
-      <stop offset="1" stop-color="#b9490c"/>
+    <radialGradient id="purple" cx="30%" cy="18%" r="86%">
+      <stop offset="0" stop-color="#df67df"/>
+      <stop offset=".58" stop-color="#8b35bd"/>
+      <stop offset="1" stop-color="#3a166d"/>
     </radialGradient>
     <radialGradient id="cream" cx="30%" cy="20%" r="86%">
       <stop offset="0" stop-color="#fff2cb"/>
@@ -29,13 +25,14 @@
 
   <rect width="1024" height="1024" fill="none"/>
 
-  <g id="carver-roster" transform="translate(0 8)">
+  <g id="monet-roster" transform="translate(0 8)">
     
 
     <g id="antenna">
-      <path fill="#064f55" stroke="#050606" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" d="M514 171l-9-83h24l11 83z"/>
-      <circle fill="url(#orange)" stroke="#050606" stroke-width="9" cx="515" cy="69" r="31"/>
-      <circle fill="#ffe1a4" cx="525" cy="58" r="8"/>
+      <path fill="#064f55" stroke="#050606" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" d="M486 174l-36-78 21-10 39 78z"/>
+      <path fill="#064f55" stroke="#050606" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" d="M542 174l37-78-21-10-40 78z"/>
+      <circle fill="url(#cream)" stroke="#050606" stroke-width="8" cx="456" cy="78" r="16"/>
+      <circle fill="url(#cream)" stroke="#050606" stroke-width="8" cx="574" cy="78" r="16"/>
       <path fill="url(#gold)" stroke="#050606" stroke-width="9" stroke-linejoin="round" d="M470 179c28-18 73-18 101 0l7 42H463z"/>
     </g>
 
@@ -44,8 +41,10 @@
       <path fill="#064f55" stroke="#050606" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".72" d="M327 304c59-47 301-55 373-22 34 16 44 45 43 82-1 49-22 87-67 104-76 29-260 27-321-6-43-23-58-116-28-158z"/>
       <circle fill="url(#cream)" stroke="#050606" stroke-width="10" cx="435" cy="351" r="60"/>
       <circle fill="url(#cream)" stroke="#050606" stroke-width="10" cx="587" cy="351" r="60"/>
-      <circle fill="#050606" cx="435" cy="351" r="27"/>
-      <circle fill="#050606" cx="587" cy="351" r="27"/>
+      <circle fill="#5b1f83" cx="435" cy="351" r="27"/>
+      <circle fill="#5b1f83" cx="587" cy="351" r="27"/>
+      <circle fill="#050606" cx="435" cy="351" r="14"/>
+      <circle fill="#050606" cx="587" cy="351" r="14"/>
       <circle fill="#fff" cx="445" cy="337" r="10"/>
       <circle fill="#fff" cx="597" cy="337" r="10"/>
       <path fill="none" stroke="#050606" stroke-width="9" stroke-linecap="round" d="M463 423c30 28 72 28 101-1"/>
@@ -53,8 +52,8 @@
     </g>
 
     <g id="ears">
-      <rect fill="url(#gold)" stroke="#050606" stroke-width="9" x="246" y="328" width="44" height="78" rx="18"/>
-      <rect fill="url(#gold)" stroke="#050606" stroke-width="9" x="734" y="328" width="44" height="78" rx="18"/>
+      <rect fill="url(#purple)" stroke="#050606" stroke-width="9" x="246" y="328" width="44" height="78" rx="18"/>
+      <rect fill="url(#purple)" stroke="#050606" stroke-width="9" x="734" y="328" width="44" height="78" rx="18"/>
     </g>
 
     <g id="neck-body">
@@ -69,36 +68,47 @@
       </g>
     </g>
 
-    <g id="left-wave-hand">
+    <g id="left-layout-hand">
       <path fill="url(#gold)" stroke="#050606" stroke-width="9" d="M358 571c-34 5-54 25-57 58 9 20 27 33 51 39l36-56z"/>
       <path fill="#1f3030" stroke="#050606" stroke-width="8" stroke-linejoin="round" d="M299 616l54 50-32 42-60-45z"/>
       <path fill="url(#teal)" stroke="#050606" stroke-width="9" stroke-linejoin="round" d="M248 648c31 9 59 27 81 55l-53 71c-42-9-73-35-88-75 12-24 32-40 60-51z"/>
-      <path fill="url(#teal)" stroke="#050606" stroke-width="8" stroke-linejoin="round" d="M168 597c22-18 51-6 53 22l-3 52c-31 6-56-5-68-31z"/>
-      <path fill="url(#teal)" stroke="#050606" stroke-width="8" stroke-linejoin="round" d="M212 574c24-17 53-2 51 28l-17 70c-30 6-51-7-60-35z"/>
-      <path fill="url(#teal)" stroke="#050606" stroke-width="8" stroke-linejoin="round" d="M257 588c24-7 44 14 35 38l-42 55c-28 1-45-17-44-45z"/>
-      <path fill="none" stroke="#7fd0c9" stroke-width="7" stroke-linecap="round" d="M136 616l-31-25M145 652l-43-3M165 684l-35 26"/>
+      <g id="composition-card" transform="translate(102 610) rotate(-14)">
+        <rect fill="#f5f2e8" stroke="#050606" stroke-width="8" x="0" y="0" width="146" height="118" rx="12"/>
+        <circle fill="#df67df" cx="45" cy="59" r="30"/>
+        <path fill="#ffc928" d="M45 59V29a30 30 0 0 1 24 12z"/>
+        <path fill="#34b0a6" d="M45 59l24-18a30 30 0 0 1-5 41z"/>
+        <circle fill="#f5f2e8" cx="45" cy="59" r="12"/>
+        <path fill="none" stroke="#8b35bd" stroke-width="7" stroke-linecap="round" d="M88 38h37M88 61h28M88 84h44"/>
+      </g>
+      <circle fill="url(#cream)" stroke="#050606" stroke-width="7" cx="258" cy="741" r="18"/>
+      <circle fill="url(#cream)" stroke="#050606" stroke-width="7" cx="281" cy="758" r="18"/>
     </g>
 
-    <g id="right-tool-arm">
+    <g id="right-chart-arm">
       <path fill="url(#gold)" stroke="#050606" stroke-width="9" d="M667 571c34 5 54 25 57 58-9 20-27 33-51 39l-36-56z"/>
       <path fill="#1f3030" stroke="#050606" stroke-width="8" stroke-linejoin="round" d="M726 616l-54 50 32 42 60-45z"/>
       <path fill="url(#teal)" stroke="#050606" stroke-width="9" stroke-linejoin="round" d="M777 648c-31 9-59 27-81 55l53 71c42-9 73-35 88-75-12-24-32-40-60-51z"/>
-      <g id="wrench" transform="translate(725 500) rotate(33)">
-        <path fill="#cfd8d8" stroke="#050606" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" d="M55 17c22-18 54-16 74 4l-33 33 20 20 33-33c20 32 3 75-35 84l-72 103c-10 14-30 18-44 8-14-10-18-30-8-44l73-104c-13-22-17-50-8-71z"/>
-        <circle fill="#1f3030" stroke="#050606" stroke-width="7" cx="14" cy="207" r="15"/>
-        <path fill="none" stroke="#fff5d5" stroke-width="6" stroke-linecap="round" d="M72 93l-53 75"/>
+      <g id="chart-tablet" transform="translate(717 546) rotate(12)">
+        <rect fill="#e7f8f5" stroke="#050606" stroke-width="8" x="0" y="0" width="150" height="126" rx="15"/>
+        <rect fill="#20a8a0" stroke="#050606" stroke-width="6" x="17" y="18" width="116" height="90" rx="8"/>
+        <rect fill="#ffc928" x="35" y="66" width="16" height="28" rx="3"/>
+        <rect fill="#df67df" x="60" y="49" width="16" height="45" rx="3"/>
+        <rect fill="#8b35bd" x="85" y="35" width="16" height="59" rx="3"/>
+        <rect fill="#f5f2e8" x="110" y="56" width="16" height="38" rx="3"/>
       </g>
-      <circle fill="url(#cream)" stroke="#050606" stroke-width="7" cx="766" cy="768" r="18"/>
-      <circle fill="url(#cream)" stroke="#050606" stroke-width="7" cx="789" cy="785" r="18"/>
+      <circle fill="url(#cream)" stroke="#050606" stroke-width="7" cx="763" cy="774" r="18"/>
+      <circle fill="url(#cream)" stroke="#050606" stroke-width="7" cx="790" cy="788" r="18"/>
     </g>
 
-    <g id="carver-role-badge" transform="translate(246 906) scale(0.64) translate(-512 -662)">
+    <g id="monet-role-badge" transform="translate(272 872) scale(0.54) translate(-512.5 -666)">
       <!-- #751 / brand_messaging #120: the role instrument that used to replace the O-ring,
            relocated here unchanged in shape. -->
-      <rect fill="#0d626a" stroke="#050606" stroke-width="8" x="447" y="604" width="130" height="116" rx="12"/>
-        <path fill="none" stroke="#7fd0c9" stroke-width="7" stroke-linecap="round" d="M470 632h53M470 660h80M470 689h37"/>
-        <rect fill="url(#orange)" stroke="#050606" stroke-width="6" x="526" y="674" width="34" height="34" rx="4"/>
-        <circle fill="#7fd0c9" cx="543" cy="691" r="8"/>
+      <rect fill="#20a8a0" stroke="#050606" stroke-width="8" x="422" y="600" width="181" height="132" rx="14"/>
+        <rect fill="#67d1c8" opacity=".45" x="447" y="625" width="131" height="83" rx="9"/>
+        <path fill="none" stroke="#e7f8f5" stroke-width="7" stroke-linecap="round" d="M462 687l27-31 31 18 39-44"/>
+        <circle fill="#ffc928" cx="489" cy="656" r="8"/>
+        <circle fill="#8b35bd" cx="520" cy="674" r="8"/>
+        <circle fill="#df67df" cx="559" cy="630" r="8"/>
     </g>
 
     <g id="legs">
