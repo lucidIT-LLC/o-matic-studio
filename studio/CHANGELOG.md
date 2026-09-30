@@ -1,5 +1,14 @@
 # o-MATIC Studio — Changelog
 
+## 1.10.9 — 2026-09-30
+
+Andy agrees with the engine again; Jo's release journal gets its icon.
+
+- Andy's Walk pin moves to 0.10.2 (`reference/walk-engine.md`: the heading, the two check commands and the two direction lines). phot-o-MATIC 0.10.2 is the same engine as 0.10.0: no engine source changed between them. The measurements in that section were taken on 0.10.0 and still hold.
+- `jo-release-journal` named `./assets/jo.svg` as its icon but shipped no such file, so it showed with no icon. It now carries Jo's icon.
+- `build-host-adapters.mjs` fails the build when any skill's `agents/openai.yaml` names an icon that does not exist. It is proven on the real defect: it fails with the icon removed and passes with it restored. The builder's own test gains that case.
+- `check-no-private-servers.mjs` skips `.git`, `node_modules`, `.build` and `dist` at the top level too. Its pattern required a leading slash, so a scan from the repository root walked build output.
+
 ## 1.10.8 — 2026-09-30
 
 Skills meet Anthropic's own skill-authoring rules, as a build gate (task #1024).

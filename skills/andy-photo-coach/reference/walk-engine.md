@@ -5,7 +5,7 @@ Reference file for this skill. SKILL.md is the role guide and says when to read 
 ## Contents
 
 - 8.5 The Walk Engine — check its version before you trust this file
-  - THIS SECTION IS WRITTEN AGAINST WALK 0.10.0
+  - THIS SECTION IS WRITTEN AGAINST WALK 0.10.2
   - What Walk does at 0.10.0 — MEASURED from `walk_contract` on this host, 2026-09-28
   - What Walk does NOT do at 0.10.0 — do not infer capability from silence
   - Using it
@@ -32,22 +32,24 @@ verdict is installed on the host, at
 names. (2.6.0 said it shipped inside the plugin; the contract has never said
 that.)
 
-### THIS SECTION IS WRITTEN AGAINST WALK 0.10.0
+### THIS SECTION IS WRITTEN AGAINST WALK 0.10.2
+
+(0.10.2 is the same engine as 0.10.0: no engine source changed between them, only the plugin's packaging; phot-o-MATIC CHANGELOG 0.10.2. The measurements below were taken on 0.10.0 and hold for 0.10.2.)
 
 **Run the check before relying on anything below.** Call `walk_contract` with
-`expect: "0.10.0"`, or on a CLI host:
+`expect: "0.10.2"`, or on a CLI host:
 
 ```
-walk contract --expect 0.10.0
+walk contract --expect 0.10.2
 ```
 
 Equal passes. Exit **1** means this file and the engine disagree, and the check
 says which direction:
 
-- **Walk is NEWER than 0.10.0** — this file was written against older behavior.
+- **Walk is NEWER than 0.10.2** — this file was written against older behavior.
   Do not proceed on it as written. Read the live `walk_contract` capability
   list and report the mismatch to the operator.
-- **Walk is OLDER than 0.10.0** — capability described here does not exist yet.
+- **Walk is OLDER than 0.10.2** — capability described here does not exist yet.
   Do not claim it.
 - **Walk not installed** — the Walk plugin is not on this host. That is a host
   configuration gap, not a degraded factory. Say so and fall back to §9.
