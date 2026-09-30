@@ -30,14 +30,14 @@ const FILES = [
   ["scripts/verify-pack.mjs", "scripts/verify-pack.mjs"],
   ["scripts/verify-identity-attestation.mjs", "scripts/verify-identity-attestation.mjs"],
   ["scripts/spirit-gate-check.mjs", "scripts/spirit-gate-check.mjs"],
+  ["scripts/build-host-adapters.mjs", "scripts/build-host-adapters.mjs"],
+  ["scripts/check-no-private-servers.mjs", "scripts/check-no-private-servers.mjs"],
   ["scripts/persona-attest-export.sql", "scripts/persona-attest-export.sql"],
   ["scripts/retired-kb.json", "scripts/retired-kb.json"],
   ["build-ollama-modelfile.mjs", "build-ollama-modelfile.mjs"],
   [".github/workflows/verify-pack.yml", ".github/workflows/verify-pack.yml"],
   ["studio/scripts/check-paths.mjs", "<plugin>/scripts/check-paths.mjs"],
   ["studio/scripts/sync-copilot-payload.mjs", "<plugin>/scripts/sync-copilot-payload.mjs"],
-  ["studio/scripts/verify-adapter-paths.mjs", "<plugin>/scripts/verify-adapter-paths.mjs"],
-  ["studio/scripts/verify-adapter-paths.test.mjs", "<plugin>/scripts/verify-adapter-paths.test.mjs"],
 ];
 const TARGETS = [
   { repo: "o-matic-firm", plugin: "firm" },
