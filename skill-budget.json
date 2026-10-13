@@ -1,0 +1,11 @@
+{
+  "_comment": "Per-role SKILL.md size baselines (task #1052). Estimated tokens = ceil(chars/4) of each canonical SKILL.md body. The build fails on growth past baseline plus slack; change it only with build-host-adapters.mjs --update-baseline, and justify any increase in review.",
+  "slack": 0.02,
+  "roles": {
+    "brandy": 5158,
+    "carver": 4120,
+    "jo": 4550,
+    "monet": 4275,
+    "andy": 6052
+  }
+}

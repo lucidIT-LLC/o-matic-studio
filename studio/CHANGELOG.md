@@ -1,5 +1,13 @@
 # o-MATIC Studio — Changelog
 
+## 1.10.10 — 2026-10-12
+
+The pack tooling adds a per-role skill-size ratchet and host-limit margin report (task #1052). The shared sync is allowlisted per target so Supply receives only the scanner.
+
+- `skill-budget.json` records estimated token baselines by role; growth beyond the baseline plus 2% fails unless an explicit baseline update is reviewed.
+- `build-host-adapters.mjs --check` reports the estimated token count and each host adapter’s character-limit margin. Shrinking is allowed and large skills warn without failing.
+- The sync tests prove the Supply allowlist stays limited to `check-no-private-servers.mjs`.
+
 ## 1.10.9 — 2026-09-30
 
 Andy agrees with the engine again; Jo's release journal gets its icon.

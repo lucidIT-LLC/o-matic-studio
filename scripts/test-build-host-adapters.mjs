@@ -26,13 +26,21 @@ const check = (label, ok, detail = "") => {
   if (!ok) failed++;
 };
 
-function pack({ body = "Role guide.\n\nSee [reference/detail.md](reference/detail.md).\n", refs = { "reference/detail.md": "# Detail\n\nMore.\n" } } = {}) {
+// budget: undefined = a baseline equal to the skill's current size (the normal
+// case); a number = that baseline; null = no skill-budget.json at all;
+// "no-role" = a skill-budget.json that does not list the role.
+const BODY_DEFAULT = "Role guide.\n\nSee [reference/detail.md](reference/detail.md).\n";
+function pack({ body = BODY_DEFAULT, refs = { "reference/detail.md": "# Detail\n\nMore.\n" }, oneLiner = "Tests things.", budget, slack } = {}) {
   const root = mkdtempSync(join(tmpdir(), "hostadapters-"));
   const w = (rel, text) => { mkdirSync(dirname(join(root, rel)), { recursive: true }); writeFileSync(join(root, rel), text); };
+  if (budget !== null) {
+    const roles = budget === "no-role" ? {} : { tess: budget ?? Math.ceil(body.length / 4) };
+    w("skill-budget.json", JSON.stringify({ ...(slack === undefined ? {} : { slack }), roles }));
+  }
   w(".claude-plugin/marketplace.json", JSON.stringify({ plugins: [{ source: "./demo" }] }));
   w("demo/.claude-plugin/plugin.json", JSON.stringify({ name: "demo", displayName: "Demo" }));
   w("agent-pack.json", JSON.stringify({ agents: [{
-    id: "tess", display_name: "Tess", role: "Tester", one_liner: "Tests things.",
+    id: "tess", display_name: "Tess", role: "Tester", one_liner: oneLiner,
     canonical_skill: "demo/skills/tess-testing/SKILL.md", triggers: ["test this"],
     archetypes: [], identity: { tone_of_record: "Plain.", primary_domain: "testing", drift_anchor: "Tests, never guesses." },
   }] }));
@@ -83,6 +91,71 @@ for (const [label, opts, want] of cases) {
   mkdirSync(join(root, "demo/skills/tess-testing/assets"), { recursive: true });
   writeFileSync(join(root, "demo/skills/tess-testing/assets/tess.svg"), "<svg/>");
   check("the same skill passes once the icon exists", run(root).status === 0);
+  rmSync(root, { recursive: true, force: true });
+}
+
+// 3. Token ratchet (task #1052). Body = 4,000 chars = 1,000 estimated tokens.
+{
+  const body4k = "x".repeat(3940) + "\nSee [reference/detail.md](reference/detail.md).\n";
+  const tokens = Math.ceil(body4k.length / 4);
+  const fails = (r, re) => r.status === 1 && re.test(r.stdout);
+  // Build first so --check measures the ratchet, not "no files generated yet".
+  const checked = (root) => { run(root); return run(root, "--check"); };
+
+  let root = pack({ body: body4k, budget: null });
+  let r = run(root, "--check");
+  check("ratchet fails when skill-budget.json is missing", fails(r, /skill-budget\.json is missing/), r.stdout.slice(0, 300));
+  r = run(root, "--update-baseline");
+  check("--update-baseline creates it", r.status === 0 && existsSync(join(root, "skill-budget.json")), r.stdout.slice(0, 300));
+  const made = JSON.parse(readFileSync(join(root, "skill-budget.json"), "utf8"));
+  check("the baseline written equals the measured size", made.roles.tess === tokens, JSON.stringify(made));
+  check("--check then passes", run(root, "--check").status === 0);
+  rmSync(root, { recursive: true, force: true });
+
+  root = pack({ body: body4k, budget: "no-role" });
+  r = run(root, "--check");
+  check("ratchet fails when a role has no baseline", fails(r, /no baseline for role tess/), r.stdout.slice(0, 300));
+  rmSync(root, { recursive: true, force: true });
+
+  root = pack({ body: body4k, budget: tokens - 30 });  // 970: ceiling ceil(970*1.02) = 990 < 1000
+  r = run(root, "--check");
+  check("ratchet fails on growth past baseline plus slack", fails(r, /exceeds baseline/), r.stdout.slice(0, 300));
+  rmSync(root, { recursive: true, force: true });
+
+  root = pack({ body: body4k, budget: tokens - 15 });  // 985: ceiling ceil(985*1.02) = 1005 >= 1000
+  r = checked(root);
+  check("growth within the slack passes (a hotfix is not blocked)", r.status === 0, r.stdout.slice(0, 300));
+  rmSync(root, { recursive: true, force: true });
+
+  root = pack({ body: body4k, budget: tokens + 200 });
+  r = checked(root);
+  check("shrinking never fails, and says the baseline can be lowered", r.status === 0 && /lower it with --update-baseline/.test(r.stdout), r.stdout.slice(0, 300));
+  rmSync(root, { recursive: true, force: true });
+
+  const body5k = "x".repeat(20100) + "\nSee [reference/detail.md](reference/detail.md).\n";
+  root = pack({ body: body5k });
+  r = checked(root);
+  check("above 5,000 estimated tokens warns but does not fail", r.status === 0 && /> 5000 \(advisory/.test(r.stdout), r.stdout.slice(0, 300));
+  rmSync(root, { recursive: true, force: true });
+
+  root = pack();
+  r = run(root, "--check", "--update-baseline");
+  check("--update-baseline cannot be combined with --check", r.status === 2, r.stdout.slice(0, 300));
+  rmSync(root, { recursive: true, force: true });
+
+  // Host character margins. Grok is the tightest (4,000). Measure the base size,
+  // then pad the one-liner to land at ~92% (warns), then over 100% (fails).
+  root = pack();
+  run(root);
+  const base = readFileSync(join(root, "demo/adapters/grok/tess.md"), "utf8").length;
+  rmSync(root, { recursive: true, force: true });
+  root = pack({ oneLiner: "y".repeat(3700 - base + 13) });
+  r = checked(root);
+  check("a host limit at 90%+ warns but passes", r.status === 0 && /grok instructions at 9\d% of the 4000-character limit/.test(r.stdout), r.stdout.slice(0, 400));
+  rmSync(root, { recursive: true, force: true });
+  root = pack({ oneLiner: "y".repeat(4100) });
+  r = run(root, "--check");
+  check("a host limit exceeded fails", fails(r, /> 4000/), r.stdout.slice(0, 300));
   rmSync(root, { recursive: true, force: true });
 }
 

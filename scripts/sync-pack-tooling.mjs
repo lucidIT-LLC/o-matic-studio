@@ -7,7 +7,8 @@
 // sync-copilot-payload.mjs as three variants each, and verify-adapter-paths.mjs
 // in two packs but not the third. Hand-kept copies drift; that is how the corpus
 // forked in the first place (decision #359). o-matic-studio holds the source;
-// o-matic-firm and o-matic-agency get byte-identical generated copies. Each
+// o-matic-firm and o-matic-agency get byte-identical generated copies;
+// o-matic-supply gets only the files in SUPPLY_ALLOWED (see TARGETS). Each
 // script that needs to know which pack it is in reads that from its own
 // location, so no copy is edited per pack.
 //
@@ -40,16 +41,34 @@ const FILES = [
   ["studio/scripts/check-paths.mjs", "<plugin>/scripts/check-paths.mjs"],
   ["studio/scripts/sync-copilot-payload.mjs", "<plugin>/scripts/sync-copilot-payload.mjs"],
 ];
+// A target without `files` gets every entry above. A target WITH `files` gets
+// only those destinations (task #1052, Smith-style pre-mortem 2026-10-09):
+// o-matic-supply is tools, not people. It has no agent-pack.json, so it takes no
+// builder, and it has its own verify-pack.mjs (MCP manifests, placeholder
+// allowlist, dist freshness: ~200 lines differ, legitimately) and its own CI
+// workflow. Its spirit-gate-check.mjs is an older, different script (hardcoded
+// tenant, connection found by database name) and stays forked until someone
+// reconciles it against a live server. Only the scanner is byte-identical.
+const SUPPLY_ALLOWED = ["scripts/check-no-private-servers.mjs"];
+const NEVER_SYNC_TO_SUPPLY = [
+  "scripts/verify-pack.mjs", ".github/workflows/verify-pack.yml", "scripts/spirit-gate-check.mjs",
+  "scripts/build-host-adapters.mjs", "scripts/test-build-host-adapters.mjs", "scripts/verify-identity-attestation.mjs",
+];
+for (const f of SUPPLY_ALLOWED) {
+  if (NEVER_SYNC_TO_SUPPLY.includes(f)) throw new Error(`${f} must never be synced into o-matic-supply`);
+  if (!FILES.some(([, dst]) => dst === f)) throw new Error(`${f} is not a synced file`);
+}
 const TARGETS = [
   { repo: "o-matic-firm", plugin: "firm" },
   { repo: "o-matic-agency", plugin: "agency" },
+  { repo: "o-matic-supply", plugin: null, files: SUPPLY_ALLOWED },
 ];
 
 let stale = 0, wrote = 0;
 for (const t of TARGETS) {
   const troot = join(reposDir, t.repo);
   if (!existsSync(troot)) { console.log(`MISSING REPO: ${troot}`); stale++; continue; }
-  for (const [src, dst] of FILES) {
+  for (const [src, dst] of FILES.filter(([, d]) => !t.files || t.files.includes(d))) {
     const body = readFileSync(join(here, src), "utf8");
     const out = join(troot, dst.replace("<plugin>", t.plugin));
     const cur = existsSync(out) ? readFileSync(out, "utf8") : null;

@@ -30,9 +30,11 @@
 //                          knowledge = the role's SKILL.md (<= 20 files per GPT)
 //   Grok custom agent      adapters/grok/<role>.md, instructions <= 4,000 chars
 //
-// Usage: node scripts/build-host-adapters.mjs <marketplace-root> [--check]
+// Usage: node scripts/build-host-adapters.mjs <marketplace-root> [--check | --update-baseline]
 // --check rebuilds in memory and exits 1 if any generated file differs or any
-// limit is exceeded. CANONICAL SOURCE: o-matic-studio/scripts/.
+// limit is exceeded, including a role grown past its skill-budget.json baseline.
+// --update-baseline rewrites skill-budget.json from the current skills (task #1052).
+// CANONICAL SOURCE: o-matic-studio/scripts/.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, readdirSync, cpSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 
@@ -47,6 +49,34 @@ const packName = plugin.displayName || plugin.name;
 const LIMITS = { gpt: 8000, m365: 8000, grok: 4000, copilot: 30000, m365_desc: 1000, m365_name: 100 };
 const out = new Map();
 const problems = [];
+
+// Token ratchet (task #1052; origin: DataRobot agent-skills review 2026-10-09,
+// whose CI gates each SKILL.md on an estimated token count, not on lines).
+// 500 lines is Anthropic's rule, and every role passes it, but lines hide size:
+// the same files run ~5k-9.6k estimated tokens. So each role carries a baseline in
+// skill-budget.json (REPO ROOT, next to agent-pack.json: outside the plugin
+// directory, so the Spirit Gate hash that covers `git ls-files <plugin>` is
+// untouched). Growth past baseline + slack FAILS; shrinking never fails; the
+// baseline moves only through an explicit --update-baseline that a reviewer sees
+// in the diff. Above TOKEN_WARN is advisory. Estimate = ceil(chars / 4) of the
+// canonical SKILL.md body, frontmatter excluded; it is a ratchet, not a measure.
+// Host character limits stay hard failures; MARGIN_WARN prints how close each is.
+const BUDGET_FILE = "skill-budget.json";
+const TOKEN_WARN = 5000;
+const MARGIN_WARN = 0.9;
+const DEFAULT_SLACK = 0.02;
+const updateBaseline = process.argv.includes("--update-baseline");
+if (updateBaseline && check) {
+  console.log("  FAIL  --update-baseline rewrites skill-budget.json; it cannot be combined with --check");
+  process.exit(2);
+}
+const budgetPath = join(root, BUDGET_FILE);
+const budget = existsSync(budgetPath) ? JSON.parse(readFileSync(budgetPath, "utf8")) : null;
+const slack = budget?.slack ?? DEFAULT_SLACK;
+const estTokens = (text) => Math.ceil(text.length / 4);
+const measured = {};  // role id -> estimated tokens
+const notes = [];     // advisory lines; never a failure
+const report = [];    // one row per role
 const put = (rel, text) => out.set(rel, text.endsWith("\n") ? text : text + "\n");
 
 const parseArchetypes = (a) => {
@@ -133,6 +163,23 @@ function skillRules(a, s) {
   }
 }
 
+// Token ratchet for one role (see the block at the top of the file).
+function budgetRules(a, s) {
+  const body = s.text.replace(/^---\n[\s\S]*?\n---\n/, "");
+  const t = estTokens(body);
+  measured[a.id] = t;
+  if (t > TOKEN_WARN) notes.push(`${a.id}: SKILL.md body ~${t} tokens > ${TOKEN_WARN} (advisory; the baseline is the gate)`);
+  if (updateBaseline || !budget) return;  // a missing file is reported once, after the loop
+  const base = budget.roles?.[a.id];
+  if (base === undefined) {
+    problems.push(`${a.canonical_skill}: no baseline for role ${a.id} in ${BUDGET_FILE} (run --update-baseline and review the diff)`);
+    return;
+  }
+  const ceiling = Math.ceil(base * (1 + slack));
+  if (t > ceiling) problems.push(`${a.canonical_skill}: ~${t} tokens exceeds baseline ${base} (+${slack * 100}% slack = ${ceiling}); trim it, or run --update-baseline and justify the growth in review`);
+  else if (t < base * 0.9) notes.push(`${a.id}: now ~${t} tokens against baseline ${base}; lower it with --update-baseline`);
+}
+
 const starters = (a) => {
   const y = join(dirname(join(root, a.canonical_skill)), "agents", "openai.yaml");
   const prompts = [];
@@ -149,6 +196,7 @@ const shortDesc = (a) => `${a.role} from o-MATIC. ${a.one_liner}`.slice(0, 1000)
 for (const a of pack.agents) {
   const s = skillOf(a);
   skillRules(a, s);
+  budgetRules(a, s);
   const id = a.id;
 
   // 1. Claude Code plugin subagent (also read by Grok Build).
@@ -249,6 +297,39 @@ ${starters(a).map((t) => `   - ${t}`).join("\n")}
   for (const [rel, max] of lim) if (out.get(rel).length > max) problems.push(`${rel}: ${out.get(rel).length} > ${max}`);
   if (m365.length > LIMITS.m365) problems.push(`m365 ${id}: instructions ${m365.length} > ${LIMITS.m365}`);
   if (da.conversation_starters.length > 6) problems.push(`m365 ${id}: more than 6 starters`);
+
+  // How close each host limit is. Over the limit already failed above; this
+  // prints the distance so a role is seen approaching one before it breaks.
+  const pct = {
+    gpt: out.get(`${pluginDir}/adapters/chatgpt/${id}/instructions.md`).length / LIMITS.gpt,
+    m365: m365.length / LIMITS.m365,
+    grok: out.get(`${pluginDir}/adapters/grok/${id}.md`).length / LIMITS.grok,
+    copilot: out.get(`${pluginDir}/adapters/copilot/.github/agents/${id}.agent.md`).length / LIMITS.copilot,
+  };
+  for (const [host, p] of Object.entries(pct)) {
+    if (p >= MARGIN_WARN && p <= 1) notes.push(`${id}: ${host} instructions at ${Math.round(p * 100)}% of the ${LIMITS[host]}-character limit`);
+  }
+  report.push({ id, tokens: measured[id], base: budget?.roles?.[id], pct });
+}
+
+if (!budget && !updateBaseline) problems.push(`${BUDGET_FILE} is missing at the repo root (run --update-baseline and commit it)`);
+if (budget && !updateBaseline) {
+  const ids = new Set(pack.agents.map((x) => x.id));
+  for (const k of Object.keys(budget.roles || {})) if (!ids.has(k)) notes.push(`${BUDGET_FILE} lists ${k}, which is not in agent-pack.json; remove it with --update-baseline`);
+}
+if (updateBaseline) {
+  const roles = Object.fromEntries(pack.agents.map((x) => [x.id, measured[x.id]]));
+  for (const [k, v] of Object.entries(roles)) {
+    const was = budget?.roles?.[k];
+    if (was === undefined) notes.push(`baseline set: ${k} = ${v}`);
+    else if (v > was) notes.push(`baseline RAISED: ${k} ${was} -> ${v} (justify in review)`);
+    else if (v < was) notes.push(`baseline lowered: ${k} ${was} -> ${v}`);
+  }
+  writeFileSync(budgetPath, JSON.stringify({
+    _comment: "Per-role SKILL.md size baselines (task #1052). Estimated tokens = ceil(chars/4) of each canonical SKILL.md body. The build fails on growth past baseline plus slack; change it only with build-host-adapters.mjs --update-baseline, and justify any increase in review.",
+    slack,
+    roles,
+  }, null, 2) + "\n");
 }
 
 // Gemini extension manifest + context at the repository root.
@@ -319,5 +400,9 @@ for (const [rel, text] of out) {
   }
 }
 for (const x of problems) console.log(`  FAIL  ${x}`);
+for (const x of notes) console.log(`  WARN  ${x}`);
+const bar = (p) => `${String(Math.round(p * 100)).padStart(3)}%`;
+console.log(`  ${"role".padEnd(12)}${"est.tokens".padStart(11)}${"baseline".padStart(10)}   gpt  m365  grok  copilot`);
+for (const r of report) console.log(`  ${r.id.padEnd(12)}${String(r.tokens).padStart(11)}${String(r.base ?? "-").padStart(10)}  ${bar(r.pct.gpt)}  ${bar(r.pct.m365)}  ${bar(r.pct.grok)}  ${bar(r.pct.copilot)}`);
 console.log(`${check ? "checked" : "wrote"} ${out.size} files for ${pack.agents.length} roles (${drift} ${check ? "out of date" : "changed"})`);
 process.exit(problems.length || (check && drift) ? 1 : 0);
