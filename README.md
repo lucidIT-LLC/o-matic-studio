@@ -57,10 +57,8 @@ node studio/scripts/sync-copilot-payload.mjs --check
 node studio/scripts/verify-adapter-paths.test.mjs   # the adapter deploy check can fail
 ```
 
-CI (`.github/workflows/verify-pack.yml`) runs the same steps. Two more run
-**locally, before a release**, because they need this host: the Spirit Gate
-(rule #350), `OMATIC_MCP_URL=… OMATIC_MCP_TOKEN=… node scripts/spirit-gate-check.mjs .`,
-and, after the release is installed, `node <installed plugin>/scripts/verify-adapter-paths.mjs`.
+CI (`.github/workflows/verify-pack.yml`) runs the same steps. After the release is
+installed, verify it with `node <installed plugin>/scripts/verify-adapter-paths.mjs`.
 
 The tooling above is one canonical copy in `o-matic-studio`, synced into the
 other packs with `node scripts/sync-pack-tooling.mjs` there (`--check` fails on
