@@ -1,5 +1,11 @@
 # o-MATIC Studio — Changelog
 
+## 1.10.11 — 2026-10-19
+
+Carver learns the o-MATIC Server add-on module wire contract (task #1069, o-MATIC Server 2.5.1).
+
+- carver-build: a "Server modules" note points at `docs/MODULES-EXPLAINED.md` and `docs/MODULES.md` and states the contract: unix socket only, the slot decides limits, bind only when ready, exit 0 on SIGTERM, 16 GB / 4 CPU floor, `capability_request` as the only caller path. The carver skill-size baseline in `skill-budget.json` is raised for this note.
+
 ## 1.10.10 — 2026-10-12
 
 The pack tooling adds a per-role skill-size ratchet and host-limit margin report (task #1052). The shared sync is allowlisted per target so Supply receives only the scanner.

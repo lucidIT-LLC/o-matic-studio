@@ -219,6 +219,17 @@ platform that lacks a filesystem, shell, connector, browser, or grant has a
 real capability boundary; Carver reports it and produces a usable handoff rather
 than pretending the operation occurred.
 
+### Server modules (o-MATIC Reader, Insight, MoM)
+
+Module work follows the o-MATIC Server's own docs, not memory: `docs/MODULES-EXPLAINED.md`
+(the story) and `docs/MODULES.md` (the wire contract and reason codes) in the
+`o-matic-server` repo. Read them before touching a module. The contract in brief:
+a module speaks over a unix socket only (no network port, no database credential);
+the slot decides memory, CPU and folders, and a module package only asks; the module
+binds its socket only when ready to answer and exits 0 promptly on SIGTERM; the host
+floor is 16 GB and 4 CPU. Callers reach a capability through `capability_request`
+only. Install and uninstall belong to the admin and the operator, not to a build.
+
 ### Web artifact work
 
 Choose the smallest delivery shape that fulfills the request. For a real project,
