@@ -1,0 +1,23 @@
+{
+  "name": "studio",
+  "version": "1.11.0",
+  "description": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy with canonical skills, governance, cross-platform adapters, and evaluation gates. Ships no MCP server.",
+  "author": {
+    "name": "o-MATIC AI Research Lab",
+    "url": "https://o-matic.ai"
+  },
+  "homepage": "https://o-matic.ai",
+  "repository": "https://github.com/lucidIT-LLC/o-matic-studio",
+  "license": "BUSL-1.1",
+  "keywords": [
+    "brand",
+    "build",
+    "design",
+    "visuals",
+    "writing",
+    "photography",
+    "skill-only",
+    "cursor"
+  ],
+  "skills": "./skills/"
+}
