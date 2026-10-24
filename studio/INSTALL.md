@@ -11,6 +11,11 @@ Server MCP pairing; this repository stores no credential.
   on deployment — and must not pin a version-numbered plugin-cache path, which
   the next update breaks silently.
 - **Codex:** install `studio/` as a plugin.
+- **Cursor 4.7:** install `studio/` via the Cursor marketplace entry
+  (`.cursor-plugin`). Skills load from `./skills/`; condensed method cards and
+  Cursor host rules live in `adapters/cursor/`. See `adapters/cursor/INSTALL.md`
+  for the primary path and the Project-skills fallback if the agent skill list
+  stays thin. Configure o-MATIC Server MCP separately; this pack ships no MCP.
 - **Copilot:** copy `adapters/copilot/.github/` into the target workspace. It is
   self-contained — its contract copies travel with it under `.github/omatic/` —
   so Studio does **not** need to be checked out alongside. Install `skills/`

@@ -1,5 +1,16 @@
 # o-MATIC Studio — Changelog
 
+## 1.11.0 — 2026-10-24
+
+Cursor 4.7 becomes a first-class Studio host (method parity path), without touching Agency or Firm.
+
+- **Cursor plugin surface:** `studio/.cursor-plugin/plugin.json` points at `./skills/` and ships **no** `mcpServers` block (same marketplace rule as Claude/Codex). Root `.cursor-plugin/marketplace.json` catalogs the pack for Cursor.
+- **Cursor method cards:** `adapters/cursor/<role>.md` for Brandy, Carver, Monet, Jo, and Andy, plus `adapters/cursor/INSTALL.md`. Cards carry prompt substitutes for missing Claude hooks: discover tools live (never invent Claude tool names), fan-out ≤3 specialists, `startup` + `conversation_key` when MCP is present, GrokBot explicitly undefined.
+- **Host matrix:** `adapters/README.md` adds Cursor 4.7 (`design verified` until measured) and a GrokBot TODO row.
+- **Install docs:** `studio/INSTALL.md` documents the Cursor path and the Project-skills fallback.
+- **Builder:** `scripts/build-host-adapters.mjs` emits the Cursor adapters. Sibling packs are **not** sync-tooling-bumped in this release (avoids colliding with an in-flight Agency/vault cook).
+- Grok paste stubs remain generated from the gold record (rebuild refreshes voice from `agent-pack.json`).
+
 ## 1.10.11 — 2026-10-19
 
 Carver learns the o-MATIC Server add-on module wire contract (task #1069, o-MATIC Server 2.5.1).
