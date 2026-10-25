@@ -1,5 +1,12 @@
 # o-MATIC Studio — Changelog
 
+## 1.12.0 — 2026-10-25
+
+Specialist Cursor/Grok host ritual aligned with Agency 1.8.0 (join kernel; Probot owns plan). Additive adapters only — Claude PreToolUse untouched. Agency/Firm not sync-tooling-bumped by this Studio commit.
+
+- **Cursor method cards + Grok paste stubs:** first-call `startup` + Project-stable `conversation_key`, believe card `state`, copy Probot's key into `kernel_*` (delegate/return when scoped), Decision 694 ≤3, multi-host MCP reconnect (Cursor / Codex / Claude `/mcp` / generic — never Claude-only), `omatic_guide` before unsure capability claims, GrokBot undefined.
+- Kernel trio Cursor skills (`cursor-probot` / `cursor-fred` / `cursor-data`) ship in Agency 1.8.0 — Studio specialists remain overlays.
+
 ## 1.11.0 — 2026-10-24
 
 Cursor 4.7 becomes a first-class Studio host (method parity path), without touching Agency or Firm.
