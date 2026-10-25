@@ -4,15 +4,15 @@
     "name": "lucidIT-LLC"
   },
   "metadata": {
-    "description": "o-MATIC Studio — where things get designed and built. Brandy, Carver, Monet, Jo, and Andy. Ships no MCP server.",
-    "version": "1.11.0"
+    "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy, Carver, Monet, Jo, and Andy. Ships no MCP server.",
+    "version": "1.12.0"
   },
   "plugins": [
     {
       "name": "studio",
       "source": "./studio",
-      "description": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy. Ships no MCP server.",
-      "version": "1.11.0"
+      "description": "o-MATIC Studio portable specialist roster \u2014 Brandy, Carver, Monet, Jo, and Andy. Ships no MCP server.",
+      "version": "1.12.0"
     }
   ]
 }
