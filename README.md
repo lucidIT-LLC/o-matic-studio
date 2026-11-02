@@ -20,6 +20,7 @@ pictures. This is the maker's door.
 | `studio:monet-visuals` | Monet | Diagrams, charts, dashboards, maps, design systems, static visual artifacts. |
 | `studio:jo-writing` | Jo | Writing coaching — critique, structure, style, voice development. |
 | `studio:andy-photo-coach` | Andy | Photography coaching — exact edit recipes, scoring, darkroom notes. **Requires a vision-capable model.** |
+| `studio:grok-carver` | Carver | Grok Bot host ritual. Additive to `carver-build`. |
 
 **Andy was recovered on 2026-08-24** from a disk reorg that trashed him on
 2026-06-07. He is named in KB-0045 as roster and had been missing from the factory
@@ -73,7 +74,17 @@ connections, no compliance claim. The trust boundary is the o-MATIC Server.
 
 **Cursor:** This repository includes a Cursor plugin manifest. On Teams and Enterprise, a team admin can import this GitHub repository as a team marketplace from **Dashboard → Plugins & MCPs → Team Marketplaces → Add Marketplace → Import from Repo**, then install the `studio` plugin in Cursor Customize. Cursor requires public Marketplace plugins to be open source. This repository's current BUSL license explicitly is not open source, so it is not eligible for public Marketplace submission under the current license. LucidIT, LLC confirms that its intended public GitHub and Cursor Team Marketplace distribution route is authorized for this package. A fresh install has not yet been verified. See [Cursor's plugin guide](https://prod.cursor.com/docs/plugins) and [Marketplace submission page](https://cursor.com/marketplace/publish).
 
-**Grok Bot:** This repository is a source for the o-MATIC role; it does not itself install a Bot. Grok Bot uses its own template sharing and import flow. No o-MATIC public Bot template or clean import test is published yet. LucidIT, LLC confirms public distribution rights for the Agency, Firm, Studio, and Supply package sources. No public o-MATIC Bot template or clean import test is available yet; this README will link to the template and verified setup steps when they are ready. See [xAI's Bot sharing and import guide](https://docs.x.ai/grok-bot/bots).
+**Grok Bot:** Grok Bot is a defined host. Each role is its own bot, with a name, memory, routines, connectors, and a Linux computer. Skills load by name. This repository does not install a bot and does not ship a connector or a credential.
+
+Load the host skill with the canonical role skill:
+
+- `grok-carver` with `carver-build`
+
+Paste the Bot description from `studio/adapters/grok-bot/carver.md`. The other roles' grok.com cards (`studio/adapters/grok/<role>.md`) treat Grok Bot as a defined host. No `grok-<role>` skill ships for them in this pack. That card is the grok.com custom-agent paste and is not itself a Grok Bot binding.
+
+Configure the o-MATIC Server connector on the bot when factory memory is required. Carver's host skill calls startup on theNest with conversation_key `carver-jimmy`. Writes to a repo, a database, or server config wait for Jimmy's own chat approval of the exact content. Outgoing messages stay drafts. L2 runs only where `factory.agent_runtime_contracts` records it.
+
+No public o-MATIC Bot template is linked here yet. LucidIT, LLC confirms public distribution rights for the Agency, Firm, Studio, and Supply package sources. See [xAI's Bot sharing and import guide](https://docs.x.ai/grok-bot/bots) and `studio/adapters/grok-bot/INSTALL.md`.
 
 ## License
 

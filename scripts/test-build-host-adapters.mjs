@@ -13,7 +13,7 @@
 //      a long reference with no "## Contents");
 //   3. --check fails on drift and passes when current.
 // Run: node scripts/test-build-host-adapters.mjs
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync, readdirSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -58,9 +58,33 @@ const run = (root, ...args) => spawnSync(process.execPath, [BUILDER, root, ...ar
   check("Gemini copy carries the reference file", existsSync(join(root, "skills/tess-testing/reference/detail.md")));
   const setup = existsSync(join(root, "demo/adapters/chatgpt/tess/SETUP.md")) ? readFileSync(join(root, "demo/adapters/chatgpt/tess/SETUP.md"), "utf8") : "";
   check("ChatGPT setup lists the reference file as knowledge", setup.includes("reference/detail.md"), setup.slice(0, 400));
+  const grokCard = existsSync(join(root, "demo/adapters/grok/tess.md")) ? readFileSync(join(root, "demo/adapters/grok/tess.md"), "utf8") : "";
+  const cursorCard = existsSync(join(root, "demo/adapters/cursor/tess.md")) ? readFileSync(join(root, "demo/adapters/cursor/tess.md"), "utf8") : "";
+  const matrix = existsSync(join(root, "demo/adapters/README.md")) ? readFileSync(join(root, "demo/adapters/README.md"), "utf8") : "";
+  check("grok card defines Grok Bot and does not mint a key", /Grok Bot is a defined host/.test(grokCard) && /Do not mint a key/.test(grokCard) && !/undefined/.test(grokCard) && !/grokbot-/.test(grokCard), grokCard.slice(-400));
+  check("cursor card keeps Grok Bot as a separate defined host", /Grok Bot is a defined host/.test(cursorCard) && /do not reuse a Cursor principal/i.test(cursorCard) && !/undefined/.test(cursorCard) && !/grokbot-/.test(cursorCard), cursorCard.slice(-300));
+  check("host matrix ships Grok Bot as a defined host", /Grok Bot is a defined host/.test(matrix) && /adapters\/grok-bot\//.test(matrix) && !/not shipped/.test(matrix) && !/grokbot-/.test(matrix), matrix.slice(-500));
+  const grokBotInstall = existsSync(join(root, "demo/adapters/grok-bot/INSTALL.md")) ? readFileSync(join(root, "demo/adapters/grok-bot/INSTALL.md"), "utf8") : "";
+  check("grok-bot install note defines the host", /Grok Bot is a defined host/.test(grokBotInstall) && !/grokbot-/.test(grokBotInstall), grokBotInstall.slice(0, 300));
   check("--check passes when current", run(root, "--check").status === 0);
   writeFileSync(join(root, "skills/tess-testing/SKILL.md"), "stale\n");
   check("--check fails on drift", run(root, "--check").status === 1);
+  rmSync(root, { recursive: true, force: true });
+}
+
+// A hand-authored grok-<role> skill produces the paste card.
+{
+  const root = pack();
+  const skill = join(root, "demo/skills/grok-tess/SKILL.md");
+  mkdirSync(dirname(skill), { recursive: true });
+  writeFileSync(skill, "---\nname: grok-tess\ndescription: Host skill for Tess on Grok Bot.\n---\n\nHost ritual.\n");
+  const r = run(root);
+  const cardPath = join(root, "demo/adapters/grok-bot/tess.md");
+  const card = existsSync(cardPath) ? readFileSync(cardPath, "utf8") : "";
+  const about = (card.match(/^> (.+)$/m) || [])[1] || "";
+  check("a grok-<role> skill emits a paste card", r.status === 0 && card.includes("`grok-tess`") && /operator's own explicit approval/.test(card) && /drafts for the operator/.test(card) && [...about].length > 0 && [...about].length <= 140, `${r.stdout.slice(0, 300)}\n${about}`);
+  const grokCard = existsSync(join(root, "demo/adapters/grok/tess.md")) ? readFileSync(join(root, "demo/adapters/grok/tess.md"), "utf8") : "";
+  check("the grok.com card points at that paste card", /adapters\/grok-bot\/tess\.md/.test(grokCard), grokCard.slice(-300));
   rmSync(root, { recursive: true, force: true });
 }
 
@@ -157,6 +181,23 @@ for (const [label, opts, want] of cases) {
   r = run(root, "--check");
   check("a host limit exceeded fails", fails(r, /> 4000/), r.stdout.slice(0, 300));
   rmSync(root, { recursive: true, force: true });
+}
+
+// The real pack must not still teach that Grok Bot is undefined.
+{
+  const repo = join(dirname(BUILDER), "..");
+  const banned = "GrokBot is undefined";
+  const walk = (d) => readdirSync(d).flatMap((f) => {
+    if (f === ".git" || f === "node_modules") return [];
+    const p = join(d, f);
+    return statSync(p).isDirectory() ? walk(p) : [p];
+  });
+  const hits = walk(repo).filter((p) => {
+    if (p.endsWith("CHANGELOG.md") || p.endsWith("test-build-host-adapters.mjs")) return false;
+    if (!/\.(md|mjs|json|yml|yaml)$/.test(p)) return false;
+    return readFileSync(p, "utf8").includes(banned);
+  });
+  check("shipped files no longer say Grok Bot is undefined", hits.length === 0, hits.join("\n"));
 }
 
 console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");

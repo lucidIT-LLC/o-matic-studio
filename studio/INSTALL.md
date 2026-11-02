@@ -16,6 +16,13 @@ Server MCP pairing; this repository stores no credential.
   Cursor host rules live in `adapters/cursor/`. See `adapters/cursor/INSTALL.md`
   for the primary path and the Project-skills fallback if the agent skill list
   stays thin. Configure o-MATIC Server MCP separately; this pack ships no MCP.
+  Cursor is not a Grok Bot binding.
+- **Grok Bot:** Grok Bot is a defined host. Install the `studio` skills and
+  enable `grok-carver` (with `carver-build`) on that bot. Paste the description
+  from `adapters/grok-bot/carver.md`. The bot's connectors, memory, and computer
+  stay on the bot. This pack ships no MCP server. Paste `adapters/grok/<role>.md`
+  only for a grok.com custom agent; that card is not the bot. L2 stays off until
+  `factory.agent_runtime_contracts` records it.
 - **Copilot:** copy `adapters/copilot/.github/` into the target workspace. It is
   self-contained — its contract copies travel with it under `.github/omatic/` —
   so Studio does **not** need to be checked out alongside. Install `skills/`

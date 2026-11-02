@@ -6,7 +6,7 @@
     "email": "lucideye@icloud.com"
   },
   "metadata": {
-    "description": "o-MATIC Studio — where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Ships no MCP server.",
+    "description": "o-MATIC Studio — where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Ships no MCP server.",
     "version": "2026-10-12"
   },
   "plugins": [
@@ -14,8 +14,8 @@
       "name": "studio",
       "displayName": "o-MATIC Studio",
       "source": "./studio",
-      "version": "1.12.1",
-      "description": "o-MATIC Studio — where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Ships no MCP server.",
+      "version": "1.13.0",
+      "description": "o-MATIC Studio — where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Ships no MCP server.",
       "author": {
         "name": "James Walker",
         "url": "https://o-matic.ai"
@@ -30,7 +30,8 @@
         "visuals",
         "writing",
         "photography",
-        "skill-only"
+        "skill-only",
+        "grok-bot"
       ],
       "metadata": {
         "compatibilityTier": "prompt-only-behavior-only; MCP-host-full-operation when the host provides the o-MATIC Server surface",
