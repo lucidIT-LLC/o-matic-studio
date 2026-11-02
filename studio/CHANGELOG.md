@@ -1,5 +1,15 @@
 # o-MATIC Studio — Changelog
 
+## 1.13.0 — 2026-11-02
+
+Grok Bot is a defined host. Carver gets a host skill that sits beside
+`carver-build`. Paste cards stop calling the host undefined. Claude
+PreToolUse and Codex paths are unchanged. Robot art is untouched.
+
+- **Host skill:** `grok-carver`, named like Agency's `grok-<role>` skills. Paste description ships in `adapters/grok-bot/carver.md`. Startup on the o-MATIC Server connector when it is configured, on theNest, with conversation_key `carver-jimmy`. Decision 694, discover tools live, and Jimmy's own chat approval before a repo, database, or server-config write. Reply prefix stays `Carver:`. L2 only where `factory.agent_runtime_contracts` records it.
+- **Adapters:** `adapters/grok/<role>.md` stays the grok.com paste. Carver's card points at `adapters/grok-bot/carver.md`. `adapters/grok-bot/` is the Grok Bot description. Cursor method cards state that Grok Bot is a separate defined host. The host matrix and install notes match. Other Studio roles have no `grok-<role>` skill.
+- **Versions:** host manifests, marketplace entries, and `gemini-extension.json` move 1.12.1 → 1.13.0.
+
 ## 1.12.1 — 2026-10-25
 
 Grok Bot / Cursor marketplace branding (display name, master logo, category). Additive Cursor fields only; Claude PreToolUse and Codex paths unchanged.

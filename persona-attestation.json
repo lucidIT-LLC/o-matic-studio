@@ -2,7 +2,7 @@
  "schema": 2,
  "pack": "o-matic-studio",
  "tenant": "omatic",
- "source": "scripts/persona-attest-export.sql through the o-MATIC Server (connection whose database is o-matic), public.v_persona_version_gate recomputed signatures + factory.persona_build, tenant omatic. Exported 2026-09-28 by Carver for task #1002 (schema 2: signature strings, declares_identity).",
+ "source": "scripts/persona-attest-export.sql through the o-MATIC Server (connection whose database is o-matic), public.v_persona_version_gate recomputed signatures + factory.persona_build, tenant omatic. Exported 2026-09-28 by Carver for task #1002 (schema 2: signature strings, declares_identity). Grok Bot host-lane row grok-carver added 2026-11-02 as declares_identity false alias of the already-certified carver persona (same signature, bible, dimensions, and build count; Agency grok-<role> pattern). Not a new persona_build.",
  "generated_at": "2026-09-28 15:00:53.876778-04:00",
  "personas": [
   {
@@ -38,6 +38,19 @@
    "review_status": "published",
    "identity_signature": "2c0cad881efa6dc19a5b0d40d6023c42",
    "declares_identity": true,
+   "verdict": "PASS",
+   "source_skill_version": "carver-build - studio 1.9.0, skill carries no version marker",
+   "character_bible": 1,
+   "dimensions": 8,
+   "builds": 1
+  },
+  {
+   "skill": "grok-carver",
+   "agent_name": "carver",
+   "version": 1,
+   "review_status": "published",
+   "identity_signature": "2c0cad881efa6dc19a5b0d40d6023c42",
+   "declares_identity": false,
    "verdict": "PASS",
    "source_skill_version": "carver-build - studio 1.9.0, skill carries no version marker",
    "character_bible": 1,
