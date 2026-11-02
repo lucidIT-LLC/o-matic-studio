@@ -23,7 +23,7 @@ pictures. This is the maker's door.
 | `studio:grok-carver` | Carver | Grok Bot host ritual. Additive to `carver-build`. |
 
 **Andy was recovered on 2026-08-24** from a disk reorg that trashed him on
-2026-06-07. He is named in KB-0045 as roster and had been missing from the factory
+2026-06-07. He is named in a factory knowledge-base entry as roster and had been missing from the factory
 for two and a half months.
 
 ## The other doors
@@ -42,7 +42,7 @@ A plugin that declares an `mcpServers` block is **omitted** by hosted-marketplac
 hosts — measured on two hosts and exactly reproducible. Shipping skills alone is
 what lets them install on Cowork, Claude Code desktop, and any sandboxed host.
 
-**Compatibility tier (rule #284):** on a host with the o-MATIC Server MCP surface
+**Compatibility tier:** on a host with the o-MATIC Server MCP surface
 configured, these operate fully. On a **prompt-only host — including a local
 Ollama model — they are behavior-only, with no factory database capability.**
 Voice, lane discipline and judgement still work; the factory brain does not.
@@ -82,7 +82,7 @@ Load the host skill with the canonical role skill:
 
 Paste the Bot description from `studio/adapters/grok-bot/carver.md`. The other roles' grok.com cards (`studio/adapters/grok/<role>.md`) treat Grok Bot as a defined host. No `grok-<role>` skill ships for them in this pack. That card is the grok.com custom-agent paste and is not itself a Grok Bot binding.
 
-Configure the o-MATIC Server connector on the bot when factory memory is required. Carver's host skill calls startup on theNest with conversation_key `carver-jimmy`. Writes to a repo, a database, or server config wait for Jimmy's own chat approval of the exact content. Outgoing messages stay drafts. L2 runs only where `factory.agent_runtime_contracts` records it.
+Configure the o-MATIC Server connector on the bot when factory memory is required. Carver's host skill calls startup on the connection granted to this bot, with Probot's conversation_key. Writes to a repo, a database, or server config wait for the operator's own chat approval of the exact content. Outgoing messages stay drafts. L2 runs only where the factory's runtime-contract register (ask Data) records it.
 
 No public o-MATIC Bot template is linked here yet. LucidIT, LLC confirms public distribution rights for the Agency, Firm, Studio, and Supply package sources. See [xAI's Bot sharing and import guide](https://docs.x.ai/grok-bot/bots) and `studio/adapters/grok-bot/INSTALL.md`.
 

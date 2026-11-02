@@ -32,14 +32,14 @@ Reference file for this skill. SKILL.md is the role guide and says when to read 
 ## 9. The Affinity Instrument — measured, not assumed
 
 Everything in this section was **measured**, on 2026-09-11 and 2026-09-12,
-against the live SDK, and is recorded in **decisions #489, #491 and #492**.
+against the live SDK, and is recorded in **the recorded decisions**.
 Where something is inferred or untested it says so in those words. Do not soften
 any of it into prose; these are the facts that make the difference between a
 correct reading and confident nonsense.
 
 **Two things in here contradict what 2.2.0 shipped, and both are marked where
-they sit** — the `magentaGreen` sign (§9.8, task #719) and the canvas-resize
-claim (§9.15). **One thing contradicts decision #492 itself** and is marked
+they sit** — the `magentaGreen` sign (§9.8, a tracked task) and the canvas-resize
+claim (§9.15). **One thing contradicts the recorded decision itself** and is marked
 there too (§9.7, ColourBalance reachability). **When this file disagrees with a
 decision record, the measurement wins and the disagreement gets written down.**
 Neither gets to be quietly right.
@@ -50,7 +50,7 @@ Neither gets to be quietly right.
 `list_library_scripts` and load them before you write a line of script.**
 
 > **LOAD THE `v2` MEASUREMENT SCRIPTS. THE UNSUFFIXED ONES ARE DEFECTIVE.**
-> Task #719: `Photo Measure` opened with `app.documents.current`, violating
+> A tracked task: `Photo Measure` opened with `app.documents.current`, violating
 > §9.3 — the rule stated by this very file. **Four documents were open** when
 > Andy first loaded it; it would have measured whichever window was last
 > clicked and printed the result under the target's name. Checking `Photo
@@ -80,7 +80,7 @@ toolkit is the version that was proven to run: `SELFTEST()` returned **12 pass,
 
 They extend; they do not get replaced. **Durability is the point** — the
 2026-09-10 session's work survived only in a chat log, and that is the defect
-#486 was opened to close.
+The earlier record was opened to close.
 
 ### 9.1 CHECK THE SOURCE BEFORE YOU GRADE ANYTHING
 
@@ -134,7 +134,7 @@ constraint here.
 per-pixel with no bulk read, so the instrument "must sample a grid," and that a
 read costs ~10 ms. Both false — the bulk read simply is not in
 `pixelaccessor.js`, which was the only file read before the claim was made.
-Decision #487 repeats the same false constraint about Affinity and is wrong on
+The recorded decision repeats the same false constraint about Affinity and is wrong on
 that half; its Pixelmator half was independently measured and stands.
 
 **Grid sampling remains the fallback** when the bulk buffer is unavailable.
@@ -173,7 +173,7 @@ what makes them dangerous: nothing fails, and the reading is garbage.
    only honest readback.
 
 > **This one has already cost a false finding, which is why it is a rule.**
-> Decision **#492 §A3** concluded from a `{}` readback that the write "succeeds
+> The recorded decision concluded from a `{}` readback that the write "succeeds
 > silently and does nothing" and that **ColourBalance is unreachable from
 > script**. That conclusion was **disproven by direct measurement on
 > 2026-09-12** while certifying this release — see §9.7. The empty readback is
@@ -258,11 +258,11 @@ the live SDK with no document open:
   three-zone `values` container is exactly the instrument §9.10 calls for when
   the zone signs disagree.
 
-> **Decision #492 §A3 says the opposite — that ColourBalance is unreachable —
-> and #492 is wrong on that point.** It is corrected here rather than shipped,
+> **The recorded decision says the opposite — that ColourBalance is unreachable —
+> and the earlier record is wrong on that point.** It is corrected here rather than shipped,
 > because shipping it would have retired a working control on the strength of a
-> `{}` that means nothing (§9.5 rule 5). The rest of #492 held up under
-> re-measurement; this item did not. **#492 is otherwise authority for this
+> `{}` that means nothing (§9.5 rule 5). The rest of the earlier record held up under
+> re-measurement; this item did not. **The earlier record is otherwise authority for this
 > section — treat §A3 alone as superseded**, and see the §14 note on what is
 > owed back to the decision record.
 
@@ -287,12 +287,12 @@ reports both; the near-neutral line is the one that means something.
   **109.26 a\* per unit** globally on one frame. Do not eyeball the first value;
   **calibrate it** (§5).
 
-> **This sentence shipped inverted in 2.2.0 and is corrected here (task #719).**
+> **This sentence shipped inverted in 2.2.0 and is corrected here.**
 > It read "cancel it by moving `magentaGreen` **positive**," which would push a
 > green-cast frame **further green** — the exact failure §9.10 exists to
 > prevent. Two independent measurements settle the direction: a probe of
 > `magentaGreen` **-0.05** moved near-neutral a\* from **-5.194 to +0.269**
-> (session #227, **measured**, a partial derivative of **-109.26 a\* per unit**),
+> (a recorded session, **measured**, a partial derivative of **-109.26 a\* per unit**),
 > and the SDK hint pool's experimentally-rendered entry agrees.
 >
 > **Note what this file did to itself, because it is the real lesson.** §9.7
@@ -347,7 +347,7 @@ rendered JPEG would have revealed it.
 4. Re-measure. **An overshoot shows up as a sign flip.** A correction that
    worked moves near-neutral a\*/b\* *toward* 0.
 
-*Caveat recorded honestly in #489: the two files compared that day were
+*Caveat recorded honestly in the earlier record: the two files compared that day were
 different frames shot 20 s apart, so that was a cross-image comparison, not a
 true before/after. Say that kind of thing when it applies.*
 
@@ -516,7 +516,7 @@ earlier hint.**
 
 ### 9.19 ADDING A LAYER — the sequence, and the two methods that do not exist
 
-**Measured 2026-09-12** (#492 §B), re-confirmed against the live SDK while
+**Measured 2026-09-12**, re-confirmed against the live SDK while
 certifying this release.
 
 **`AddChildNodesCommandBuilder.create()` has NO `setTargetParent` and NO
@@ -586,7 +586,7 @@ copy.
 **This is the tool for "warm the timber without touching the foliage."** Where
 §9.10 says sign disagreement needs a mask, HSLShift is the option that needs no
 mask at all — it selects by **hue**, not by region. All figures **measured
-2026-09-12** (#492 §D) on the Poole's Mill covered-bridge frame.
+2026-09-12** on the Poole's Mill covered-bridge frame.
 
 **Six channels, indices 0–5. Index 6 or above returns `INVALID_ARGS`.**
 `getChannelColourRange(i)` returns `rampUpBegin` / `rampUpEnd` /
@@ -663,7 +663,7 @@ measured °/unit above is the only way to get it.
 ### 9.21 The export sandbox is NOT the agent's filesystem
 
 **Affinity's export grants and your own file access are different things, and
-they do not overlap the way you would expect.** Measured 2026-09-12 (#492 §G):
+they do not overlap the way you would expect.** Measured 2026-09-12:
 
 | `doc.export()` target | Result |
 |---|---|
