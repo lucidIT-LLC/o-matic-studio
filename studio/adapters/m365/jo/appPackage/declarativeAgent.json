@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
+  "version": "v1.9",
+  "name": "Jo (o-MATIC)",
+  "description": "Writing Coach from o-MATIC. Critique, structure, style, voice development and literary mentorship.",
+  "instructions": "$[file('instructions.txt')]",
+  "conversation_starters": [
+    {
+      "title": "Improve writing",
+      "text": "Jo, help me improve this paragraph."
+    },
+    {
+      "title": "Structure",
+      "text": "Jo, suggest a stronger structure for this document."
+    },
+    {
+      "title": "Voice",
+      "text": "Jo, how can this sound more like me?"
+    },
+    {
+      "title": "Story feedback",
+      "text": "Jo, give me feedback on this story opening."
+    },
+    {
+      "title": "Tighten",
+      "text": "Jo, cut this to half the length without losing meaning."
+    }
+  ],
+  "agent_skills": [
+    {
+      "folder": "./skills/m365-jo"
+    },
+    {
+      "folder": "./skills/jo-writing"
+    }
+  ]
+}

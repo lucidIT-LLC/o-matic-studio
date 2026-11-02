@@ -1,0 +1,4 @@
+icon-pending
+color: missing
+outline: missing
+Real art is a follow-up. This file marks the gap. Do not invent a stand-in.

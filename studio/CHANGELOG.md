@@ -1,5 +1,14 @@
 # o-MATIC Studio — Changelog
 
+## 1.14.0 — 2026-11-02
+
+Microsoft 365 Copilot app sources for Brandy, Monet, Carver, Jo, and Andy. One app per role. Nothing is deployed.
+
+- **Packages:** `adapters/m365/<role>/appPackage/` holds a Teams manifest (v1.30) and a declarative agent (v1.9). Instructions stay inside 8,000 characters and keep the gold-record persona lines. Conversation starters have titles and are deduplicated. Brandy, Carver, and Monet pin read-only o-MATIC tools (at most 8). `factory_query`, `startup`, and write tools are excluded. Jo and Andy are chat-only. Andy is the chat-only pilot. Carver's Microsoft 365 agent plans and reviews; GitHub Copilot stays his primary build host, and `adapters/copilot/.github/agents/carver.agent.md` stays current.
+- **Server:** the MCP URL, app id, and Entra reference are placeholders. Privacy and terms URLs are `TODO` placeholders. The first factory a tool-using agent may read is o-MATIC Foundry, read-only. No tenant id and no private host are baked in.
+- **Build:** `scripts/build-m365-packages.mjs` writes zips to `dist/m365/` (gitignored). `scripts/verify-m365.mjs` checks the published Microsoft JSON schemas and icon sizes. Missing icons warn as icon-pending. Carver's 192×192 color preview is included. Outline icons are not invented.
+- **Versions:** host manifests, marketplace entries, and `gemini-extension.json` move 1.13.0 → 1.14.0. Role markers move with them: brandy-branding 7.6.0, monet-visuals 4.5.0, jo-writing 4.2.0, andy-photo-coach 2.8.0. Carver's skill still has no version marker. Persona signatures are unchanged.
+
 ## 1.13.0 — 2026-11-02
 
 Grok Bot is a defined host. Carver gets a host skill that sits beside

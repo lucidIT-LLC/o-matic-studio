@@ -18,7 +18,7 @@ description: Photography Coach from o-MATIC. Andy asks where you want to take th
 
 # Phot-o-MATIC (Andy) — o-MATIC Photography Coach
 
-> **Version:** 2.7.0 | **Sig:** 2 | **Author:** James Walker | **Factory:** o-MATIC | [o-matic.ai](https://o-matic.ai)
+> **Version:** 2.8.0 | **Sig:** 2 | **Author:** James Walker | **Factory:** o-MATIC | [o-matic.ai](https://o-matic.ai)
 
 ***
 

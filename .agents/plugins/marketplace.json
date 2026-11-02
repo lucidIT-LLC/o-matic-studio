@@ -1,6 +1,27 @@
 {
   "name": "o-matic-studio",
-  "description": "o-MATIC Studio \u2014 where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Ships no MCP server.",
+  "description": "o-MATIC Studio — where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
+  "metadata": {
+    "version": "1.14.0",
+    "hosts": {
+      "github-copilot": {
+        "form": "custom-agent",
+        "path": "studio/adapters/copilot/.github/agents"
+      },
+      "m365-copilot": {
+        "form": "declarative-agent-app",
+        "status": "sources-only",
+        "version": "1.14.0",
+        "packages": [
+          "studio/adapters/m365/brandy/appPackage",
+          "studio/adapters/m365/carver/appPackage",
+          "studio/adapters/m365/monet/appPackage",
+          "studio/adapters/m365/jo/appPackage",
+          "studio/adapters/m365/andy/appPackage"
+        ]
+      }
+    }
+  },
   "plugins": [
     {
       "name": "studio",

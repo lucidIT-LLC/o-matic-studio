@@ -1,0 +1,60 @@
+{
+  "tools": [
+    {
+      "name": "connections_list",
+      "description": "List the factory connections the signed-in user is allowed to read.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "omatic_guide",
+      "description": "Read the on-demand guide for one named o-MATIC topic.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "search",
+      "description": "Search factory records the signed-in user is allowed to read.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "slate_canvas_open",
+      "description": "Open a Slate canvas the signed-in user is allowed to read.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "slate_scene_observe",
+      "description": "Read the scene on a Slate canvas the signed-in user can see.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "slate_asset_get",
+      "description": "Read one Slate asset the signed-in user is allowed to read.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "slate_entity_search",
+      "description": "Search Slate entities the signed-in user is allowed to read.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  ]
+}

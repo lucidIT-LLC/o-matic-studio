@@ -1,0 +1,78 @@
+{
+  "_comment": "Hand-authored Microsoft 365 Copilot package facts the gold record does not carry. scripts/build-host-adapters.mjs reads this file and generates adapters/m365/<role>/appPackage/. Persona lines stay in agent-pack.json. Do not add factory_query, startup, or any write tool.",
+  "brandy": {
+    "host": "actions",
+    "wave": 1,
+    "shortDescription": "Brand guardian. Reviews voice, naming and claims.",
+    "note": "Read-only. The first factory these tools may read is o-MATIC Foundry.",
+    "tools": ["connections_list", "omatic_guide", "search"],
+    "starters": [
+      { "title": "Review copy", "text": "Brandy, review this copy for voice, claims and naming." },
+      { "title": "Tone check", "text": "Brandy, does this email match our brand voice?" },
+      { "title": "Name it", "text": "Brandy, suggest five names for this product and rank them." },
+      { "title": "Claim check", "text": "Brandy, which claims in this page can we actually support?" },
+      { "title": "Visual direction", "text": "Brandy, give me a visual direction for this campaign." }
+    ]
+  },
+  "carver": {
+    "host": "actions",
+    "wave": 1,
+    "shortDescription": "Builder. Plans, reviews and explains software changes.",
+    "note": "Planning and review only. GitHub Copilot remains the primary build host.",
+    "hostExtra": [
+      "On this host you plan and review only. You do not implement or deploy. GitHub Copilot is your primary build host."
+    ],
+    "capabilities": ["CodeInterpreter"],
+    "tools": ["connections_list", "omatic_guide", "search", "task_relationships", "slate_entity_search", "slate_entity_verify"],
+    "starters": [
+      { "title": "Architect this", "text": "Carver, propose an architecture for this integration." },
+      { "title": "Review code", "text": "Carver, review this code and say what you verified." },
+      { "title": "Schema design", "text": "Carver, draft a schema for these requirements." },
+      { "title": "Build plan", "text": "Carver, break this approved feature into build steps with tests." },
+      { "title": "Explain an error", "text": "Carver, explain this error and the smallest fix." }
+    ]
+  },
+  "monet": {
+    "host": "actions",
+    "wave": 1,
+    "shortDescription": "Visual designer. Diagrams, charts and dashboards.",
+    "note": "Read-only Slate and search. The first factory these tools may read is o-MATIC Foundry.",
+    "capabilities": ["CodeInterpreter"],
+    "tools": ["connections_list", "omatic_guide", "search", "slate_canvas_open", "slate_scene_observe", "slate_asset_get", "slate_entity_search"],
+    "starters": [
+      { "title": "Diagram this", "text": "Monet, turn this process into a diagram." },
+      { "title": "Chart this", "text": "Monet, chart this data and explain the choice of chart." },
+      { "title": "Dashboard", "text": "Monet, sketch a dashboard layout for these metrics." },
+      { "title": "Read a canvas", "text": "Monet, describe what is on this Slate canvas." },
+      { "title": "Project visual", "text": "Monet, make a one-page visual summary of this project." }
+    ]
+  },
+  "jo": {
+    "host": "chat",
+    "wave": 2,
+    "shortDescription": "Writing coach. Critique, structure, style and voice.",
+    "note": "Prompt-only. No o-MATIC tools.",
+    "tools": [],
+    "starters": [
+      { "title": "Improve writing", "text": "Jo, help me improve this paragraph." },
+      { "title": "Structure", "text": "Jo, suggest a stronger structure for this document." },
+      { "title": "Voice", "text": "Jo, how can this sound more like me?" },
+      { "title": "Story feedback", "text": "Jo, give me feedback on this story opening." },
+      { "title": "Tighten", "text": "Jo, cut this to half the length without losing meaning." }
+    ]
+  },
+  "andy": {
+    "host": "chat",
+    "wave": 3,
+    "shortDescription": "Photography coach. Reviews photos and gives edit recipes.",
+    "note": "Chat-only pilot. No o-MATIC tools.",
+    "tools": [],
+    "starters": [
+      { "title": "Review a photo", "text": "Andy, review this photo and score it." },
+      { "title": "Where is it going", "text": "Andy, help me decide where this photo will be used before you grade it." },
+      { "title": "Edit recipe", "text": "Andy, give me an edit recipe for this image." },
+      { "title": "Stock mode", "text": "Andy, is this photo ready for a stock submission?" },
+      { "title": "Coaching", "text": "Andy, what should I practice next to improve my photography?" }
+    ]
+  }
+}

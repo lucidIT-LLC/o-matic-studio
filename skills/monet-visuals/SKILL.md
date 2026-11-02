@@ -11,7 +11,7 @@ description: Visual systems and artifact designer. Monet creates diagrams, chart
 
 # Monet - Visual Systems and Artifact Designer
 
-<!-- version: 4.4.0 | sig: 6 | author: James Walker | package: o-MATIC WordPress Factory -->
+<!-- version: 4.5.0 | sig: 6 | author: James Walker | package: o-MATIC WordPress Factory -->
 <!-- identity sourced from o-MATIC persona gold record (tenant omatic). identity_signature: a3a908dca77986c851a7f17eba89ed68 -->
 > **Author:** James Walker | **Package:** o-MATIC WordPress Factory | [o-matic.ai](https://o-matic.ai)
 
@@ -354,5 +354,6 @@ or external.
 
 | Version | Date | Changes |
 |---|---:|---|
+| 4.5.0 | 2026-11-02 | Version marker for Studio 1.14.0. Microsoft 365 Copilot app sources for this role. The visual procedure is unchanged. |
 | 4.3.0 | 2026-06-13 | Added Web Artifact Design Mode for React/Tailwind/shadcn artifact direction, anti-slop visual rules, component hierarchy, responsive QA, and Monet-to-Carver implementation handoff. |
 | 4.2.0 | 2026-06-13 | Added WordPress Factory runtime expression with explanatory visual mode, Art Object Mode, visual philosophy workflow, static artifact craft standards, cross-platform behavior, and subagent contract. |

@@ -2,7 +2,7 @@
  "schema": 2,
  "pack": "o-matic-studio",
  "tenant": "omatic",
- "source": "scripts/persona-attest-export.sql through the o-MATIC Server (connection whose database is o-matic), public.v_persona_version_gate recomputed signatures + factory.persona_build, tenant omatic. Exported 2026-09-28 by Carver for task #1002 (schema 2: signature strings, declares_identity). Grok Bot host-lane row grok-carver added 2026-11-02 as declares_identity false alias of the already-certified carver persona (same signature, bible, dimensions, and build count; Agency grok-<role> pattern). Not a new persona_build.",
+ "source": "scripts/persona-attest-export.sql through the o-MATIC Server (connection whose database is o-matic), public.v_persona_version_gate recomputed signatures + factory.persona_build, tenant omatic. Exported 2026-09-28 by Carver for task #1002 (schema 2: signature strings, declares_identity). Grok Bot host-lane row grok-carver added 2026-11-02 as declares_identity false alias of the already-certified carver persona (same signature, bible, dimensions, and build count; Agency grok-<role> pattern). Role skill version markers bumped 2026-11-02 for Studio 1.14.0 (brandy-branding 7.6.0, monet-visuals 4.5.0, jo-writing 4.2.0, andy-photo-coach 2.8.0). Identity signatures, review status, bible, dimensions, and build counts are unchanged. Not a new persona_build.",
  "generated_at": "2026-09-28 15:00:53.876778-04:00",
  "personas": [
   {
@@ -13,7 +13,7 @@
    "identity_signature": "51a6d528a5f019a848b49004708dd3e8",
    "declares_identity": true,
    "verdict": "PASS",
-   "source_skill_version": "pixel-photo-coach 2.5.0 (studio 1.9.0)",
+   "source_skill_version": "andy-photo-coach 2.8.0 (studio 1.14.0)",
    "character_bible": 1,
    "dimensions": 8,
    "builds": 1
@@ -26,7 +26,7 @@
    "identity_signature": "3164c7ddf252eb4c4c00840d949ce241",
    "declares_identity": true,
    "verdict": "PASS",
-   "source_skill_version": "brandy-branding 7.5.0 (studio 1.9.0)",
+   "source_skill_version": "brandy-branding 7.6.0 (studio 1.14.0)",
    "character_bible": 1,
    "dimensions": 8,
    "builds": 1
@@ -39,7 +39,7 @@
    "identity_signature": "2c0cad881efa6dc19a5b0d40d6023c42",
    "declares_identity": true,
    "verdict": "PASS",
-   "source_skill_version": "carver-build - studio 1.9.0, skill carries no version marker",
+   "source_skill_version": "carver-build - studio 1.14.0, skill carries no version marker",
    "character_bible": 1,
    "dimensions": 8,
    "builds": 1
@@ -52,7 +52,7 @@
    "identity_signature": "2c0cad881efa6dc19a5b0d40d6023c42",
    "declares_identity": false,
    "verdict": "PASS",
-   "source_skill_version": "carver-build - studio 1.9.0, skill carries no version marker",
+   "source_skill_version": "carver-build - studio 1.14.0, skill carries no version marker",
    "character_bible": 1,
    "dimensions": 8,
    "builds": 1
@@ -65,7 +65,7 @@
    "identity_signature": "fe7deafd7f3deeb676e1414f5f56235f",
    "declares_identity": true,
    "verdict": "PASS",
-   "source_skill_version": "jo-writing 4.1.0 (studio 1.9.0)",
+   "source_skill_version": "jo-writing 4.2.0 (studio 1.14.0)",
    "character_bible": 1,
    "dimensions": 7,
    "builds": 2
@@ -78,7 +78,7 @@
    "identity_signature": "fe7deafd7f3deeb676e1414f5f56235f",
    "declares_identity": true,
    "verdict": "PASS",
-   "source_skill_version": "jo-writing 4.1.0 (studio 1.9.0)",
+   "source_skill_version": "jo-writing 4.2.0 (studio 1.14.0)",
    "character_bible": 1,
    "dimensions": 7,
    "builds": 2
@@ -91,7 +91,7 @@
    "identity_signature": "a3a908dca77986c851a7f17eba89ed68",
    "declares_identity": true,
    "verdict": "PASS",
-   "source_skill_version": "monet-visuals 4.4.0 (studio 1.9.0)",
+   "source_skill_version": "monet-visuals 4.5.0 (studio 1.14.0)",
    "character_bible": 1,
    "dimensions": 7,
    "builds": 1

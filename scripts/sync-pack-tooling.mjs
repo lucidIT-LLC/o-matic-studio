@@ -40,6 +40,11 @@ const FILES = [
   [".github/workflows/verify-pack.yml", ".github/workflows/verify-pack.yml"],
   ["studio/scripts/check-paths.mjs", "<plugin>/scripts/check-paths.mjs"],
   ["studio/scripts/sync-copilot-payload.mjs", "<plugin>/scripts/sync-copilot-payload.mjs"],
+  ["scripts/build-m365-packages.mjs", "scripts/build-m365-packages.mjs"],
+  ["scripts/verify-m365.mjs", "scripts/verify-m365.mjs"],
+  ["scripts/m365-schemas/declarative-agent-1.9.json", "scripts/m365-schemas/declarative-agent-1.9.json"],
+  ["scripts/m365-schemas/plugin-2.4.json", "scripts/m365-schemas/plugin-2.4.json"],
+  ["scripts/m365-schemas/teams-1.30.json", "scripts/m365-schemas/teams-1.30.json"],
 ];
 // A target without `files` gets every entry above. A target WITH `files` gets
 // only those destinations (task #1052, Smith-style pre-mortem 2026-10-09):

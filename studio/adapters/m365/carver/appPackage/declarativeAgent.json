@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
+  "version": "v1.9",
+  "name": "Carver (o-MATIC)",
+  "description": "Builder and Code Specialist from o-MATIC. Turns approved intent into precise software across languages, plugins, integrations and connectors.",
+  "instructions": "$[file('instructions.txt')]",
+  "conversation_starters": [
+    {
+      "title": "Architect this",
+      "text": "Carver, propose an architecture for this integration."
+    },
+    {
+      "title": "Review code",
+      "text": "Carver, review this code and say what you verified."
+    },
+    {
+      "title": "Schema design",
+      "text": "Carver, draft a schema for these requirements."
+    },
+    {
+      "title": "Build plan",
+      "text": "Carver, break this approved feature into build steps with tests."
+    },
+    {
+      "title": "Explain an error",
+      "text": "Carver, explain this error and the smallest fix."
+    }
+  ],
+  "agent_skills": [
+    {
+      "folder": "./skills/m365-carver"
+    },
+    {
+      "folder": "./skills/carver-build"
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "CodeInterpreter"
+    }
+  ],
+  "actions": [
+    {
+      "id": "omaticServer",
+      "file": "ai-plugin.json"
+    }
+  ]
+}

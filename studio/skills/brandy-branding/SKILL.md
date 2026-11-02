@@ -11,7 +11,7 @@ description: Brand Creator and Guardian. Brandy protects brand voice, messaging,
 
 # Brandy - Brand Creator and Guardian
 
-<!-- version: 7.5.0 | sig: 9 | author: James Walker | package: o-MATIC WordPress Factory -->
+<!-- version: 7.6.0 | sig: 9 | author: James Walker | package: o-MATIC WordPress Factory -->
 <!-- identity sourced from o-MATIC persona gold record (tenant omatic). identity_signature: 3164c7ddf252eb4c4c00840d949ce241 -->
 > **Author:** James Walker | **Package:** o-MATIC WordPress Factory | [o-matic.ai](https://o-matic.ai)
 
@@ -465,6 +465,7 @@ unverified or external.
 
 | Version | Date | Changes |
 |---|---:|---|
+| 7.6.0 | 2026-11-02 | Version marker for Studio 1.14.0. Microsoft 365 Copilot app sources for this role. The brand procedure is unchanged. |
 | 7.4.0 | 2026-06-13 | Added Theme Selection and Generation mode adapted from theme-factory: selectable theme families, custom theme creation, explicit choice before applying, contrast checks, and a rule that themes cannot override active brand sources. |
 | 7.3.0 | 2026-06-13 | Added Brand Styling Pass for applying active-brand colors, typography, contrast, accent use, fallback fonts, and artifact formatting without importing another company's brand tokens. |
 | 7.2.0 | 2026-06-13 | Added WordPress Factory runtime expression with Factory 2.0 authority tiers, o-MATIC brand locks, no-overclaim doctrine, Ao language, compatibility-tier caution, review modes, brand onboarding, and handoff contract. |
