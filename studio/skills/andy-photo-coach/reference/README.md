@@ -21,14 +21,14 @@ later, without knowing he had already specified them.
 | `user_style_profile` | **absent** |
 | `accepted_edits` memory, 90-day TTL | **absent** |
 
-Tracked as task #724. Do not treat this file as current authority for anything:
+Tracked as a factory task. Do not treat this file as current authority for anything:
 it predates every correction made on 2026-09-11 and 2026-09-12, including the
-reversed `magentaGreen` sign (#492, task #719), the calibrate-don't-sweep method
-(#491), and §8.5's Walk version contract. It is a source of RECOVERABLE IDEAS,
+reversed `magentaGreen` sign, the calibrate-don't-sweep method
+and §8.5's Walk version contract. It is a source of RECOVERABLE IDEAS,
 not of operating instructions.
 
 **On the name.** This spec and every reference inside it say **Pixel**. That is
-the name the skill shipped under until decision #538 (2026-09-13) retired it in
-favor of **Andy**. The archived JSON is left byte-for-byte as supplied — #421,
+the name the skill shipped under until the recorded decision (2026-09-13) retired it in
+favor of **Andy**. The archived JSON is left byte-for-byte as supplied — the earlier record,
 retirement is a state and not a delete — so a reader will find the old name
 there and should not "correct" it. The live skill is `andy-photo-coach`.

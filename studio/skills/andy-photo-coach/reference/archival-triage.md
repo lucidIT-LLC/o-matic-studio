@@ -40,7 +40,7 @@ Measured practice from the 43-file cull of `Photography/DJI_001`, 2026-09-12:
 ### Video criteria — measured, and new to Andy in 2.3.0
 
 Andy had **no video criteria at all** before this release. These are from
-#492 §I, all **measured** on the `DJI_001` cull.
+The recorded measurements, all **measured** on the `DJI_001` cull.
 
 **DJI `.SRT` sidecars are a per-frame telemetry track, and they are richer than
 the MP4's own metadata.** Fields carried: `iso`, `shutter`, `fnum`, `ev`,

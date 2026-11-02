@@ -14,7 +14,7 @@ Reference file for this skill. SKILL.md is the role guide and says when to read 
 
 ## 5. CALIBRATE, DON'T SWEEP
 
-**Parameter sweeping is retired as the default method.** Operator ruling, #491:
+**Parameter sweeping is retired as the default method.** Operator ruling, the earlier record:
 *"the playing around thing things costs tokens."* Applying a control at four
 values and picking one by eye can never tell you *why* the value worked, so the
 next frame starts from zero again.
@@ -38,7 +38,7 @@ next frame starts from zero again.
 ### Probe, measure, UNDO, then apply the solved value
 
 **`doc.undo()` cleanly removes an adjustment layer and restores the render
-exactly.** Measured 2026-09-12 (#492 §B): layers went **1 → 0** and the observed
+exactly.** Measured 2026-09-12: layers went **1 → 0** and the observed
 channel max returned to **58252**, its pre-probe value. The probe leaves nothing
 behind.
 
@@ -60,7 +60,7 @@ reliable for a canvas resize — see §9.15, where a script crop is one-way.
 ### Two worked examples, and they teach opposite lessons
 
 **SplitToning — when the honest move is to declare a ceiling.** Measured
-2026-09-12 (#492 §E). Its parameters are plain scalars
+2026-09-12. Its parameters are plain scalars
 (`highlightsHue`, `highlightsSaturation`, `shadowsHue`, `shadowsSaturation`,
 `balance`), `setParameters` accepts a plain object, and readback confirms — so
 the control is fully reachable. **It still cannot do the job.** Its hue control
@@ -76,7 +76,7 @@ neutrals.**
 > is a finding. Four more guesses is spend.
 
 **Levels white point — when one probe ends the work.** Measured the same day
-(#492 §F): `max_out = max_in ÷ whiteLevel`, **exactly**. Predicted **61318**,
+`max_out = max_in ÷ whiteLevel`, **exactly**. Predicted **61318**,
 measured **61318**. **Probe once to CONFIRM the model, then solve in closed
 form.** Once a control's model is verified, sweeping it is not caution — it is
 re-deriving arithmetic you already have.
