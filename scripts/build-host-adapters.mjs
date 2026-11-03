@@ -216,11 +216,17 @@ const M365_TOOL_DESC = {
   omatic_guide: "Read the on-demand guide for one named o-MATIC topic.",
   search: "Search factory records the signed-in user is allowed to read.",
   task_relationships: "Read relationships between factory tasks the signed-in user can see.",
+  task_duplicate_check: "Report whether a similar factory task already exists.",
   slate_entity_search: "Search Slate entities the signed-in user is allowed to read.",
   slate_entity_verify: "Read a Slate entity and report whether it matches the claim.",
   slate_canvas_open: "Open a Slate canvas the signed-in user is allowed to read.",
   slate_scene_observe: "Read the scene on a Slate canvas the signed-in user can see.",
   slate_asset_get: "Read one Slate asset the signed-in user is allowed to read.",
+  module_status: "Report which add-on modules are installed.",
+  proposal_vault_list: "List files in a file-vault folder the signed-in user can read.",
+  proposal_vault_get: "Read one file-vault record the signed-in user is allowed to see.",
+  ocr_result_get: "Read extracted text for a file the signed-in user is allowed to see.",
+  db_health_snapshot: "Return a read-only health snapshot of a factory database.",
 };
 const starterKey = (text) => String(text || "").trim().toLowerCase().replace(/\s+/g, " ").replace(/[.?!]+$/, "");
 const titledStarters = (a) => {
