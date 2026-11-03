@@ -4,15 +4,33 @@
     "name": "LucidIT, LLC"
   },
   "metadata": {
-    "description": "o-MATIC Studio — where things get designed and built. Brandy, Carver, Monet, Jo, and Andy. Grok Bot host skill ships for Carver. Ships no MCP server.",
-    "version": "1.13.0"
+    "description": "o-MATIC Studio — where things get designed and built. Brandy, Carver, Monet, Jo, and Andy. Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
+    "version": "1.14.0",
+    "hosts": {
+      "github-copilot": {
+        "form": "custom-agent",
+        "path": "studio/adapters/copilot/.github/agents"
+      },
+      "m365-copilot": {
+        "form": "declarative-agent-app",
+        "status": "sources-only",
+        "version": "1.14.0",
+        "packages": [
+          "studio/adapters/m365/brandy/appPackage",
+          "studio/adapters/m365/carver/appPackage",
+          "studio/adapters/m365/monet/appPackage",
+          "studio/adapters/m365/jo/appPackage",
+          "studio/adapters/m365/andy/appPackage"
+        ]
+      }
+    }
   },
   "plugins": [
     {
       "name": "studio",
       "source": "./studio",
-      "description": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy. Grok Bot host skill ships for Carver. Ships no MCP server.",
-      "version": "1.13.0",
+      "description": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy. Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
+      "version": "1.14.0",
       "displayName": "o-MATIC Studio",
       "logo": "studio/assets/logo.png",
       "category": "productivity"

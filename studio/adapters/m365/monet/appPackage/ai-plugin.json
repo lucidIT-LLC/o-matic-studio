@@ -1,0 +1,91 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+  "schema_version": "v2.4",
+  "name_for_human": "Monet (o-MATIC)",
+  "description_for_human": "Read-only o-MATIC Server tools for Monet.",
+  "namespace": "omaticmonet",
+  "functions": [
+    {
+      "name": "connections_list",
+      "capabilities": {
+        "confirmation": {
+          "type": "None"
+        }
+      }
+    },
+    {
+      "name": "omatic_guide",
+      "capabilities": {
+        "confirmation": {
+          "type": "None"
+        }
+      }
+    },
+    {
+      "name": "search",
+      "capabilities": {
+        "confirmation": {
+          "type": "None"
+        }
+      }
+    },
+    {
+      "name": "slate_canvas_open",
+      "capabilities": {
+        "confirmation": {
+          "type": "None"
+        }
+      }
+    },
+    {
+      "name": "slate_scene_observe",
+      "capabilities": {
+        "confirmation": {
+          "type": "None"
+        }
+      }
+    },
+    {
+      "name": "slate_asset_get",
+      "capabilities": {
+        "confirmation": {
+          "type": "None"
+        }
+      }
+    },
+    {
+      "name": "slate_entity_search",
+      "capabilities": {
+        "confirmation": {
+          "type": "None"
+        }
+      }
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "auth": {
+        "type": "OAuthPluginVault",
+        "reference_id": "${{TODO_OMATIC_ENTRA_SSO_AUTH_ID}}"
+      },
+      "run_for_functions": [
+        "connections_list",
+        "omatic_guide",
+        "search",
+        "slate_canvas_open",
+        "slate_scene_observe",
+        "slate_asset_get",
+        "slate_entity_search"
+      ],
+      "spec": {
+        "url": "${{OMATIC_MCP_URL}}",
+        "mcp_tool_description": {
+          "file": "mcp-tools.json"
+        }
+      }
+    }
+  ],
+  "privacy_policy_url": "${{TODO_OMATIC_PRIVACY_URL}}",
+  "legal_info_url": "${{TODO_OMATIC_TERMS_URL}}"
+}

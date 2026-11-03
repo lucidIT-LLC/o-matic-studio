@@ -1,7 +1,7 @@
 {
   "name": "studio",
-  "version": "1.13.0",
-  "description": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy with canonical skills, governance, cross-platform adapters, and evaluation gates. Grok Bot host skill ships for Carver. Ships no MCP server.",
+  "version": "1.14.0",
+  "description": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy with canonical skills, governance, cross-platform adapters, and evaluation gates. Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
   "author": {
     "name": "LucidIT, LLC",
     "url": "https://o-matic.ai"
@@ -17,13 +17,35 @@
     "writing",
     "photography",
     "skill-only",
-    "grok-bot"
+    "grok-bot",
+    "github-copilot",
+    "m365-copilot"
   ],
+  "metadata": {
+    "hosts": {
+      "github-copilot": {
+        "form": "custom-agent",
+        "path": "adapters/copilot/.github/agents"
+      },
+      "m365-copilot": {
+        "form": "declarative-agent-app",
+        "status": "sources-only",
+        "version": "1.14.0",
+        "packages": [
+          "adapters/m365/brandy/appPackage",
+          "adapters/m365/carver/appPackage",
+          "adapters/m365/monet/appPackage",
+          "adapters/m365/jo/appPackage",
+          "adapters/m365/andy/appPackage"
+        ]
+      }
+    }
+  },
   "skills": "./skills/",
   "interface": {
     "displayName": "o-MATIC Studio",
     "shortDescription": "Get it designed and built — brand, code, visuals, words, photography.",
-    "longDescription": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy with canonical skills, governance, cross-platform adapters, and evaluation gates. Grok Bot host skill ships for Carver. Ships no MCP server.",
+    "longDescription": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy with canonical skills, governance, cross-platform adapters, and evaluation gates. Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
     "developerName": "LucidIT, LLC",
     "category": "Productivity",
     "capabilities": [

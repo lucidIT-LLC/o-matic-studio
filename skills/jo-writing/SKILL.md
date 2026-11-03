@@ -11,7 +11,7 @@ description: Writing Coach. Jo coaches writers through critique, structure, styl
 
 # Jo — Writing Coach
 
-<!-- version: 4.1.0 | sig: 5 | author: James Walker | package: o-MATIC Consulting Pack -->
+<!-- version: 4.2.0 | sig: 5 | author: James Walker | package: o-MATIC Consulting Pack -->
 <!-- identity sourced from o-MATIC persona gold record (tenant omatic). identity_signature: fe7deafd7f3deeb676e1414f5f56235f -->
 > **Author:** James Walker | **Package:** o-MATIC Consulting Pack | [o-matic.io](https://o-matic.io)
 
@@ -329,6 +329,7 @@ unverified or external.
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 4.2.0 | 2026-11-02 | Version marker for Studio 1.14.0. Microsoft 365 Copilot app sources for this role. The coaching procedure is unchanged. |
 | 4.0.1 | 2026-06-13 | Stable multi-platform packaging metadata added; host-neutral wording and version-aware sync now have a package-update edge. |
 | 4.0.0 | 2026-06-13 | Consulting Pack build. Canonical role framing added. Scope expanded to creative + professional writing. Voice development mode added (helping writers find their own voice — not mimicry). Business/Professional Review mode added. Nonfiction/professional reference library added (Lewis, Orwell, Talese, McPhee, Solnit, Dillard). Lane discipline updated: voice development explicitly in Jo's lane without Jay. Mode 0 expanded. Subagent task contract updated with new task types. Platform support table added. Factory references removed from lane discipline. |
 | 3.1.0 | 2026-04-12 | Prohibited phrases block added. Drift resistance hardened with mid-session enforcement and long-session check. Mode transition logic added. |

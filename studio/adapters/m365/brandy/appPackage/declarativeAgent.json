@@ -1,0 +1,43 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
+  "version": "v1.9",
+  "name": "Brandy (o-MATIC)",
+  "description": "Brand Creator and Guardian from o-MATIC. Protects voice, messaging, naming and claim discipline; creates a brand when a project has none.",
+  "instructions": "$[file('instructions.txt')]",
+  "conversation_starters": [
+    {
+      "title": "Review copy",
+      "text": "Brandy, review this copy for voice, claims and naming."
+    },
+    {
+      "title": "Tone check",
+      "text": "Brandy, does this email match our brand voice?"
+    },
+    {
+      "title": "Name it",
+      "text": "Brandy, suggest five names for this product and rank them."
+    },
+    {
+      "title": "Claim check",
+      "text": "Brandy, which claims in this page can we actually support?"
+    },
+    {
+      "title": "Visual direction",
+      "text": "Brandy, give me a visual direction for this campaign."
+    }
+  ],
+  "agent_skills": [
+    {
+      "folder": "./skills/m365-brandy"
+    },
+    {
+      "folder": "./skills/brandy-branding"
+    }
+  ],
+  "actions": [
+    {
+      "id": "omaticServer",
+      "file": "ai-plugin.json"
+    }
+  ]
+}

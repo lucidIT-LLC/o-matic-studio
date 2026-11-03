@@ -23,11 +23,12 @@ Server MCP pairing; this repository stores no credential.
   stay on the bot. This pack ships no MCP server. Paste `adapters/grok/<role>.md`
   only for a grok.com custom agent; that card is not the bot. L2 stays off until
   `factory.agent_runtime_contracts` records it.
-- **Copilot:** copy `adapters/copilot/.github/` into the target workspace. It is
+- **GitHub Copilot:** copy `adapters/copilot/.github/` into the target workspace. It is
   self-contained — its contract copies travel with it under `.github/omatic/` —
   so Studio does **not** need to be checked out alongside. Install `skills/`
   alongside as well if you want full canonical role depth rather than the
   governance boundary alone.
+- **Microsoft 365 Copilot:** one app per role, sources only, in `./adapters/m365/<role>/appPackage/`. Not deployed. See `./adapters/m365/INSTALL.md`. Build zips with `node scripts/build-m365-packages.mjs` after `node scripts/verify-m365.mjs .`.
 - **Gemini:** copy `adapters/gemini/GEMINI.md`, `contracts/`, and `skills/` into
   the custom-agent workspace.
 - **ChatGPT:** use `adapters/chatgpt/GPT-INSTRUCTIONS.md` with `contracts/` and

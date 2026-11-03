@@ -1,0 +1,28 @@
+{
+  "tools": [
+    {
+      "name": "connections_list",
+      "description": "List the factory connections the signed-in user is allowed to read.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "omatic_guide",
+      "description": "Read the on-demand guide for one named o-MATIC topic.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "search",
+      "description": "Search factory records the signed-in user is allowed to read.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  ]
+}

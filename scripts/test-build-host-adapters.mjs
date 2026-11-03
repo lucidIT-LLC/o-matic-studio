@@ -200,5 +200,39 @@ for (const [label, opts, want] of cases) {
   check("shipped files no longer say Grok Bot is undefined", hits.length === 0, hits.join("\n"));
 }
 
+// Microsoft 365 starters are titled and deduplicated, and denied tools fail the build.
+{
+  const root = pack();
+  const y = join(root, "demo/skills/tess-testing/agents/openai.yaml");
+  mkdirSync(dirname(y), { recursive: true });
+  writeFileSync(y, "interface:\n  default_prompt: \"Tess, test this.\"\n");
+  const r = run(root);
+  const daPath = join(root, "demo/adapters/m365/tess/appPackage/declarativeAgent.json");
+  const da = existsSync(daPath) ? JSON.parse(readFileSync(daPath, "utf8")) : { conversation_starters: [] };
+  const texts = da.conversation_starters.map((s) => s.text);
+  check("duplicate conversation starters collapse, keep a title, and use schema v1.9",
+    r.status === 0 && da.version === "v1.9" && texts.length === 1 && texts[0] === "Tess, test this." && Boolean(da.conversation_starters[0].title),
+    `${r.stdout.slice(0, 200)}\n${JSON.stringify(da.conversation_starters)}`);
+  rmSync(root, { recursive: true, force: true });
+}
+{
+  const root = pack();
+  mkdirSync(join(root, "demo/adapters/m365"), { recursive: true });
+  writeFileSync(join(root, "demo/adapters/m365/role-sources.json"), JSON.stringify({
+    tess: {
+      host: "actions",
+      tools: ["search", "factory_query"],
+      starters: [
+        { title: "One", text: "Tess, one." },
+        { title: "Two", text: "Tess, two." },
+        { title: "Three", text: "Tess, three." },
+      ],
+    },
+  }));
+  const r = run(root);
+  check("a denied Copilot tool fails the build", r.status === 1 && /denied tools factory_query/.test(r.stdout), r.stdout.slice(0, 400));
+  rmSync(root, { recursive: true, force: true });
+}
+
 console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
 process.exit(failed ? 1 : 0);

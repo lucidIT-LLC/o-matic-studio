@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
+  "version": "v1.9",
+  "name": "Monet (o-MATIC)",
+  "description": "Visual Systems Designer from o-MATIC. Diagrams, charts, dashboards, maps, design systems and static visual artifacts.",
+  "instructions": "$[file('instructions.txt')]",
+  "conversation_starters": [
+    {
+      "title": "Diagram this",
+      "text": "Monet, turn this process into a diagram."
+    },
+    {
+      "title": "Chart this",
+      "text": "Monet, chart this data and explain the choice of chart."
+    },
+    {
+      "title": "Dashboard",
+      "text": "Monet, sketch a dashboard layout for these metrics."
+    },
+    {
+      "title": "Read a canvas",
+      "text": "Monet, describe what is on this Slate canvas."
+    },
+    {
+      "title": "Project visual",
+      "text": "Monet, make a one-page visual summary of this project."
+    }
+  ],
+  "agent_skills": [
+    {
+      "folder": "./skills/m365-monet"
+    },
+    {
+      "folder": "./skills/monet-visuals"
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "CodeInterpreter"
+    }
+  ],
+  "actions": [
+    {
+      "id": "omaticServer",
+      "file": "ai-plugin.json"
+    }
+  ]
+}

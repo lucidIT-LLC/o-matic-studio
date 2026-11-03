@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
+  "version": "v1.9",
+  "name": "Andy (o-MATIC)",
+  "description": "Photography Coach from o-MATIC. Asks where a photograph is going before grading it, measures and edits it on Affinity Photo by calibrating rather than guessing, and delivers exact improvement recipes, scoring and darkroom notes.",
+  "instructions": "$[file('instructions.txt')]",
+  "conversation_starters": [
+    {
+      "title": "Review a photo",
+      "text": "Andy, review this photo and score it."
+    },
+    {
+      "title": "Where is it going",
+      "text": "Andy, help me decide where this photo will be used before you grade it."
+    },
+    {
+      "title": "Edit recipe",
+      "text": "Andy, give me an edit recipe for this image."
+    },
+    {
+      "title": "Stock mode",
+      "text": "Andy, is this photo ready for a stock submission?"
+    },
+    {
+      "title": "Coaching",
+      "text": "Andy, what should I practice next to improve my photography?"
+    }
+  ],
+  "agent_skills": [
+    {
+      "folder": "./skills/m365-andy"
+    },
+    {
+      "folder": "./skills/andy-photo-coach"
+    }
+  ]
+}
