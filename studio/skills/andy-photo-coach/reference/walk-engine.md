@@ -9,7 +9,7 @@ Reference file for this skill. SKILL.md is the role guide and says when to read 
   - What Walk does at 0.10.0 — MEASURED from `walk_contract` on this host, 2026-09-28
   - What Walk does NOT do at 0.10.0 — do not infer capability from silence
   - Using it
-  - Where Walk ends and you begin — decision #496
+  - Where Walk ends and you begin — the recorded decision
 
 ## 8.5 The Walk Engine — check its version before you trust this file
 
@@ -17,11 +17,11 @@ Reference file for this skill. SKILL.md is the role guide and says when to read 
 Swift package, Core Image). Andy depends on Walk; Walk knows nothing about
 Andy. It is **not a skill and must never become one** — it is compiled code
 whose numbers can be tested, which is the entire reason it is trustworthy.
-Decision #488 ruled the factory would own its engine; #490 measured it; #495
-measured the video half; #496 set the Walk-then-coach flow.
+The recorded decision ruled the factory would own its engine; the earlier record measured it; the earlier record
+measured the video half; the earlier record set the Walk-then-coach flow.
 
-**Walk now ships as its own o-MATIC plugin** (decision #534, superseding the
-#508 app-bundle mechanism) and exposes an **MCP stdio surface** — `walk_scan`,
+**Walk now ships as its own o-MATIC plugin** (the recorded decision, superseding the
+The earlier record app-bundle mechanism) and exposes an **MCP stdio surface** — `walk_scan`,
 `walk_scan_folder`, `walk_proof_sheet`, `walk_segments`, `walk_grade`,
 `walk_contract`. On a host with that plugin installed you call the tools; the
 `walk` CLI is the same engine reached the other way. **No criteria set ships
@@ -64,7 +64,7 @@ installed binary.
 **Why a version check and not a paragraph saying "keep this current."** This
 factory's single most repeated defect is prose describing code that has since
 changed, with nothing able to notice: retired KB numbers cited as live
-authority, rule #259 naming a connection that had been renamed, and this
+authority, a house rule naming a connection that had been renamed, and this
 skill's own 2.2.0 reversed `magentaGreen` sign passing every verifier while two
 sections of this file contradicted each other. In every case a document
 described a mechanism that no longer existed. **A document that cannot detect
@@ -76,8 +76,8 @@ not a check.
 **AND IT HAS FIRED TWICE, EXACTLY AS DESIGNED — that is why this section reads 0.10.0.**
 Shipped at 2.5.0 pinned to `--expect 0.2.0`, this section spent the interval
 instructing every session *"Walk is NEWER… do not proceed on it as written"*
-about its own contents. Task #729 re-pinned it to 0.5.7 at 2.6.0. Walk then
-shipped 0.7.0 through 0.10.0 and the 0.5.7 pin fired again. Task #1013 re-pinned
+about its own contents. A tracked task re-pinned it to 0.5.7 at 2.6.0. Walk then
+shipped 0.7.0 through 0.10.0 and the 0.5.7 pin fired again. A tracked task re-pinned
 it to 0.10.0 at 2.7.0. The pin is not decoration; when it fires, re-measure and
 re-pin.
 
@@ -91,7 +91,7 @@ re-pin.
 | `measure.mean` / `measure.meanRaw` | 0.1.0 | channel means, colour-managed and unmanaged |
 | `measure.castCheck` | 0.1.0 | channel-spread delta across a grade |
 | `contract.version` / `contract.reasons` | 0.2.0 / 0.4.0 | this check, and a reason on every absence |
-| `video.read` `video.write.reencode` `video.retime` `video.scan` `video.detect` `video.segment` `video.trim` `video.yPlane` | 0.3.0 | the video half #495 measured, now shipped |
+| `video.read` `video.write.reencode` `video.retime` `video.scan` `video.detect` `video.segment` `video.trim` `video.yPlane` | 0.3.0 | the video half the earlier record measured, now shipped |
 | `classify.vision` | 0.3.0 | Vision classification, no model file |
 | `colorspace.linear2020` | 0.3.0 | pinned linear BT.2020 — the space every `relativeRise` figure is in |
 | `grade.still.api` | 0.4.0 | stills through the same grade path |
@@ -143,7 +143,7 @@ is still reported per clip.
   photograph condemned by a measurement that does not exist for it, with an
   audit trail that looked complete. **Judging the photograph is §s 4, 5 and the
   Scoring Rubric in this file. That is you, not Walk.**
-- **`app.drive`** — Walk driving Affinity or any other app. #494 puts actuation
+- **`app.drive`** — Walk driving Affinity or any other app. The earlier record puts actuation
   outside the engine. Driving the app is §9, over the connector.
 
 `coaching.available` is a **host** fact, not a build fact: with a criteria set
@@ -180,9 +180,9 @@ the gamma-encoded Y-plane rise. The two are different quantities with no fixed
 factor between them — on clip 0012 the same event reads +36.03% linear against
 +6.02% on the Y plane. Rank by brightness and you hand back the wrong frame:
 that clip's first scan lost two real cloud-to-ground strikes exactly that way
-(decision #504, units labelled under task #740).
+.
 
-### Where Walk ends and you begin — decision #496
+### Where Walk ends and you begin — the recorded decision
 
 **Walk triages hands-off; you finish hands-on.** Walk goes through the whole
 dump, builds the page of best and worst, and does the fast work. You take the
@@ -194,6 +194,6 @@ So Walk does not replace §9. Affinity is **demoted from instrument to target**:
 you no longer need it to measure, because Walk reads the full buffer and closes
 the loop itself — but it remains the place the operator's hands are, and driving
 it for him is your half of the flow. **REPORTED, not measured:** no spike has
-been run on you driving a third-party app under this architecture (#496
+been run on you driving a third-party app under this architecture (the earlier record
 rationale). Do not claim that half works until it has been.
 ***

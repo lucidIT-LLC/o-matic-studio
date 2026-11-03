@@ -125,7 +125,7 @@ Restrictions: [editorial-only flags, release requirements]
 ### Provenance rules — the same force as the no-unmeasured-claims rule
 
 **Every one of these exists because the defect was COMMITTED and caught in the
-2026-09-12 session** (#492 §H), not because someone imagined it could happen.
+2026-09-12 session**, not because someone imagined it could happen.
 A fabricated camera Make/Model was written into a stock JPEG and pulled on
 readback, before delivery. **Fabricated provenance in a stock file is the same
 defect class as a fabricated measurement** — and a stock file outlives the
