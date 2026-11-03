@@ -28,7 +28,7 @@ skill into `skills/` inside the package. Those copies are build output.
 - Replace `${{TODO_OMATIC_PRIVACY_URL}}` and `${{TODO_OMATIC_TERMS_URL}}` with the public privacy and terms pages.
 - Replace `${{TEAMS_APP_ID}}` with the app registration id. Do not commit a tenant id.
 - Replace `${{OMATIC_MCP_URL}}` and `${{TODO_OMATIC_ENTRA_SSO_AUTH_ID}}` when SSO is live. See `./env/.env.sample`.
-- Add the real 192×192 color icon and the 32×32 white-on-transparent outline. Do not invent stand-in art. Remove `icon-pending.txt` when both icons are in the package.
+- The 192×192 color icon and the 32×32 white outline ship in each `appPackage/`. They are sized from the locked role SVG. A later master can replace `color.png` and `outline.png`.
 - Publish only after SSO and the read-only database login exist.
 
 ## Roles

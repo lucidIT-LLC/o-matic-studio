@@ -13,8 +13,8 @@ host. Privacy and terms URLs are `${{TODO_…}}` placeholders.
 
 | Role | Wave | Tools | Icons | Notes |
 |---|---|---|---|---|
-| Brandy | 1 | connections_list, omatic_guide, search | icon-pending (color missing, outline missing) | Read-only. The first factory these tools may read is o-MATIC Foundry. |
-| Carver | 1 | connections_list, omatic_guide, search, task_relationships, slate_entity_search, slate_entity_verify | icon-pending (color present, outline missing) | Planning and review only. GitHub Copilot remains the primary build host. |
-| Jo | 2 | none | icon-pending (color missing, outline missing) | Prompt-only. No o-MATIC tools. |
-| Monet | 1 | connections_list, omatic_guide, search, slate_canvas_open, slate_scene_observe, slate_asset_get, slate_entity_search | icon-pending (color missing, outline missing) | Read-only Slate and search. The first factory these tools may read is o-MATIC Foundry. |
-| Andy | 3 | none | icon-pending (color missing, outline missing) | Chat-only pilot. No o-MATIC tools. |
+| Brandy | 1 | connections_list, omatic_guide, search | color and outline present | Read-only. The first factory these tools may read is o-MATIC Foundry. |
+| Carver | 1 | connections_list, omatic_guide, search, task_relationships, slate_entity_search, slate_entity_verify | color and outline present | Planning and review only. GitHub Copilot remains the primary build host. |
+| Jo | 2 | none | color and outline present | Prompt-only. No o-MATIC tools. |
+| Monet | 1 | connections_list, omatic_guide, search, slate_canvas_open, slate_scene_observe, slate_asset_get, slate_entity_search | color and outline present | Read-only Slate and search. The first factory these tools may read is o-MATIC Foundry. |
+| Andy | 3 | none | color and outline present | Chat-only pilot. No o-MATIC tools. |
