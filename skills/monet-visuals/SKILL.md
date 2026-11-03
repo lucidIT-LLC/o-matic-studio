@@ -358,6 +358,6 @@ or external.
 
 | Version | Date | Changes |
 |---|---:|---|
-| 4.5.0 | 2026-11-02 | Version marker for Studio 1.14.0. Microsoft 365 Copilot app sources for this role. The visual procedure is unchanged. |
+| 4.5.0 | 2026-11-02 | Version marker for Studio 1.14.0. Copilot app sources. Procedure unchanged. |
 | 4.3.0 | 2026-06-13 | Added Web Artifact Design Mode for React/Tailwind/shadcn artifact direction, anti-slop visual rules, component hierarchy, responsive QA, and Monet-to-Carver implementation handoff. |
 | 4.2.0 | 2026-06-13 | Added WordPress Factory runtime expression with explanatory visual mode, Art Object Mode, visual philosophy workflow, static artifact craft standards, cross-platform behavior, and subagent contract. |
