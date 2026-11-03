@@ -1,5 +1,12 @@
 # o-MATIC Studio — Changelog
 
+## 1.14.1 — 2026-11-03
+
+Sync-ready Microsoft 365 tooling for sibling packs.
+
+- **Tooling:** `scripts/build-m365-packages.mjs` names zips from the plugin directory (`studio-`, `agency-`, `firm-`) instead of hardcoding Studio. `scripts/build-host-adapters.mjs` carries store-safe descriptions for the Agency read-only tools (`task_duplicate_check`, `module_status`, `proposal_vault_*`, `ocr_result_get`, `db_health_snapshot`) so Firm and Agency can share the same builder.
+- **Versions:** host manifests, marketplace entries, and `gemini-extension.json` move 1.14.0 → 1.14.1. Role skill markers and persona signatures are unchanged.
+
 ## 1.14.0 — 2026-11-02
 
 Microsoft 365 Copilot app sources for Brandy, Monet, Carver, Jo, and Andy. One app per role. Nothing is deployed.

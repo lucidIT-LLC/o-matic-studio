@@ -1,6 +1,6 @@
 {
   "name": "studio",
-  "version": "1.14.0",
+  "version": "1.14.1",
   "description": "o-MATIC Studio portable specialist roster — Brandy, Carver, Monet, Jo, and Andy with canonical skills, governance, cross-platform adapters, and evaluation gates. Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
   "author": {
     "name": "LucidIT, LLC",
@@ -30,7 +30,7 @@
       "m365-copilot": {
         "form": "declarative-agent-app",
         "status": "sources-only",
-        "version": "1.14.0",
+        "version": "1.14.1",
         "packages": [
           "adapters/m365/brandy/appPackage",
           "adapters/m365/carver/appPackage",

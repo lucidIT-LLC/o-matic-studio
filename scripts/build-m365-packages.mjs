@@ -108,7 +108,10 @@ ${instructions}
     }
     cpSync(src, dest, { recursive: true });
   }
-  const zipPath = join(distDir, `studio-${role}-${version}.zip`);
+  // Zip prefix is the plugin directory name (studio / agency / firm), not a hardcoded pack.
+  const packSlug = pluginRoot.split("/").filter(Boolean).at(-1) || "pack";
+  const zipName = `${packSlug}-${role}-${version}.zip`;
+  const zipPath = join(distDir, zipName);
   try {
     zipDir(stage, zipPath);
     const names = zipNames(zipPath);
@@ -123,7 +126,7 @@ ${instructions}
     if (existsSync(join(appDir, "color.png")) && !names.includes("color.png")) FAIL(`${role}: zip missing color.png`);
     const sha = createHash("sha256").update(readFileSync(zipPath)).digest("hex");
     const pending = existsSync(join(appDir, "icon-pending.txt")) ? " icon-pending" : "";
-    console.log(`zip: dist/m365/studio-${role}-${version}.zip  sha256 ${sha}${pending}`);
+    console.log(`zip: dist/m365/${zipName}  sha256 ${sha}${pending}`);
   } catch (e) {
     FAIL(`${role}: ${e.message}`);
   } finally {

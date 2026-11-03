@@ -14,7 +14,7 @@
       "name": "studio",
       "displayName": "o-MATIC Studio",
       "source": "./studio",
-      "version": "1.14.0",
+      "version": "1.14.1",
       "description": "o-MATIC Studio — where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
       "author": {
         "name": "James Walker",
@@ -46,7 +46,7 @@
           "m365-copilot": {
             "form": "declarative-agent-app",
             "status": "sources-only",
-            "version": "1.14.0",
+            "version": "1.14.1",
             "packages": [
               "studio/adapters/m365/brandy/appPackage",
               "studio/adapters/m365/carver/appPackage",
