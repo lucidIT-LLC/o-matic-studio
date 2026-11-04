@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -60,3 +62,17 @@ jobs:
             python3 "$suite"
           done
           [ "$found" = 1 ] || echo "no hook fixture suites in this pack"
+      - name: Skill shape and size
+        run: node scripts/check-skills.mjs --warn
+      - name: Version bump on content change
+        if: github.event_name == 'pull_request'
+        run: node scripts/check-version-bump.mjs --base "origin/${{ github.base_ref }}"
+      - name: Public-readiness gate
+        run: |
+          python3 -m unittest discover -s scripts/public-gate/tests
+          python3 scripts/public-gate/check-public-package.py --profile skills-pack --warn \
+            --denylist .github/public-gate/denylist.tsv --allowlist .github/public-gate/allowlist.tsv \
+            --hashed .github/public-gate/hashed-terms.json .
+      - name: Conformance (fixture mode, offline)
+        if: hashFiles('*/evals/run-conformance.mjs') != ''
+        run: cd "$(dirname "$(ls */evals/run-conformance.mjs | head -1)")" && npm ci && node run-conformance.mjs

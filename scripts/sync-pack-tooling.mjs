@@ -16,8 +16,8 @@
 // this one (a CI runner has only one repo). Run it, commit each repo.
 //
 // Usage: node scripts/sync-pack-tooling.mjs [--check] [--repos <dir>]
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
-import { join, dirname, resolve } from "node:path";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, statSync } from "node:fs";
+import { join, dirname, resolve, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -45,6 +45,10 @@ const FILES = [
   ["scripts/m365-schemas/declarative-agent-1.9.json", "scripts/m365-schemas/declarative-agent-1.9.json"],
   ["scripts/m365-schemas/plugin-2.4.json", "scripts/m365-schemas/plugin-2.4.json"],
   ["scripts/m365-schemas/teams-1.30.json", "scripts/m365-schemas/teams-1.30.json"],
+  ["scripts/check-skills.mjs", "scripts/check-skills.mjs"],
+  ["scripts/check-version-bump.mjs", "scripts/check-version-bump.mjs"],
+  // The public-gate lists under .github/public-gate/ are per repo and are not synced.
+  ["scripts/public-gate/**", "scripts/public-gate/**"],
 ];
 // A target without `files` gets every entry above. A target WITH `files` gets
 // only those destinations (task #1052, Smith-style pre-mortem 2026-10-09):
@@ -69,11 +73,29 @@ const TARGETS = [
   { repo: "o-matic-supply", plugin: null, files: SUPPLY_ALLOWED },
 ];
 
+const walkFiles = (dir) => readdirSync(dir).flatMap((name) => {
+  const p = join(dir, name);
+  return statSync(p).isDirectory() ? walkFiles(p) : [p];
+});
+// "scripts/public-gate/**" copies the tree. A listed destination that is not
+// expanded stays a single file. Supply's allowlist matches the unexpanded dest.
+const expand = (src, dst) => {
+  if (!src.endsWith("/**")) return [[src, dst]];
+  const srcDir = src.slice(0, -3);
+  const dstDir = dst.endsWith("/**") ? dst.slice(0, -3) : dst;
+  if (!existsSync(join(here, srcDir))) throw new Error(`missing sync tree ${src}`);
+  return walkFiles(join(here, srcDir)).map((abs) => {
+    const rel = relative(join(here, srcDir), abs);
+    return [join(srcDir, rel), join(dstDir, rel)];
+  });
+};
+const FILE_LIST = FILES.flatMap(([src, dst]) => expand(src, dst));
+
 let stale = 0, wrote = 0;
 for (const t of TARGETS) {
   const troot = join(reposDir, t.repo);
   if (!existsSync(troot)) { console.log(`MISSING REPO: ${troot}`); stale++; continue; }
-  for (const [src, dst] of FILES.filter(([, d]) => !t.files || t.files.includes(d))) {
+  for (const [src, dst] of FILE_LIST.filter(([, d]) => !t.files || t.files.includes(d))) {
     const body = readFileSync(join(here, src), "utf8");
     const out = join(troot, dst.replace("<plugin>", t.plugin));
     const cur = existsSync(out) ? readFileSync(out, "utf8") : null;
