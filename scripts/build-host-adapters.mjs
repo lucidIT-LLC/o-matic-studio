@@ -606,10 +606,15 @@ if (updateBaseline) {
     else if (v > was) notes.push(`baseline RAISED: ${k} ${was} -> ${v} (justify in review)`);
     else if (v < was) notes.push(`baseline lowered: ${k} ${was} -> ${v}`);
   }
+  // chars and lanes belong to check-skills.mjs. A baseline refresh must not drop them.
+  const preserved = {};
+  if (budget?.chars) preserved.chars = budget.chars;
+  if (budget?.lanes) preserved.lanes = budget.lanes;
   writeFileSync(budgetPath, JSON.stringify({
-    _comment: "Per-role SKILL.md size baselines (task #1052). Estimated tokens = ceil(chars/4) of each canonical SKILL.md body. The build fails on growth past baseline plus slack; change it only with build-host-adapters.mjs --update-baseline, and justify any increase in review.",
+    _comment: "Per-role SKILL.md size baselines (task #1052). Estimated tokens = ceil(chars/4) of each canonical SKILL.md body. The build fails on growth past baseline plus slack; change it only with build-host-adapters.mjs --update-baseline, and justify any increase in review. chars and lanes are the check-skills.mjs body budget and are preserved by this refresh.",
     slack,
     roles,
+    ...preserved,
   }, null, 2) + "\n");
 }
 

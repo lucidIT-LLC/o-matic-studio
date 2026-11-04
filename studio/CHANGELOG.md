@@ -1,5 +1,15 @@
 # o-MATIC Studio — Changelog
 
+## 1.14.2 — 2026-11-04
+
+Report-only gates for skill shape, version bumps, and public readiness. No skill text changes.
+
+- **Skill shape:** `scripts/check-skills.mjs` checks lines, body size, description length, host-note headings, variant stubs, and relative links. CI runs it with `--warn`.
+- **Version bump:** `scripts/check-version-bump.mjs` fails a pull request whose shipped files changed without a pack version bump, or whose skill text changed without a higher `<!-- version: -->` marker.
+- **Public readiness:** `scripts/public-gate/check-public-package.py` lints the shipped tree. Retired-role and private names are stored only as SHA-256 under `.github/public-gate/`. CI runs the gate with `--warn`.
+- **Sync:** `scripts/sync-pack-tooling.mjs` now copies the two checks and `scripts/public-gate/**`. The denylist stays per repo.
+- **Versions:** host manifests, marketplace entries, and `gemini-extension.json` move 1.14.1 → 1.14.2. Role skill markers and persona signatures are unchanged.
+
 ## 1.14.1 — 2026-11-03
 
 Sync-ready Microsoft 365 tooling for sibling packs.
