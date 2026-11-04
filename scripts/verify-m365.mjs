@@ -79,8 +79,12 @@ const DENY = new Set([
   "work_claim_acquire", "work_claim_release", "ocr_folder_process",
 ]);
 const DENY_RE = /^(kernel_|factory_owner|factory_web_|work_claim_|module_install|module_uninstall)/;
+const PRIVACY_URL = "https://www.o-matic.ai/privacy-policy/";
+const TERMS_URL = "https://www.o-matic.ai/terms-of-service/";
 const ALLOWED_HTTP = new Set([
   "https://o-matic.ai",
+  PRIVACY_URL,
+  TERMS_URL,
   "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
   "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
   "https://developer.microsoft.com/json-schemas/teams/v1.30/MicrosoftTeams.schema.json",
@@ -161,8 +165,8 @@ for (const manifestPath of manifests) {
   try { agent = JSON.parse(readFileSync(agentPath, "utf8")); }
   catch (e) { FAIL(`${label}: declarativeAgent.json ${e.message}`); continue; }
 
-  if (!/TODO/.test(manifest.developer?.privacyUrl || "") || !/TODO/.test(manifest.developer?.termsOfUseUrl || "")) {
-    FAIL(`${label}: privacy and terms URLs must stay TODO placeholders`);
+  if (manifest.developer?.privacyUrl !== PRIVACY_URL || manifest.developer?.termsOfUseUrl !== TERMS_URL) {
+    FAIL(`${label}: privacy and terms must be the public pages (pending legal review)`);
   }
   if (pluginVersion && manifest.version !== pluginVersion) {
     FAIL(`${label}: manifest version ${manifest.version} != plugin ${pluginVersion}`);
@@ -226,8 +230,8 @@ for (const manifestPath of manifests) {
     try { plugin = JSON.parse(rawPlugin); }
     catch (e) { FAIL(`${label}: ai-plugin.json ${e.message}`); plugin = null; }
     if (plugin) {
-      if (!/TODO/.test(plugin.privacy_policy_url || "") || !/TODO/.test(plugin.legal_info_url || "")) {
-        FAIL(`${label}: plugin privacy and terms URLs must stay TODO placeholders`);
+      if (plugin.privacy_policy_url !== PRIVACY_URL || plugin.legal_info_url !== TERMS_URL) {
+        FAIL(`${label}: plugin privacy and terms must be the public pages (pending legal review)`);
       }
       if (plugin.name_for_human !== agent.name) FAIL(`${label}: plugin name and agent name differ`);
       const runtime = (plugin.runtimes || [])[0] || {};

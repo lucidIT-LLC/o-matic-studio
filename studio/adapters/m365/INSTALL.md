@@ -25,7 +25,7 @@ skill into `skills/` inside the package. Those copies are build output.
 
 ## What is still TODO before anyone installs a package
 
-- Replace `${{TODO_OMATIC_PRIVACY_URL}}` and `${{TODO_OMATIC_TERMS_URL}}` with the public privacy and terms pages.
+- Privacy and terms URLs are the public pages, pending legal review. SSO reference id is still a placeholder.
 - Replace `${{TEAMS_APP_ID}}` with the app registration id. Do not commit a tenant id.
 - Replace `${{OMATIC_MCP_URL}}` and `${{TODO_OMATIC_ENTRA_SSO_AUTH_ID}}` when SSO is live. See `./env/.env.sample`.
 - The 192×192 color icon and the 32×32 white outline ship in each `appPackage/`. They are sized from the locked role SVG. A later master can replace `color.png` and `outline.png`.
@@ -33,8 +33,8 @@ skill into `skills/` inside the package. Those copies are build output.
 
 ## Roles
 
-- **Brandy** — `./brandy/appPackage/`. Read-only. The first factory these tools may read is o-MATIC Foundry.
+- **Brandy** — `./brandy/appPackage/`. Read-only. Read only the first factory granted to this app, found through the connections list.
 - **Carver** — `./carver/appPackage/`. Planning and review only. GitHub Copilot remains the primary build host.
 - **Jo** — `./jo/appPackage/`. Prompt-only. No o-MATIC tools.
-- **Monet** — `./monet/appPackage/`. Read-only Slate and search. The first factory these tools may read is o-MATIC Foundry.
+- **Monet** — `./monet/appPackage/`. Read-only Slate and search. Read only the first factory granted to this app, found through the connections list.
 - **Andy** — `./andy/appPackage/`. Chat-only pilot. No o-MATIC tools.

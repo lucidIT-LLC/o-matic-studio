@@ -77,6 +77,6 @@
       }
     }
   ],
-  "privacy_policy_url": "${{TODO_OMATIC_PRIVACY_URL}}",
-  "legal_info_url": "${{TODO_OMATIC_TERMS_URL}}"
+  "privacy_policy_url": "https://www.o-matic.ai/privacy-policy/",
+  "legal_info_url": "https://www.o-matic.ai/terms-of-service/"
 }

@@ -269,7 +269,7 @@ function m365Instructions(a, { mode, extras }) {
   for (const extra of extras) rules.push(`- ${extra}`);
   if (mode === "actions") {
     rules.push("- When the o-MATIC Server actions are connected, use them read-only for factory memory, tasks and decisions. They return only what the signed-in user is granted.");
-    rules.push("- The only factory these actions may read is o-MATIC Foundry, and only through the read-only login the server grants. Do not ask for any other factory.");
+    rules.push("- Read only the first factory granted to this app, found through the connections list.");
   } else {
     rules.push("- This agent has no o-MATIC Server actions. Work from the conversation and any files the user shares.");
   }
@@ -409,10 +409,10 @@ ${cop}
     version: plugin.version,
     id: "${{TEAMS_APP_ID}}",
     developer: {
-      name: "lucidIT, LLC (o-MATIC)",
+      name: "LucidIT, LLC",
       websiteUrl: "https://o-matic.ai",
-      privacyUrl: "${{TODO_OMATIC_PRIVACY_URL}}",
-      termsOfUseUrl: "${{TODO_OMATIC_TERMS_URL}}",
+      privacyUrl: "https://www.o-matic.ai/privacy-policy/",
+      termsOfUseUrl: "https://www.o-matic.ai/terms-of-service/",
     },
     icons: { color: "color.png", outline: "outline.png" },
     name: { short: agentName.slice(0, 30), full: fullName.slice(0, 100) },
@@ -436,8 +436,8 @@ ${cop}
         run_for_functions: tools,
         spec: { url: "${{OMATIC_MCP_URL}}", mcp_tool_description: { file: "mcp-tools.json" } },
       }],
-      privacy_policy_url: "${{TODO_OMATIC_PRIVACY_URL}}",
-      legal_info_url: "${{TODO_OMATIC_TERMS_URL}}",
+      privacy_policy_url: "https://www.o-matic.ai/privacy-policy/",
+      legal_info_url: "https://www.o-matic.ai/terms-of-service/",
     }, null, 2));
     put(`${pkg}/mcp-tools.json`, JSON.stringify({
       tools: tools.map((name) => ({
@@ -700,9 +700,9 @@ Build the zip packages with \`node scripts/build-m365-packages.mjs\`. They stay
 unpublished until Microsoft 365 SSO is live and the server has a read-only
 database login for Copilot.
 
-Tool-using agents may read one factory first: o-MATIC Foundry, read-only, and
-only through the login the server grants. The package does not name a server
-host. Privacy and terms URLs are \`\${{TODO_…}}\` placeholders.
+Tool-using agents read only the first factory granted to the app, found through
+the connections list. The package does not name a server host. Privacy and terms
+URLs point at the public pages and are pending legal review.
 
 | Role | Wave | Tools | Icons | Notes |
 |---|---|---|---|---|
@@ -736,7 +736,7 @@ skill into \`skills/\` inside the package. Those copies are build output.
 
 ## What is still TODO before anyone installs a package
 
-- Replace \`\${{TODO_OMATIC_PRIVACY_URL}}\` and \`\${{TODO_OMATIC_TERMS_URL}}\` with the public privacy and terms pages.
+- Privacy and terms URLs are the public pages, pending legal review. SSO reference id is still a placeholder.
 - Replace \`\${{TEAMS_APP_ID}}\` with the app registration id. Do not commit a tenant id.
 - Replace \`\${{OMATIC_MCP_URL}}\` and \`\${{TODO_OMATIC_ENTRA_SSO_AUTH_ID}}\` when SSO is live. See \`./env/.env.sample\`.
 - The 192×192 color icon and the 32×32 white outline ship in each \`appPackage/\`. They are sized from the locked role SVG. A later master can replace \`color.png\` and \`outline.png\`.
@@ -749,9 +749,7 @@ ${m365Catalog.map((row) => `- **${row.display}** — \`./${row.id}/appPackage/\`
 
 put(`${pluginDir}/adapters/m365/env/.env.sample`, `# Deploy-time values for the Microsoft 365 Copilot packages.
 # Leave these blank in git. Do not put a secret, a tenant id, or a private host here.
-# Privacy policy and terms of use are TODO until the public pages exist.
-TODO_OMATIC_PRIVACY_URL=
-TODO_OMATIC_TERMS_URL=
+# Privacy and terms are in each manifest (pending legal review). SSO stays blank in git.
 TODO_OMATIC_ENTRA_SSO_AUTH_ID=
 TEAMS_APP_ID=
 OMATIC_MCP_URL=

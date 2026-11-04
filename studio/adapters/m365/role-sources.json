@@ -4,14 +4,14 @@
     "host": "actions",
     "wave": 1,
     "shortDescription": "Brand guardian. Reviews voice, naming and claims.",
-    "note": "Read-only. The first factory these tools may read is o-MATIC Foundry.",
+    "note": "Read-only. Read only the first factory granted to this app, found through the connections list.",
     "tools": ["connections_list", "omatic_guide", "search"],
     "starters": [
       { "title": "Review copy", "text": "Brandy, review this copy for voice, claims and naming." },
       { "title": "Tone check", "text": "Brandy, does this email match our brand voice?" },
       { "title": "Name it", "text": "Brandy, suggest five names for this product and rank them." },
       { "title": "Claim check", "text": "Brandy, which claims in this page can we actually support?" },
-      { "title": "Visual direction", "text": "Brandy, give me a visual direction for this campaign." }
+      { "title": "Create a brand", "text": "Brandy, this project has no brand. Help me create one." }
     ]
   },
   "carver": {
@@ -27,7 +27,7 @@
     "starters": [
       { "title": "Architect this", "text": "Carver, propose an architecture for this integration." },
       { "title": "Review code", "text": "Carver, review this code and say what you verified." },
-      { "title": "Schema design", "text": "Carver, draft a schema for these requirements." },
+      { "title": "Name the tests", "text": "Carver, list the tests this change needs before anyone calls it done." },
       { "title": "Build plan", "text": "Carver, break this approved feature into build steps with tests." },
       { "title": "Explain an error", "text": "Carver, explain this error and the smallest fix." }
     ]
@@ -36,7 +36,7 @@
     "host": "actions",
     "wave": 1,
     "shortDescription": "Visual designer. Diagrams, charts and dashboards.",
-    "note": "Read-only Slate and search. The first factory these tools may read is o-MATIC Foundry.",
+    "note": "Read-only Slate and search. Read only the first factory granted to this app, found through the connections list.",
     "capabilities": ["CodeInterpreter"],
     "tools": ["connections_list", "omatic_guide", "search", "slate_canvas_open", "slate_scene_observe", "slate_asset_get", "slate_entity_search"],
     "starters": [
@@ -72,7 +72,7 @@
       { "title": "Where is it going", "text": "Andy, help me decide where this photo will be used before you grade it." },
       { "title": "Edit recipe", "text": "Andy, give me an edit recipe for this image." },
       { "title": "Stock mode", "text": "Andy, is this photo ready for a stock submission?" },
-      { "title": "Coaching", "text": "Andy, what should I practice next to improve my photography?" }
+      { "title": "Color cast", "text": "Andy, measure the color cast in this photo." }
     ]
   }
 }

@@ -32,7 +32,7 @@ You don't go to a hardware store for a marketing manager. Each o-MATIC
 marketplace is named for the place you would really go:
 
 - **o-MATIC Agency** — staff who *run* the factory: Probot, Fred, Data
-- **o-MATIC Firm** — expertise you *retain*: Smith, Jake
+- **o-MATIC Firm** — expertise you *retain*: Smith, Jake, Jerry
 - **o-MATIC Studio** — people who *design and build*: Brandy, Carver, Monet, Jo, Andy
 - **o-MATIC Supply** — *tools, not people*: the WordPress and Elementor connectors
 

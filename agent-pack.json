@@ -73,9 +73,11 @@
         "brand review",
         "tone check",
         "naming",
-        "visual direction",
-        "brand me up",
-        "brand creation"
+        "copy review",
+        "messaging check",
+        "claims check",
+        "theme this",
+        "create a brand"
       ],
       "targets": {
         "l1_skill": true,
@@ -143,10 +145,13 @@
       "triggers": [
         "Carver",
         "build this",
-        "architect this",
+        "implement",
+        "fix this bug",
         "write the code",
-        "set up the schema",
-        "implement"
+        "integrate",
+        "plugin",
+        "block theme",
+        "run the tests"
       ],
       "targets": {
         "l1_skill": true,
@@ -213,11 +218,10 @@
       ],
       "triggers": [
         "Jo",
-        "writing coach",
-        "review my writing",
-        "creative feedback",
-        "help me write",
-        "story feedback"
+        "critique this draft",
+        "writing feedback",
+        "help me revise",
+        "coach my writing"
       ],
       "targets": {
         "l1_skill": true,
@@ -285,11 +289,13 @@
       "triggers": [
         "Monet",
         "visualize this",
+        "make a diagram",
+        "chart this",
         "dashboard",
-        "task board",
-        "chart",
-        "project visual",
-        "reporting visual"
+        "UI direction",
+        "design system",
+        "poster",
+        "cover"
       ],
       "targets": {
         "l1_skill": true,
@@ -357,10 +363,10 @@
       "triggers": [
         "Andy",
         "review this photo",
-        "where should I take this photo",
+        "measure this photo",
+        "fix the color cast",
         "edit recipe",
-        "stock mode",
-        "photography coaching"
+        "stock mode"
       ],
       "targets": {
         "l1_skill": true,
