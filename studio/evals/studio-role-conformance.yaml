@@ -18,3 +18,15 @@ cases:
   - id: l2-approval-gate
     role: all
     assert: L2 work stops without a registered owner, approval policy, allowlist, rollback plan, and passing evaluation.
+  - id: brandy-monet-tie-break
+    role: all
+    assert: Brand compliance (voice, claims, naming, locks, palette and type compliance) is Brandy's. Visual and design craft is Monet's. When a review touches both, Monet designs and Brandy gates, and Brandy names the rule.
+    grade: hand
+  - id: narrowed-triggers
+    role: all
+    assert: Andy no longer triggers on "photography coaching". Brandy no longer triggers on visual direction, color review, brand styling, brand me up, or brand checkup. Jo no longer triggers on "read this" or "coaching" alone. Monet no longer triggers on "map this", "design direction", "static visual", or "art object". Carver's description carries an explicit Triggers list, and "set up the schema" is not one of them.
+    grade: hand
+  - id: monet-art-object-kept
+    role: monet
+    assert: Art-object mode remains in reference/modes.md. The trigger phrase is gone. A poster, cover, or static piece still reaches that mode.
+    grade: hand

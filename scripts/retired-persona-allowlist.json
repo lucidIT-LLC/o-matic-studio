@@ -10,7 +10,7 @@
   ],
   "retired": [
     {
-      "name": "pixel",
+      "name_sha256": "3f8d7379e2f0f7d0c845a06f7b67ef80cacce0c686254aced769c1698f3fe59a",
       "replaced_by": "andy",
       "decision": "decision #538",
       "reason": "Operator ruling, session #216: 'Pixel is gone. The coach is Andy.' skills/pixel-photo-coach/ was renamed to skills/andy-photo-coach/, adapters/claude/agents/pixel.md to andy.md, adapters/copilot/.github/agents/pixel.agent.md to andy.agent.md."

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.30/MicrosoftTeams.schema.json",
   "manifestVersion": "1.30",
-  "version": "1.14.2",
+  "version": "1.15.0",
   "id": "${{TEAMS_APP_ID}}",
   "developer": {
-    "name": "lucidIT, LLC (o-MATIC)",
+    "name": "LucidIT, LLC",
     "websiteUrl": "https://o-matic.ai",
-    "privacyUrl": "${{TODO_OMATIC_PRIVACY_URL}}",
-    "termsOfUseUrl": "${{TODO_OMATIC_TERMS_URL}}"
+    "privacyUrl": "https://www.o-matic.ai/privacy-policy/",
+    "termsOfUseUrl": "https://www.o-matic.ai/terms-of-service/"
   },
   "icons": {
     "color": "color.png",

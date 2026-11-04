@@ -256,11 +256,12 @@ if (!skillDirs.length) {
 }
 
 
-// 5. RETIRED PERSONA NAME DETECTOR (task #777). A persona rename — Pixel ->
-// Andy (decision #538), Rimmer -> Smith (decision #416) — must be caught by a
-// gate, not by the operator reading a diff by hand. scripts/retired-persona-
-// allowlist.json lists {name, replaced_by, decision, reason} for every retired
-// persona name relevant to THIS pack.
+// 5. RETIRED PERSONA NAME DETECTOR (task #777). Retired roles (hashed list)
+// must be caught by a gate, not by the operator reading a diff by hand.
+// scripts/retired-persona-allowlist.json lists {name_sha256, replaced_by,
+// decision, reason}. The name is stored as the sha256 of its lowercase form
+// so this file does not have to spell it. A legacy "name" field is hashed
+// at check time.
 //
 // Scope, deliberately narrow: only files a host actually LOADS as instruction
 // or routing metadata — SKILL.md, and anything under adapters/ or contracts/.
@@ -294,31 +295,27 @@ const PERSONA_EXEMPT = new RegExp(EXEMPT.source + "|replac|successor|former |is 
     let ra;
     try { ra = JSON.parse(readFileSync(raPath, "utf8")); OK("retired-persona-allowlist.json parses"); }
     catch (e) { FAIL(`retired-persona-allowlist.json invalid JSON: ${e.message}`); }
+    const personaHash = (s) => createHash("sha256").update(String(s).toLowerCase()).digest("hex");
+    const retiredHash = (r) => r.name_sha256 || (r.name ? personaHash(r.name) : "");
     const retired = (ra?.retired ?? []).filter(r => {
-      if (!r.name || !r.replaced_by || !r.reason) {
-        FAIL(`retired-persona-allowlist.json entry missing name/replaced_by/reason: ${JSON.stringify(r)}`);
+      if ((!r.name && !r.name_sha256) || !r.replaced_by || !r.reason) {
+        FAIL(`retired-persona-allowlist.json entry missing name_sha256/replaced_by/reason: ${JSON.stringify(r)}`);
         return false;
       }
       return true;
     });
     if (ra && !retired.length) OK("retired-persona-allowlist.json declares no retired names for this pack");
-    const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
-    // case-INsensitive, whole-token match against a directory's hyphen/underscore
-    // segments — a narrow, deliberate context, not free prose, so the common-word
-    // collision risk that rules out case-insensitivity below does not apply here.
-    const dirHasSegment = (dir, name) =>
-      dir.split(/[-_]/).some(seg => seg.toLowerCase() === name.toLowerCase());
-    // case-SENSITIVE on the capitalized proper-noun form for prose scanning.
-    const proseRe = (n) => new RegExp(`\\b${escape(cap(n))}\\b`);
+    // Directory segments are matched case-insensitively (the hash is of the
+    // lowercase form). Prose matches the capitalized proper-noun form only,
+    // so a common noun that shares the spelling does not trip the gate.
 
     // a) a skill's own identity must never BE a retired name — no context
     //    exempts a skill from naming itself after a persona that no longer exists.
     for (const dir of skillDirs) {
       checks++;
       for (const r of retired)
-        if (dirHasSegment(dir, r.name))
-          FAIL(`${dir}: skill directory IS a retired persona name ('${r.name}', replaced by '${r.replaced_by}' — ${r.decision})`);
+        if (dir.split(/[-_]/).some(seg => personaHash(seg) === retiredHash(r)))
+          FAIL(`${dir}: skill directory matches retired persona ${retiredHash(r).slice(0, 12)} (replaced by '${r.replaced_by}' — ${r.decision})`);
     }
 
     // b) SKILL.md / adapters / contracts, whole paragraph at a time.
@@ -333,9 +330,12 @@ const PERSONA_EXEMPT = new RegExp(EXEMPT.source + "|replac|successor|former |is 
           if (!para.length) return;
           const block = para.join("\n");
           if (!PERSONA_EXEMPT.test(block)) {
-            for (const r of retired)
-              if (proseRe(r.name).test(block))
-                FAIL(`${rel}:${startLine}: names retired persona '${r.name}' as a live reference — replaced by '${r.replaced_by}' (${r.decision})`);
+            const proper = block.match(/\b[A-Z][A-Za-z0-9]+\b/g) || [];
+            for (const r of retired) {
+              const want = retiredHash(r);
+              if (proper.some((word) => personaHash(word) === want))
+                FAIL(`${rel}:${startLine}: names retired persona ${want.slice(0, 12)} as a live reference — replaced by '${r.replaced_by}' (${r.decision})`);
+            }
           }
           para = [];
         };

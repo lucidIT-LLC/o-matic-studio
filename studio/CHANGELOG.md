@@ -1,5 +1,16 @@
 # o-MATIC Studio — Changelog
 
+## 1.15.0 — 2026-11-04
+
+One canonical skill per role, with host notes. The Grok Bot variant becomes a trigger-less stub. Brandy owns brand compliance and Monet owns visual and design craft.
+
+- **Skills:** Andy, Brandy, Carver, Jo, and Monet are rewritten to the shared layout. Bodies are under 10,000 characters. History leaves the skill bodies. `grok-carver` is a deprecated stub; its L2 rule moves into carver-build host notes for Grok Bot, with the meaning unchanged.
+- **Tie-break:** when a review touches both brand and visual craft, Monet designs and Brandy gates.
+- **Triggers:** narrowed. Removed: Andy "photography coaching"; Brandy "visual direction", "color review", "brand styling", "brand me up", "brand checkup"; Jo "read this" and "coaching"; Monet "map this", "design direction", "static visual", "art object". Art-object mode stays in `reference/modes.md`.
+- **Names:** author fields are LucidIT, LLC. Jo's pack name is o-MATIC Studio. The two retired role names are removed from the changelog and from carver-build, and the gate stores them only as hashes.
+- **Public:** privacy and terms URLs point at the public pages, pending legal review. The README Firm roster includes Jerry. CI runs the skill-shape and public-readiness gates in enforcing mode.
+- **Versions:** pack manifests move 1.14.2 → 1.15.0. Role markers move with them: andy-photo-coach 2.9.0, brandy-branding 7.7.0, carver-build 1.1.0 (first marker), jo-writing 4.3.0, monet-visuals 4.6.0, jo-release-journal 1.1.0, grok-carver 2.0.0-deprecated. Persona signatures are unchanged.
+
 ## 1.14.2 — 2026-11-04
 
 Report-only gates for skill shape, version bumps, and public readiness. No skill text changes.
@@ -592,10 +603,9 @@ work.
 
 ### 7. Retired-role residue
 
-`skills/carver-build/SKILL.md` still routed evidence scoring to Rimmer, retired
-2026-09-04. Corrected to Smith per decision #416. That was the only occurrence in
-this pack; the Tim reference in the same sentence was already historical and now
-reads as such.
+`skills/carver-build/SKILL.md` still routed evidence scoring away from Smith.
+Corrected so evidence-first evaluation goes to Smith (smith-evals) and tool
+discovery goes to Probot. That was the only occurrence in this pack.
 
 ### Also
 

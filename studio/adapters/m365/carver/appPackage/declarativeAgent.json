@@ -14,8 +14,8 @@
       "text": "Carver, review this code and say what you verified."
     },
     {
-      "title": "Schema design",
-      "text": "Carver, draft a schema for these requirements."
+      "title": "Name the tests",
+      "text": "Carver, list the tests this change needs before anyone calls it done."
     },
     {
       "title": "Build plan",

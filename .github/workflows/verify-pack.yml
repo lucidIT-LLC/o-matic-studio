@@ -63,14 +63,14 @@ jobs:
           done
           [ "$found" = 1 ] || echo "no hook fixture suites in this pack"
       - name: Skill shape and size
-        run: node scripts/check-skills.mjs --warn
+        run: node scripts/check-skills.mjs
       - name: Version bump on content change
         if: github.event_name == 'pull_request'
         run: node scripts/check-version-bump.mjs --base "origin/${{ github.base_ref }}"
       - name: Public-readiness gate
         run: |
           python3 -m unittest discover -s scripts/public-gate/tests
-          python3 scripts/public-gate/check-public-package.py --profile skills-pack --warn \
+          python3 scripts/public-gate/check-public-package.py --profile skills-pack \
             --denylist .github/public-gate/denylist.tsv --allowlist .github/public-gate/allowlist.tsv \
             --hashed .github/public-gate/hashed-terms.json .
       - name: Conformance (fixture mode, offline)
