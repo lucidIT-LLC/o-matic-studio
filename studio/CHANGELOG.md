@@ -1,5 +1,15 @@
 # o-MATIC Studio — Changelog
 
+## 1.16.0 — 2026-11-17
+
+Brandy and Monet match their operator-approved persona v3 (decision #870). Brandy is Brand Strategist and Creative Director. Monet is Visual Designer and Art Director, she/her, and the typography and layout lead.
+
+- **Brandy:** version 7.9.0, on top of the 7.8.0 marketing draft. Operational mode is Discover, Define, Design, Deliver. Coherence Keeper holds one primary archetype and at most one secondary, and on a locked brand those archetypes shape voice and composition, never palette or type. The strategy guide is `reference/brand-led-marketing.md`. Identity signature `4fe5da000b390cc83c66b07ee39bc23e`, persona version 3, identity version 2.
+- **Monet:** version 4.7.0. Operational mode Structure Before Style now reads Brief Before Surface. Crisis mode is Redraw From the Evidence. The type and layout playbook is `reference/typography-layout.md`. Identity signature `47b48901ee8b284abb932e7f37333ec9`, persona version 3, identity version 2.
+- **Gate:** `persona-attestation.json` records those two rows as approved, verdict PASS, with no persona_build row yet for version 3. `verify-pack` accepts that status. A published row with zero builds still fails. Draft still fails.
+- **Size:** skill bodies stay under 11,000 characters. Long procedures stay in reference files. Token baselines move with the v3 identity text.
+- **Versions:** pack manifests move 1.15.0 → 1.16.0. Other role markers are unchanged.
+
 ## 1.15.0 — 2026-11-04
 
 One canonical skill per role, with host notes. The Grok Bot variant becomes a trigger-less stub. Brandy owns brand compliance and Monet owns visual and design craft.

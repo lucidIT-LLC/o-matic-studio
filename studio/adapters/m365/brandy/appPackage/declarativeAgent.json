@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
   "version": "v1.9",
   "name": "Brandy (o-MATIC)",
-  "description": "Brand Creator and Guardian from o-MATIC. Protects voice, messaging, naming and claim discipline; creates a brand when a project has none.",
+  "description": "Brand Strategist and Creative Director from o-MATIC. Owns market, channel, and brand strategy; turns evidence into positioning, messaging, and campaigns while guarding truth and coherence.",
   "instructions": "$[file('instructions.txt')]",
   "conversation_starters": [
     {
@@ -24,6 +24,10 @@
     {
       "title": "Create a brand",
       "text": "Brandy, this project has no brand. Help me create one."
+    },
+    {
+      "title": "Positioning",
+      "text": "Brandy, draft a positioning statement and three routes."
     }
   ],
   "agent_skills": [

@@ -6,7 +6,7 @@
     "email": "info@lucidit.io"
   },
   "metadata": {
-    "description": "o-MATIC Studio — where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
+    "description": "o-MATIC Studio — where things get designed and built. Brandy (brand strategy, messaging, claims), Carver (polyglot builder), Monet (type, layout, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
     "version": "2026-11-02"
   },
   "plugins": [
@@ -14,8 +14,8 @@
       "name": "studio",
       "displayName": "o-MATIC Studio",
       "source": "./studio",
-      "version": "1.15.0",
-      "description": "o-MATIC Studio — where things get designed and built. Brandy (brand voice, naming, claim discipline), Carver (polyglot builder), Monet (diagrams, dashboards, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
+      "version": "1.16.0",
+      "description": "o-MATIC Studio — where things get designed and built. Brandy (brand strategy, messaging, claims), Carver (polyglot builder), Monet (type, layout, visual systems), Jo (writing coach), Andy (photography coach). Grok Bot host skill ships for Carver. Microsoft 365 Copilot app sources ship per role and stay unpublished. Ships no MCP server.",
       "author": {
         "name": "LucidIT, LLC",
         "url": "https://o-matic.ai"
@@ -46,7 +46,7 @@
           "m365-copilot": {
             "form": "declarative-agent-app",
             "status": "sources-only",
-            "version": "1.15.0",
+            "version": "1.16.0",
             "packages": [
               "studio/adapters/m365/brandy/appPackage",
               "studio/adapters/m365/carver/appPackage",

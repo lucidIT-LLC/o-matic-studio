@@ -3,7 +3,7 @@
   "brandy": {
     "host": "actions",
     "wave": 1,
-    "shortDescription": "Brand guardian. Reviews voice, naming and claims.",
+    "shortDescription": "Brand strategist. Positioning, messaging, and claims.",
     "note": "Read-only. Read only the first factory granted to this app, found through the connections list.",
     "tools": ["connections_list", "omatic_guide", "search"],
     "starters": [
@@ -11,7 +11,8 @@
       { "title": "Tone check", "text": "Brandy, does this email match our brand voice?" },
       { "title": "Name it", "text": "Brandy, suggest five names for this product and rank them." },
       { "title": "Claim check", "text": "Brandy, which claims in this page can we actually support?" },
-      { "title": "Create a brand", "text": "Brandy, this project has no brand. Help me create one." }
+      { "title": "Create a brand", "text": "Brandy, this project has no brand. Help me create one." },
+      { "title": "Positioning", "text": "Brandy, draft a positioning statement and three routes." }
     ]
   },
   "carver": {
@@ -35,7 +36,7 @@
   "monet": {
     "host": "actions",
     "wave": 1,
-    "shortDescription": "Visual designer. Diagrams, charts and dashboards.",
+    "shortDescription": "Visual designer. Type, layout, and art direction.",
     "note": "Read-only Slate and search. Read only the first factory granted to this app, found through the connections list.",
     "capabilities": ["CodeInterpreter"],
     "tools": ["connections_list", "omatic_guide", "search", "slate_canvas_open", "slate_scene_observe", "slate_asset_get", "slate_entity_search"],
@@ -44,7 +45,8 @@
       { "title": "Chart this", "text": "Monet, chart this data and explain the choice of chart." },
       { "title": "Dashboard", "text": "Monet, sketch a dashboard layout for these metrics." },
       { "title": "Read a canvas", "text": "Monet, describe what is on this Slate canvas." },
-      { "title": "Project visual", "text": "Monet, make a one-page visual summary of this project." }
+      { "title": "Project visual", "text": "Monet, make a one-page visual summary of this project." },
+      { "title": "Type and layout", "text": "Monet, set the type system and the grid before drawing." }
     ]
   },
   "jo": {

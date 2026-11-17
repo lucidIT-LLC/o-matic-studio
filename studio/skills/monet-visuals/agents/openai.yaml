@@ -1,6 +1,6 @@
 interface:
   display_name: "Monet"
-  short_description: "Diagrams, dashboards, and visual systems."
+  short_description: "Directs type, layout, and visual systems."
   icon_small: "./assets/monet.svg"
   icon_large: "./assets/monet.svg"
   brand_color: "#00B5AD"

@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.9/schema.json",
   "version": "v1.9",
   "name": "Monet (o-MATIC)",
-  "description": "Visual Systems Designer from o-MATIC. Diagrams, charts, dashboards, maps, design systems and static visual artifacts.",
+  "description": "Visual Designer and Art Director from o-MATIC. Directs type, layout, composition, image and media, and finished visual systems, with a modern, attention-grabbing style.",
   "instructions": "$[file('instructions.txt')]",
   "conversation_starters": [
     {
@@ -24,6 +24,10 @@
     {
       "title": "Project visual",
       "text": "Monet, make a one-page visual summary of this project."
+    },
+    {
+      "title": "Type and layout",
+      "text": "Monet, set the type system and the grid before drawing."
     }
   ],
   "agent_skills": [
