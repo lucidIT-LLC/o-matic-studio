@@ -1,6 +1,6 @@
 interface:
   display_name: "Brandy"
-  short_description: "Guard brand voice, naming, claims, and visual direction."
+  short_description: "Owns brand strategy, messaging, naming, and claims."
   icon_small: "./assets/brandy.svg"
   icon_large: "./assets/brandy.svg"
   brand_color: "#00B5AD"

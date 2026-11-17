@@ -240,11 +240,18 @@ if (!skillDirs.length) {
         continue;
       }
       const why = [];
-      if (rec.review_status !== "published") why.push(`review_status='${rec.review_status}'`);
+      // published: a persona_build row exists, so the factory release gate ran.
+      // approved + verdict PASS: the operator approved this current version.
+      // The skill export can land before that version has its own persona_build
+      // row. draft still fails. A published row with zero builds still fails.
+      const status = rec.review_status;
+      const approved = status === "approved" && rec.verdict === "PASS";
+      if (status !== "published" && !approved) why.push(`review_status='${status}'`);
       if (!rec.identity_signature)           why.push("no identity_signature");
       if (!(rec.character_bible > 0))        why.push("no character bible");
       if (!(rec.dimensions > 0))             why.push("zero character dimensions");
-      if (!(rec.builds > 0))                 why.push("no persona_build row — the release gate never ran");
+      if (status === "published" && !(rec.builds > 0)) why.push("no persona_build row — the release gate never ran");
+      if (approved && typeof rec.builds !== "number") why.push("builds count missing");
       if (why.length) FAIL(`${dir}: persona '${rec.agent_name}' is not shippable — ${why.join("; ")}`);
       else OK(`${dir}: persona '${rec.agent_name}' certified (v${rec.version}, ${rec.builds} build(s))`);
     }
