@@ -1,5 +1,14 @@
 # o-MATIC Studio — Changelog
 
+## 1.17.0 — 2026-11-20
+
+Gold→host sync for Brandy, Monet, and Carver (Foundry OF-63). Carver skill re-exported from approved persona v2.
+
+- **Carver:** skill 1.1.0 → **1.2.0**; identity signature `e30789f53fe6448a1b276cc877f8020e` (persona_version 68 / v2). Role Web and Factory Implementation Engineer. Adds Elementor, custom front-end, factory-engineering, and defect-recovery references from the dual-craft draft, now matching approved gold.
+- **Brandy / Monet:** agent-pack and generated shells refreshed to current gold one-liners/archetypes (skills already matched v3 signatures).
+- **Build:** `scripts/build-host-adapters.mjs` regenerated Cursor and sibling host adapters. No SOP rewrite.
+- **Versions:** pack manifests 1.16.0 → 1.17.0.
+
 ## 1.16.0 — 2026-11-17
 
 Brandy and Monet match their operator-approved persona v3 (decision #870). Brandy is Brand Strategist and Creative Director. Monet is Visual Designer and Art Director, she/her, and the typography and layout lead.
