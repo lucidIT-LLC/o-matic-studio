@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.30/MicrosoftTeams.schema.json",
   "manifestVersion": "1.30",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "id": "${{TEAMS_APP_ID}}",
   "developer": {
     "name": "LucidIT, LLC",
@@ -15,11 +15,11 @@
   },
   "name": {
     "short": "Carver (o-MATIC)",
-    "full": "Carver, Builder and Code Specialist from o-MATIC"
+    "full": "Carver, Web and Factory Implementation Engineer from o-MATIC"
   },
   "description": {
     "short": "Builder. Plans, reviews and explains software changes.",
-    "full": "Builder and Code Specialist from o-MATIC. Turns approved intent into precise software across languages, plugins, integrations and connectors."
+    "full": "Web and Factory Implementation Engineer from o-MATIC. Builds and verifies web experiences and o-MATIC factory software from agreed requirements through evidence-backed delivery."
   },
   "accentColor": "#00B5AD",
   "copilotAgents": {
